@@ -10,7 +10,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-
+            Console.WriteLine(SecondHighest("abc1111"));
             Console.WriteLine();
         }
         public static bool Match(char ch)
@@ -436,6 +436,35 @@ namespace WorkingWithStruct
             {
                 result[2 * i] = nums[i];
                 result[2 * i + 1] = nums[n + i];
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Second Largest Digit in a String
+
+        public static int SecondHighest(string s)
+        {
+            int max = 0;
+            int result = Int32.MinValue;
+            HashSet<int> hs = new HashSet<int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (Char.IsDigit(s[i]))
+                    hs.Add(s[i] - '0');
+            }
+
+            if (hs.Count < 2) return -1;
+
+            max = hs.Max();
+
+            foreach(var item in hs)
+            {
+                if (item < max && item > result)
+                    result = item;
             }
 
             return result;
