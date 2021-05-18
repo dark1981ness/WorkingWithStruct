@@ -10,7 +10,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            Console.WriteLine(SecondHighest("abc1111"));
+            Console.WriteLine(RotateString("abcde", "cdeab"));
             Console.WriteLine();
         }
         public static bool Match(char ch)
@@ -461,7 +461,7 @@ namespace WorkingWithStruct
 
             max = hs.Max();
 
-            foreach(var item in hs)
+            foreach (var item in hs)
             {
                 if (item < max && item > result)
                     result = item;
@@ -470,6 +470,116 @@ namespace WorkingWithStruct
             return result;
         }
 
+        #endregion
+
+        #region Rotate String
+
+        //We are given two strings, s and goal.
+
+        //A shift on s consists of taking string s and moving the leftmost character to the rightmost position.For example, if s = 'abcde', then it will be 'bcdea' after one shift on s.Return true if and only if s can become goal after some number of shifts on s.
+
+        //Example 1:
+        //Input: s = 'abcde', goal = 'cdeab'
+        //Output: true
+
+        //Example 2:
+        //Input: s = 'abcde', goal = 'abced'
+        //Output: false
+        //Note:
+
+        //s and goal will have length at most 100.
+
+        public static bool RotateString(string s, string goal)
+        {
+            if (s.Length != goal.Length)
+                return false;
+            if (s.Length == 0 && goal.Length == 0)
+                return true;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                var right = s.Substring(0, i);
+
+                var left = s.Substring(i);
+
+                if (string.Equals(goal, (left + right)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        #endregion
+
+        #region Search in a Binary Search Tree
+
+        //You are given the root of a binary search tree(BST) and an integer val.
+
+        //Find the node in the BST that the node's value equals val and return the subtree
+        //rooted with that node. If such a node does not exist, return null.
+
+
+        //public TreeNode SearchBST(TreeNode root, int val)
+        //{
+        //    return FindNode(root, val);
+        //}
+
+        //private TreeNode FindNode(TreeNode node, int val)
+        //{
+        //    if (node == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    if (node.val == val)
+        //    {
+        //        return node;
+        //    }
+
+        //    if (val < node.val)
+        //    {
+        //        return FindNode(node.left, val);
+        //    }
+
+        //    return FindNode(node.right, val);
+        //}
+
+
+        #endregion
+
+        #region Ransom Note
+
+        public static bool CanConstruct(string ransomNote, string magazine)
+        {
+            Dictionary<char, int> mag = new Dictionary<char, int>();
+
+            if (ransomNote.Length > magazine.Length)
+                return false;
+
+            for (int i = 0; i < magazine.Length; i++)
+            {
+                if (!mag.ContainsKey(magazine[i]))
+                    mag.Add(magazine[i], 1);
+                else
+                    mag[magazine[i]] += 1;
+            }
+
+            for (int i = 0; i < ransomNote.Length; i++)
+            {
+                mag.TryGetValue(ransomNote[i], out int value);
+
+                if (value < 1)
+                    return false;
+                else
+                    mag[ransomNote[i]] -= 1;
+            }
+
+            return true;
+
+        }
         #endregion
     }
 }
