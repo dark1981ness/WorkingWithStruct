@@ -7,16 +7,28 @@ namespace WorkingWithStruct
 {
     class Program
     {
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
 
         static void Main(string[] args)
         {
-            Console.WriteLine(RotateString("abcde", "cdeab"));
+            var res = LargeGroupPositions("abbxxxxzyy");
+
+            foreach (var item in res)
+            {
+                Console.WriteLine(item);
+            }
             Console.WriteLine();
         }
-        public static bool Match(char ch)
-        {
-            return ch.Equals('e');
-        }
+
 
         #region Replace All Digits with Characters
         //You are given a 0-indexed string s that has lowercase English letters in its even indices and digits in its odd indices.
@@ -580,6 +592,140 @@ namespace WorkingWithStruct
             return true;
 
         }
+        #endregion
+
+        #region Sorting the Sentence
+        //A sentence is a list of words that are separated by a single space with no leading or trailing spaces.Each word consists of lowercase and uppercase English letters.
+
+        //A sentence can be shuffled by appending the 1-indexed word position to each word then rearranging the words in the sentence.
+
+        //For example, the sentence "This is a sentence" can be shuffled as "sentence4 a3 is2 This1" or "is2 sentence4 This1 a3".
+        //Given a shuffled sentence s containing no more than 9 words, reconstruct and return the original sentence.
+
+
+
+        //Example 1:
+
+
+        //Input: s = "is2 sentence4 This1 a3"
+        //Output: "This is a sentence"
+        //Explanation: Sort the words in s to their original positions "This1 is2 a3 sentence4", then remove the numbers.
+        //Example 2:
+
+
+        //Input: s = "Myself2 Me1 I4 and3"
+        //Output: "Me Myself and I"
+        //Explanation: Sort the words in s to their original positions "Me1 Myself2 and3 I4", then remove the numbers.
+
+
+
+        //Constraints:
+
+        //2 <= s.length <= 200
+        //s consists of lowercase and uppercase English letters, spaces, and digits from 1 to 9.
+        //The number of words in s is between 1 and 9.
+        //The words in s are separated by a single space.
+        //s contains no leading or trailing spaces.
+
+        public static string SortSentence(string s)
+        {
+            string result = string.Empty;
+
+            SortedDictionary<int, string> temp = new SortedDictionary<int, string>();
+
+            string[] tempArr = s.Split(' ');
+
+            foreach (var item in tempArr)
+            {
+                string value = item.Substring(0, item.Length - 1);
+                int key = int.Parse((item.Substring(item.Length - 1)));
+                temp.Add(key, value);
+            }
+
+            result = string.Join(" ", temp.Select(x => x.Value).ToList());
+
+            return result;
+        }
+        #endregion
+
+        #region Reverse Linked List
+        public static ListNode ReverseList(ListNode head)
+        {
+            ListNode current = head;
+            ListNode previous = new ListNode();
+            while (current != null)
+            {
+                ListNode nextNode = current.next;
+                current.next = previous;
+                previous.val = current.val;
+                previous = current;
+                current = nextNode;
+            }
+            return previous.next;
+        }
+
+        #endregion
+
+        #region  Positions of Large Groups
+        //In a string s of lowercase letters, these letters form consecutive groups of the same character.
+
+        //For example, a string like s = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z", and "yy".
+
+        //A group is identified by an interval[start, end], where start and end denote the start and end indices(inclusive) of the group.In the above example, "xxxx" has the interval[3, 6].
+
+        //A group is considered large if it has 3 or more characters.
+
+        //Return the intervals of every large group sorted in increasing order by start index.
+
+
+
+        //Example 1:
+
+        //Input: s = "abbxxxxzzy"
+        //Output: [[3,6]]
+        //Explanation: "xxxx" is the only large group with start index 3 and end index 6.
+        //Example 2:
+
+        //Input: s = "abc"
+        //Output: []
+        //        Explanation: We have groups "a", "b", and "c", none of which are large groups.
+        //        Example 3:
+
+        //Input: s = "abcdddeeeeaabbbcd"
+        //        Output: [[3,5], [6,9], [12,14]]
+        //Explanation: The large groups are "ddd", "eeee", and "bbb".
+        //Example 4:
+
+        //Input: s = "aba"
+        //Output: []
+
+
+        //        Constraints:
+
+        //1 <= s.length <= 1000
+        //s contains lower-case English letters only.
+        public static IList<IList<int>> LargeGroupPositions(string s)
+        {
+            int i = 0;
+            var result = new List<IList<int>>();
+
+            while (i < s.Length)
+            {
+                var tempChar = s[i];
+                var tempList = new List<int>();
+                while (i < s.Length && s[i].Equals(tempChar))
+                {
+                    tempList.Add(i++);
+                }
+                
+                if (tempList.Count >= 3)
+                {
+                    result.Add(new List<int>() { tempList.First(), tempList.Last()});
+                }
+            }
+            return result;
+        }
+       
         #endregion
     }
 }
