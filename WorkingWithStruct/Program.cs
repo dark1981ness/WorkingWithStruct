@@ -20,10 +20,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] arr = { -1, -2, -3, 4, 3, 2, 1 };
-            string n = "z", k = "ZZ";
+            int[] arr = { 2, 7, 4, 1, 8, 1 };
 
-            Console.WriteLine(NumJewelsInStones(n, k));
+            Console.WriteLine(LastStoneWeight(arr));
         }
 
 
@@ -795,6 +794,7 @@ namespace WorkingWithStruct
 
         public static int NumJewelsInStones(string J, string S)
         {
+
             int result = 0;
 
             Dictionary<char, int> hs = new Dictionary<char, int>();
@@ -810,6 +810,43 @@ namespace WorkingWithStruct
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region Last Stone Weight
+
+        public static int LastStoneWeight(int[] stones)
+        {
+            List<int> tempList = stones.ToList();
+            tempList.Sort();
+
+            while(tempList.Count > 2)
+            {
+                int x = tempList.Last();
+                int y = tempList[tempList.Count - 2];
+
+                tempList.Remove(x);
+                tempList.Remove(y);
+
+
+                if ((x-y) != 0)
+                {
+                    tempList.Add(x - y);
+                }
+
+                tempList.Sort();
+            }
+
+            if (tempList.Count == 1)
+            {
+                return tempList.Last();
+            }
+            else
+            {
+                return tempList.Last() - tempList.First();
+            }
+            
         }
 
         #endregion
