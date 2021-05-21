@@ -20,13 +20,10 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            var res = LargeGroupPositions("abbxxxxzyy");
+            int[] arr = { -1, -2, -3, 4, 3, 2, 1 };
+            string n = "z", k = "ZZ";
 
-            foreach (var item in res)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+            Console.WriteLine(NumJewelsInStones(n, k));
         }
 
 
@@ -717,15 +714,105 @@ namespace WorkingWithStruct
                 {
                     tempList.Add(i++);
                 }
-                
+
                 if (tempList.Count >= 3)
                 {
-                    result.Add(new List<int>() { tempList.First(), tempList.Last()});
+                    result.Add(new List<int>() { tempList.First(), tempList.Last() });
                 }
             }
             return result;
         }
-       
+
         #endregion
+
+        #region Sign of the Product of an Array
+
+        public static int ArraySign(int[] nums)
+        {
+            int counter = 0;
+
+            foreach (var item in nums)
+            {
+                if (item == 0) return 0;
+
+                if (item < 0) counter++;
+            }
+
+            return counter % 2 == 0 ? 1 : -1;
+        }
+
+        #endregion
+
+        #region Sum of Digits in Base K
+
+        public static int SumBase(int n, int k)
+        {
+            int result = 0;
+
+            while (n > 0)
+            {
+                result += n % k;
+                n /= k;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Count Odd Numbers in an Interval Range
+
+        public static int CountOdds(int low, int high)
+        {
+            int counter = 0;
+
+            if (low % 2 == 0 && high % 2 == 0)
+            {
+                counter = (high - low) / 2;
+            }
+            if (low % 2 != 0 && high % 2 != 0)
+            {
+                counter = ((high - low) / 2) + 1;
+            }
+
+            if (low % 2 == 0 && high % 2 != 0)
+            {
+                counter = (high - (low - 1)) / 2;
+            }
+
+            if (low % 2 != 0 && high % 2 == 0)
+            {
+                counter = (high + 1 - low) / 2;
+            }
+
+            return counter;
+
+            //return (int)Math.Round((double)(1+high-low)/2, MidpointRounding.AwayFromZero);
+        }
+
+        #endregion
+
+        #region Jewels and Stones
+
+        public static int NumJewelsInStones(string J, string S)
+        {
+            int result = 0;
+
+            Dictionary<char, int> hs = new Dictionary<char, int>();
+
+            foreach (char item in J)
+            {
+                if (!hs.ContainsKey(item)) hs.Add(item, 0);
+            }
+
+            foreach (char item in S)
+            {
+                if (hs.ContainsKey(item)) result++;
+            }
+
+            return result;
+        }
+
+        #endregion
+
     }
 }
