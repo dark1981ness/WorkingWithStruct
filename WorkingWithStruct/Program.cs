@@ -987,6 +987,19 @@ namespace WorkingWithStruct
 
             return ((n > 0) && (1162261467 % n == 0));
         }
+
+        public bool IsPowerOfFour(int n)
+        {
+            return n > 0 && ((n & (n - 1)) == 0) && (n & 0xAAAAAAAA) == 0;
+        }
+        #endregion
+
+        #region  Pow(x, n)
+
+        public static double MyPow(double x, int n)
+        {
+            if(n<0)
+        }
         #endregion
 
     }
