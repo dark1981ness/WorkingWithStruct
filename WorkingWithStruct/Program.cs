@@ -992,7 +992,6 @@ namespace WorkingWithStruct
 
         public static double MyPow(double x, int n)
         {
-
             if (n < 0)
                 return 1 / PowerOf(x, Math.Abs((long)n));
             else
