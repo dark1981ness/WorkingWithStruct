@@ -1007,10 +1007,28 @@ namespace WorkingWithStruct
 
         #region  Pow(x, n)
 
-        //public static double MyPow(double x, int n)
-        //{
-        //    if(n<0)
-        //}
+        public static double MyPow(double x, int n)
+        {
+            if (n == 0) return 1;
+
+            if (n < 0)
+                return 1 / PowerOf(x, (long)Math.Abs(n));
+            else
+                return PowerOf(x, (long)n);
+        }
+
+        private static double PowerOf(double x, long n)
+        {
+            if ((n & 1) == 0)
+            {
+                var value = PowerOf(x, n >> 1);
+                return value * value;
+            }
+            else
+            {
+                return x * PowerOf(x, n - 1);
+            }
+        }
         #endregion
 
         #region Path Crossing
