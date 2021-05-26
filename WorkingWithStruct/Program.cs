@@ -20,24 +20,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //int[] arr = { 3, 4, 5, 6, 7, 8 };
-
-            string arr = "aab";
-
-            var list = Partition(arr);
-
-            Console.WriteLine(list.Count);
-
-            foreach (List<string> item in list)
-            {
-                foreach (string value in item)
-                {
-                    Console.Write($"{value} ");
-                }
-                Console.WriteLine();
-            }
-
-            //Console.WriteLine(LastStoneWeight(arr));
+            Console.WriteLine(MyPow(1.00000,-2147483648));
         }
 
 
@@ -1009,16 +992,18 @@ namespace WorkingWithStruct
 
         public static double MyPow(double x, int n)
         {
-            if (n == 0) return 1;
+            
 
             if (n < 0)
-                return 1 / PowerOf(x, (long)Math.Abs(n));
+                return 1 / PowerOf(x, Math.Abs((long)n));
             else
                 return PowerOf(x, (long)n);
         }
 
         private static double PowerOf(double x, long n)
         {
+            if (n == 0) return 1;
+
             if ((n & 1) == 0)
             {
                 var value = PowerOf(x, n >> 1);
