@@ -22,9 +22,20 @@ namespace WorkingWithStruct
         {
             //int[] arr = { 3, 4, 5, 6, 7, 8 };
 
-            int arr = 1594322;
+            string arr = "aab";
 
-            Console.WriteLine(IsPowerOfThree(arr));
+            var list = Partition(arr);
+
+            Console.WriteLine(list.Count);
+
+            foreach (List<string> item in list)
+            {
+                foreach (string value in item)
+                {
+                    Console.Write($"{value} ");
+                }
+                Console.WriteLine();
+            }
 
             //Console.WriteLine(LastStoneWeight(arr));
         }
@@ -996,10 +1007,90 @@ namespace WorkingWithStruct
 
         #region  Pow(x, n)
 
-        public static double MyPow(double x, int n)
+        //public static double MyPow(double x, int n)
+        //{
+        //    if(n<0)
+        //}
+        #endregion
+
+        #region Path Crossing
+
+        public static bool IsPathCrossing(string path)
         {
-            if(n<0)
+            int x = 0;
+            int y = 0;
+            HashSet<string> visited = new HashSet<string>();
+
+            visited.Add($"{x},{y}");
+            foreach (char ch in path)
+            {
+                switch (ch)
+                {
+                    case 'N':
+                        y++;
+                        break;
+                    case 'E':
+                        x++;
+                        break;
+                    case 'S':
+                        y--;
+                        break;
+                    case 'W':
+                        x--;
+                        break;
+                }
+                if (visited.Contains($"{x},{y}")) return true;
+
+                visited.Add($"{x},{y}");
+            }
+            return false;
         }
+
+        #endregion
+
+        #region Palindrome Partitioning
+
+        public static IList<IList<string>> Partition(string s)
+        {
+            var result = new List<IList<string>>();
+            if (string.IsNullOrEmpty(s))
+                return result;
+            Helper(s, 0, result, new List<string>());
+            return result;
+
+        }
+
+        private static void Helper(string str, int start, List<IList<string>> result, IList<string> temp)
+        {
+            if (start == str.Length)
+            {
+                result.Add(new List<string>(temp));
+                return;
+            }
+
+            for (int i = 1; i + start <= str.Length; i++)
+            {
+                if (Reverse(str.Substring(start, i)))
+                {
+                    temp.Add(str.Substring(start, i));
+                    Helper(str, start + i, result, temp);
+                    temp.RemoveAt(temp.Count - 1);
+                }
+            }
+        }
+
+        private static bool Reverse(string s)
+        {
+            char[] chArr = s.ToCharArray();
+            Array.Reverse(chArr);
+            string reverse = new string(chArr);
+            if (s.Equals(reverse, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            return false;
+        }
+
         #endregion
 
     }
