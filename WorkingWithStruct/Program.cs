@@ -22,7 +22,8 @@ namespace WorkingWithStruct
         {
             string date1 = "2020-01-15";
             string date2 = "2019-12-31";
-            Console.WriteLine(DaysBetweenDates(date1,date2));
+            //Console.WriteLine(DaysBetweenDates(date1,date2));
+            DaysBetweenDates(date1, date2);
         }
 
 
@@ -1146,9 +1147,11 @@ namespace WorkingWithStruct
         //The given dates are valid dates between the years 1971 and 2100.
 
 
-        public static int DaysBetweenDates(string date1, string date2)
+        public static void DaysBetweenDates(string date1, string date2)
         {
-            string[] fDateArr = date1.Split('-');   
+            int daysCount = 0;
+
+            string[] fDateArr = date1.Split('-');
             string[] sDateArr = date2.Split('-');
 
             #region Using DateTime and Math libs
@@ -1161,11 +1164,36 @@ namespace WorkingWithStruct
 
             #region w/o libs
 
-
-
+            Console.WriteLine(DaysCount("2019-03-29"));
             #endregion
         }
 
+        private static int DaysCount(string date)
+        {
+            int daysCount = 0;
+            bool _IsLeapYear;
+
+            string[] dateArr = date.Split('-');
+
+            int _GetMonthNum = int.Parse(dateArr[1]);
+            int _GetDaysCount = int.Parse(dateArr[2]);
+
+            int _LastMonthDaysCount = (int)(28 + (_GetMonthNum + Math.Floor((decimal)_GetMonthNum / 8)) % 2 + 2 % _GetMonthNum + 2 * Math.Floor(1 / (decimal)_GetMonthNum)) - _GetDaysCount;
+
+            bool temp = int.Parse(dateArr[0]) % 4 == 0 || int.Parse(dateArr[0]) % 400 == 0 ? _IsLeapYear = true : _IsLeapYear = false;
+            
+            for (int i = 1; i <= int.Parse(dateArr[1]); i++)
+            {
+                daysCount += (int)(28 + (i + Math.Floor((decimal)i / 8)) % 2 + 2 % i + 2 * Math.Floor(1 / (decimal)i));
+            }
+
+            if (_IsLeapYear && _GetMonthNum > 2)
+                daysCount += 1;
+            
+            daysCount -= _LastMonthDaysCount;
+
+            return daysCount;
+        }
         #endregion
     }
 }
