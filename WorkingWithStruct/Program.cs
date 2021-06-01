@@ -20,10 +20,12 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string date1 = "2020-01-15";
-            string date2 = "2019-12-31";
+            //string date2 = "2020-01-15";
+            //string date1 = "2017-12-20";
             //Console.WriteLine(DaysBetweenDates(date1,date2));
-            DaysBetweenDates(date1, date2);
+            //DaysBetweenDates(date1, date2);
+
+            Console.WriteLine(MySqrt(36));
         }
 
 
@@ -1120,10 +1122,26 @@ namespace WorkingWithStruct
 
         //0 <= x <= 231 - 1
 
-        //public static int MySqrt(int x)
-        //{
+        public static int MySqrt(int x)
+        {
+            double left = 1;
+            double right = x;
+            double approx = 0;
+            double middle = 0;
 
-        //}
+            while (Math.Abs(approx - x) > 1e-10)
+            {
+                middle = left + (right - left) / 2;
+                approx = middle * middle;
+
+                if (approx > x)
+                    right = middle;
+                else
+                    left = middle;
+            }
+
+            return (int)middle;
+        }
 
         #endregion
 
@@ -1149,7 +1167,7 @@ namespace WorkingWithStruct
 
         public static void DaysBetweenDates(string date1, string date2)
         {
-            int daysCount = 0;
+            int daysCount;
 
             string[] fDateArr = date1.Split('-');
             string[] sDateArr = date2.Split('-');
@@ -1157,14 +1175,38 @@ namespace WorkingWithStruct
             #region Using DateTime and Math libs
             //DateTime dateFirst = new DateTime(int.Parse(fDateArr[0]), int.Parse(fDateArr[1]), int.Parse(fDateArr[2]));
             //DateTime dateSecond = new DateTime(int.Parse(sDateArr[0]), int.Parse(sDateArr[1]), int.Parse(sDateArr[2]));
-            //DateTime dateFirst = DateTime.Parse(date1);
-            //DateTime dateSecond = DateTime.Parse(date2);
+            DateTime dateFirst = DateTime.Parse(date1);
+            DateTime dateSecond = DateTime.Parse(date2);
+            Console.WriteLine($"*------ DateTime struct -----*");
+            Console.WriteLine(Math.Abs((dateSecond - dateFirst).Days));
+            Console.WriteLine();
             //return Math.Abs((dateSecond - dateFirst).Days); 
             #endregion
 
             #region w/o libs
+            Console.WriteLine($"*----- Without DateTime struct -----*");
+            Console.WriteLine();
+            if (Math.Abs(int.Parse(fDateArr[0]) - int.Parse(sDateArr[0])) > 2)
+            {
+                daysCount = DaysCount(date1) + DaysCount(date2);
+                for (int i = int.Parse(fDateArr[0]) + 1; i < int.Parse(sDateArr[0]); i++)
+                {
+                    if (i % 4 == 0 || i % 400 == 0)
+                    {
+                        daysCount += 366;
+                    }
+                    else
+                    {
+                        daysCount += 365;
+                    }
+                }
+            }
+            else
+            {
+                daysCount = DaysCount(date1) + DaysCount(date2);
+            }
 
-            Console.WriteLine(DaysCount("2019-03-29"));
+            Console.WriteLine(daysCount);
             #endregion
         }
 
@@ -1194,6 +1236,74 @@ namespace WorkingWithStruct
 
             return daysCount;
         }
+        #endregion
+
+        #region Determine Color of a Chessboard Square
+
+        public static bool SquareIsWhite(string coordinates)
+        {
+            int charCoord = coordinates[0] - '0';
+            int digitCoord = coordinates[1];
+
+            if (charCoord % 2 != 0 && digitCoord % 2 == 0 || charCoord % 2 == 0 && digitCoord % 2 != 0)
+                return true;
+
+            return false;
+        }
+
+        #endregion
+
+        #region Check If Two String Arrays are Equivalent
+
+        public static bool ArrayStringsAreEqual(string[] word1, string[] word2)
+        {
+            StringBuilder fString = new StringBuilder();
+            StringBuilder sString = new StringBuilder();
+
+            for (int i = 0; i < word1.Length; i++)
+            {
+                fString.Append(word1[i]);
+            }
+
+            for (int i = 0; i < word2.Length; i++)
+            {
+                sString.Append(word2[i]);
+            }
+
+            string firstRes = fString.ToString();
+            string secRes = sString.ToString();
+
+            if (string.Equals(firstRes, secRes)) return true;
+
+            return false;
+        }
+
+
+        #endregion
+
+        #region Minimum Operations to Make the Array Increasing
+
+        public static int MinOperations(int[] nums)
+        {
+            int result = 0;
+
+            if (nums.Length <= 1) return result;
+
+            int previous = nums[0];
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                int tempValue = 0;
+                if (nums[i] <= previous)
+                    tempValue = previous - nums[i] + 1;
+
+                previous = nums[i] + tempValue;
+                result += tempValue;
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }
