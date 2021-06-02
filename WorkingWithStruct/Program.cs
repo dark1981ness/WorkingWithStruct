@@ -24,8 +24,9 @@ namespace WorkingWithStruct
             //string date1 = "2017-12-20";
             //Console.WriteLine(DaysBetweenDates(date1,date2));
             //DaysBetweenDates(date1, date2);
+            int[] arr = { 5, 1, 5, 2, 5, 3, 5, 4 };
 
-            Console.WriteLine(MySqrt(36));
+            Console.WriteLine(RepeatedNTimes(arr));
         }
 
 
@@ -1223,7 +1224,7 @@ namespace WorkingWithStruct
             int _LastMonthDaysCount = (int)(28 + (_GetMonthNum + Math.Floor((decimal)_GetMonthNum / 8)) % 2 + 2 % _GetMonthNum + 2 * Math.Floor(1 / (decimal)_GetMonthNum)) - _GetDaysCount;
 
             bool temp = int.Parse(dateArr[0]) % 4 == 0 || int.Parse(dateArr[0]) % 400 == 0 ? _IsLeapYear = true : _IsLeapYear = false;
-            
+
             for (int i = 1; i <= int.Parse(dateArr[1]); i++)
             {
                 daysCount += (int)(28 + (i + Math.Floor((decimal)i / 8)) % 2 + 2 % i + 2 * Math.Floor(1 / (decimal)i));
@@ -1231,7 +1232,7 @@ namespace WorkingWithStruct
 
             if (_IsLeapYear && _GetMonthNum > 2)
                 daysCount += 1;
-            
+
             daysCount -= _LastMonthDaysCount;
 
             return daysCount;
@@ -1302,6 +1303,93 @@ namespace WorkingWithStruct
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region N-Repeated Element in Size 2N Array
+
+        //In a array nums of size 2 * n, there are n + 1 unique elements, and exactly one of these elements is repeated n times.
+
+        //Return the element repeated n times.
+
+        //Example 1:
+
+        //Input: nums[1, 2, 3, 3]
+        //Output: 3
+        //Example 2:
+
+        //Input: nums[2, 1, 2, 5, 3, 2]
+        //Output: 2
+        //Example 3:
+
+        //Input: nums[5, 1, 5, 2, 5, 3, 5, 4]
+        //Output: 5
+
+        //Note:
+
+        //4 <= nums.length <= 10000
+        //0 <= nums[i] < 10000
+        //nums.length is even
+
+        public static int RepeatedNTimes(int[] nums)
+        {
+            Dictionary<int, int> ht = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!ht.ContainsKey(nums[i]))
+                    ht.Add(nums[i], 1);
+                else
+                    ht[nums[i]] += 1;
+            }
+
+            int maxValue = ht.Values.Max();
+
+            return ht.FirstOrDefault(x => x.Value == maxValue).Key;
+        }
+
+        #endregion
+
+        #region Unique Number of Occurrences
+
+        //Given an array of integers arr, write a function that returns true if and only if the number of occurrences of each value in the array is unique.
+
+        //Example 1:
+
+        //Input: arr = [1,2,2,1,1,3]
+        //        Output: true
+        //Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+        //Example 2:
+
+        //Input: arr = [1,2]
+        //        Output: false
+        //Example 3:
+
+        //Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+        //        Output: true
+
+
+        //Constraints:
+
+        //1 <= arr.length <= 1000
+        //-1000 <= arr[i] <= 1000
+
+        public static bool UniqueOccurrences(int[] arr)
+        {
+            Dictionary<int, int> ht = new Dictionary<int, int>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (!ht.ContainsKey(arr[i]))
+                    ht.Add(arr[i], 1);
+                else
+                    ht[arr[i]] += 1;
+            }
+
+            HashSet<int> hs = new HashSet<int>(ht.Values);
+
+            return ht.Count == hs.Count;
         }
 
         #endregion
