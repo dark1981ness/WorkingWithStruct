@@ -1585,10 +1585,28 @@ namespace WorkingWithStruct
 
         #region Find the Town Judge
 
-        //public static int FindJudge(int n, int[][] trust)
-        //{
+        public static int FindJudge(int n, int[][] trust)
+        {
+            if (n == 1 && trust.Length == 0) return 1;
 
-        //}
+            Dictionary<int,int> dict = new Dictionary<int, int>();
+
+            for (var i = 0; i < trust.Length; i++)
+            {
+                dict[trust[i][1]] = dict.ContainsKey(trust[i][1]) ? dict[trust[i][1]] + 1 : 1;
+            }
+
+            if (dict.Count(d => d.Value == n - 1) != 1) return -1;
+
+            var judge = dict.First(d => d.Value == n - 1).Key;
+
+            for (var i = 0; i < trust.Length; i++)
+            {
+                if (trust[i][0] == judge) return -1;
+            }
+
+            return judge;
+        }
 
         #endregion
 
@@ -1598,9 +1616,9 @@ namespace WorkingWithStruct
         {
             int steps = 0;
 
-            while(num > 0)
+            while (num > 0)
             {
-                if(num%2 == 0)
+                if (num % 2 == 0)
                 {
                     num /= 2;
                 }
