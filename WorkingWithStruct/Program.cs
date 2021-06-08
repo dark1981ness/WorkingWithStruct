@@ -20,14 +20,12 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //string date2 = "2020-01-15";
-            //string date1 = "2017-12-20";
-            //Console.WriteLine(DaysBetweenDates(date1,date2));
-            //DaysBetweenDates(date1, date2);
-            string s = "abcd";
-            string e = "abcde";
 
-            Console.WriteLine(FindTheDifference(s, e));
+            int[] arr = { 0 };
+
+            Console.WriteLine(Candy(arr));
+
+            //Console.WriteLine(FindTheDifference(s, e));
         }
 
 
@@ -1630,6 +1628,21 @@ namespace WorkingWithStruct
             }
 
             return steps;
+        }
+
+        #endregion
+
+        #region Candy
+
+        public static int Candy(int[] ratings)
+        {
+            if (ratings is null) return 0;
+
+            if (ratings.Length == 1) return 2;
+
+            if (ratings.Length == 2) return 3;
+
+            return 0;
         }
 
         #endregion
