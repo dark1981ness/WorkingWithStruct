@@ -21,11 +21,12 @@ namespace WorkingWithStruct
         static void Main(string[] args)
         {
 
-            int[] arr = { 0 };
+            //int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+            //int k = 3;
+            //Rotate(arr, k);
 
-            Console.WriteLine(Candy(arr));
+            Console.WriteLine(DateTime.Now.TimeOfDay);
 
-            //Console.WriteLine(FindTheDifference(s, e));
         }
 
 
@@ -1587,7 +1588,7 @@ namespace WorkingWithStruct
         {
             if (n == 1 && trust.Length == 0) return 1;
 
-            Dictionary<int,int> dict = new Dictionary<int, int>();
+            Dictionary<int, int> dict = new Dictionary<int, int>();
 
             for (var i = 0; i < trust.Length; i++)
             {
@@ -1646,5 +1647,34 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region TopInterviewQuestionsEasy
+        #region Rotate Array
+
+        public static void Rotate(int[] nums, int k)
+        {
+            for (int i = 0; i < k; i++)
+            {
+                Helper(nums);
+            }
+
+            foreach (var item in nums)
+            {
+                Console.Write($"{item} ");
+            }
+        }
+
+        static void Helper(int[] arr)
+        {
+            int temp = arr[arr.Length - 1];
+            for (int i = arr.Length - 1; i > 0 ; i--)
+                arr[i] = arr[i - 1];
+            arr[0] = temp;
+        }
+
+        #endregion
+        #endregion
+
+
     }
 }
