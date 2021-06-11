@@ -1676,5 +1676,51 @@ namespace WorkingWithStruct
         #endregion
 
 
+        #region MyRegion
+
+        public static int MaximumUnits(int[][] boxTypes, int truckSize)
+        {
+            int result = 0;
+
+            if (boxTypes == null || boxTypes.Length == 0) return 0;
+
+            Array.Sort(boxTypes, (a, b) => { return b[1] - a[1]; });
+            
+            int i = 0;
+
+            while (truckSize > 0 && i < boxTypes.Length)
+            {
+                int count = Math.Min(truckSize, boxTypes[i][0]);
+                result += count * boxTypes[i][1];
+                truckSize -= count;
+                i++;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Number of Students Doing Homework at a Given Time
+
+        public static int BusyStudent(int[] startTime, int[] endTime, int queryTime)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < startTime.Length; i++)
+            {
+                if (startTime[i] <= queryTime && endTime[i] >= queryTime)
+                {
+                    counter++;
+                }
+
+            }
+            return counter;
+
+        }
+
+        #endregion
+
+
     }
 }
