@@ -1721,6 +1721,43 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Maximum Number of Coins You Can Get
+
+        public static int MaxCoins(int[] piles)
+        {
+            Array.Sort(piles);
+
+            int result = 0;
+            for (int i = piles.Length / 3; i < piles.Length; i += 2)
+            {
+                result += piles[i];
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Check If a Word Occurs As a Prefix of Any Word in a Sentence
+
+        public static int IsPrefixOfWord(string sentence, string searchWord)
+        {
+            string[] tempArr = sentence.Split(' ');
+
+            for (int i = 0; i < tempArr.Length; i++)
+            {
+                if (tempArr[i].StartsWith(searchWord))
+                {
+                    return i + 1;
+                }
+
+            }
+
+            return -1;
+        }
+
+        #endregion
+
 
     }
 }
