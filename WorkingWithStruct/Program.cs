@@ -25,7 +25,27 @@ namespace WorkingWithStruct
             //int k = 3;
             //Rotate(arr, k);
 
-            Console.WriteLine(DateTime.Now.TimeOfDay);
+            string str = "chopper is not a tanuki";
+            int k = 5;
+            //int idx = 0;
+
+            Console.WriteLine(TruncateSentence(str, k));
+
+            //while (k > 0)
+            //{
+            //    int index = str.IndexOf(' ', idx);
+
+            //    if (index == -1)
+            //    {
+            //        Console.WriteLine(str);
+            //        break;
+            //    }
+
+            //    k--;
+            //    idx = index + 1;
+            //}
+
+            //Console.WriteLine(str.Substring(0, idx));
 
         }
 
@@ -1667,7 +1687,7 @@ namespace WorkingWithStruct
         static void Helper(int[] arr)
         {
             int temp = arr[arr.Length - 1];
-            for (int i = arr.Length - 1; i > 0 ; i--)
+            for (int i = arr.Length - 1; i > 0; i--)
                 arr[i] = arr[i - 1];
             arr[0] = temp;
         }
@@ -1685,7 +1705,7 @@ namespace WorkingWithStruct
             if (boxTypes == null || boxTypes.Length == 0) return 0;
 
             Array.Sort(boxTypes, (a, b) => { return b[1] - a[1]; });
-            
+
             int i = 0;
 
             while (truckSize > 0 && i < boxTypes.Length)
@@ -1758,6 +1778,87 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Latest Time by Replacing Hidden Digits
+
+        public static string MaximumTime(string time)
+        {
+            char[] tempArr = time.ToCharArray();
+
+            if (tempArr[0] == '?' && tempArr[1] == '?')
+            {
+                tempArr[0] = '2';
+                tempArr[1] = '3';
+            }
+            else if (tempArr[0] == '?' && tempArr[1] != '?')
+            {
+                tempArr[0] = tempArr[1] <= '3' ? '2' : '1';
+            }
+            else if (tempArr[0] != '?' && tempArr[1] == '?')
+            {
+                tempArr[1] = tempArr[0] <= '1' ? '9' : '3';
+            }
+
+            if (tempArr[3] == '?')
+                tempArr[3] = '5';
+            if (tempArr[4] == '?')
+                tempArr[4] = '9';
+
+            return new string(tempArr);
+
+
+        }
+
+        #endregion
+
+
+        #region Count of Matches in Tournament
+
+        public static int NumberOfMatches(int n)
+        {
+            int sum = 0;
+
+            if (n == 1) return sum;
+
+            while (n != 1)
+            {
+                sum += n / 2;
+
+                if (n % 2 == 1)
+                {
+                    n = (n / 2) + 1;
+                }
+                else
+                {
+                    n = (n / 2);
+                }
+            }
+
+            return sum;
+        }
+
+        #endregion
+
+        #region Truncate Sentence
+
+        public static string TruncateSentence(string s, int k)
+        {
+            int idx = 0;
+
+            while (k > 0)
+            {
+                int index = s.IndexOf(' ', idx);
+
+                if (index == -1) return s;
+
+                k--;
+
+                idx = index + 1;
+            }
+
+            return s.Substring(0, idx - 1);
+        }
+
+        #endregion
 
     }
 }
