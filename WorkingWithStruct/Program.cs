@@ -20,32 +20,15 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
+            int[][] arr = new int[4][];
+            arr[0] = new int[] { 1, 2, 1 };
+            arr[1] = new int[] { 4, 3, 4 };
+            arr[2] = new int[] { 3, 2, 1 };
+            arr[3] = new int[] { 1, 1, 1 };
 
-            //int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
-            //int k = 3;
-            //Rotate(arr, k);
+            SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
 
-            string str = "chopper is not a tanuki";
-            int k = 5;
-            //int idx = 0;
-
-            Console.WriteLine(TruncateSentence(str, k));
-
-            //while (k > 0)
-            //{
-            //    int index = str.IndexOf(' ', idx);
-
-            //    if (index == -1)
-            //    {
-            //        Console.WriteLine(str);
-            //        break;
-            //    }
-
-            //    k--;
-            //    idx = index + 1;
-            //}
-
-            //Console.WriteLine(str.Substring(0, idx));
+            subrectangle.PrintMatrix();
 
         }
 
@@ -1856,6 +1839,81 @@ namespace WorkingWithStruct
             }
 
             return s.Substring(0, idx - 1);
+        }
+
+        #endregion
+
+        #region Maximum Nesting Depth of the Parentheses
+
+        public static int MaxDepth(string s)
+        {
+            int result = 0;
+            bool isPair = false;
+
+            Stack<char> sign = new Stack<char>();
+
+            foreach (var item in s.ToCharArray())
+            {
+                if (item == '(')
+                {
+                    isPair = true;
+                    sign.Push('(');
+                }
+                else if (item == ')')
+                {
+                    result = Math.Max(result, sign.Count);
+                    sign.Pop();
+                }
+            }
+
+            return isPair ? result : 0;
+        }
+
+        #endregion
+
+
+        #region Subrectangle Queries
+
+        public class SubrectangleQueries
+        {
+
+            private int[][] _Rect;
+
+            public SubrectangleQueries(int[][] rectangle)
+            {
+                _Rect = rectangle;
+            }
+
+            public void UpdateSubrectangle(int row1, int col1, int row2, int col2, int newValue)
+            {
+                for (int i = row1; i <= row2; i++)
+                {
+                    for (int j = col1; j <= col2; j++)
+                    {
+                        _Rect[i][j] = newValue;
+                    }
+                }
+            }
+
+            public int GetValue(int row, int col)
+            {
+                //if (_Rect.Length < row || _Rect[row].Length < col)
+                //    throw new IndexOutOfRangeException();
+
+                return _Rect[row][col];
+            }
+
+            public void PrintMatrix()
+            {
+                for (int i = 0; i < _Rect.Length; i++)
+                {
+                    for (int j = 0; j < _Rect[i].Length; j++)
+                    {
+                        Console.Write($"{_Rect[i][j]} ");
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
 
         #endregion
