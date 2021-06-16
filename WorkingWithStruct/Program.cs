@@ -20,15 +20,19 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[][] arr = new int[4][];
-            arr[0] = new int[] { 1, 2, 1 };
-            arr[1] = new int[] { 4, 3, 4 };
-            arr[2] = new int[] { 3, 2, 1 };
-            arr[3] = new int[] { 1, 1, 1 };
+            //int[][] arr = new int[4][];
+            //arr[0] = new int[] { 1, 2, 1 };
+            //arr[1] = new int[] { 4, 3, 4 };
+            //arr[2] = new int[] { 3, 2, 1 };
+            //arr[3] = new int[] { 1, 1, 1 };
 
-            SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
+            //SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
 
-            subrectangle.PrintMatrix();
+            //subrectangle.PrintMatrix();
+
+            string str = "32";
+
+            Console.WriteLine(MinPartitions(str));
 
         }
 
@@ -1914,6 +1918,20 @@ namespace WorkingWithStruct
                     Console.WriteLine();
                 }
             }
+        }
+
+        #endregion
+
+        #region Partitioning Into Minimum Number Of Deci-Binary Numbers
+
+        public static int MinPartitions(string n)
+        {
+            int maxValue = 0;
+            foreach (var ch in n)
+            {
+                maxValue = Math.Max(maxValue, ch - '0');
+            }
+            return maxValue;
         }
 
         #endregion
