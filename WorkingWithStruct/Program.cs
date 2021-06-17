@@ -30,9 +30,20 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "LOVELY";
+            string str = "https://leetcode.com/problems/design-tinyurl";
 
-            Console.WriteLine(ToLowerCase(str));
+            int idx = 0;
+            int k = 3;
+
+
+            while (k > 0)
+            {
+                int index = str.IndexOf('/', idx);
+                k--;
+                idx = index + 1;
+            }
+
+            Console.WriteLine(str.Substring(0,idx));
 
 
         }
@@ -2017,7 +2028,77 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Encode and Decode TinyURL
 
+        public class Codec
+        {
+
+            //// Encodes a URL to a shortened URL
+            public string encode(string longUrl)
+            {
+                int idx = GetIndex(longUrl);
+
+                string firstPart = longUrl.Substring(0, idx);
+                string secondPart = AscIIToHex(longUrl.Substring(idx));
+
+                return new string(firstPart + secondPart);
+
+            }
+
+            //// Decodes a shortened URL to its original URL.
+            public string decode(string shortUrl)
+            {
+                int idx = GetIndex(shortUrl);
+
+                string firstPart = shortUrl.Substring(0, idx);
+                string secondPart = HexToAscII(shortUrl.Substring(idx));
+
+                return new string(firstPart + secondPart);
+            }
+
+
+            private static int GetIndex(string value)
+            {
+                int idx = 0;
+                int k = 3;
+
+                while (k > 0)
+                {
+                    int index = value.IndexOf('/', idx);
+                    k--;
+                    idx = index + 1;
+                }
+
+                return idx;
+            }
+
+            private static string HexToAscII(string hex)
+            {
+                StringBuilder ascii = new StringBuilder();
+                for (int i = 0; i < hex.Length; i += 2)
+                {
+                    string tempString = hex.Substring(i, 2);
+                    ascii.Append(Convert.ToChar(Convert.ToUInt32(tempString, 16)));
+                }
+
+                return ascii.ToString();
+            }
+
+            private static string AscIIToHex(string value)
+            {
+                StringBuilder hex = new StringBuilder();
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    string temp = string.Format("{0:X}", (int)value[i]);
+                    hex.Append(temp);
+                }
+
+                return hex.ToString();
+            }
+        }
+
+        #endregion
 
     }
 }
