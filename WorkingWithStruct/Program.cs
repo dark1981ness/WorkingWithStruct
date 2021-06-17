@@ -30,9 +30,9 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "32";
+            string str = "011000111";
 
-            Console.WriteLine(MinPartitions(str));
+            Console.WriteLine(CheckZeroOnes(str));
 
         }
 
@@ -1932,6 +1932,39 @@ namespace WorkingWithStruct
                 maxValue = Math.Max(maxValue, ch - '0');
             }
             return maxValue;
+        }
+
+        #endregion
+
+        #region Longer Contiguous Segments of Ones than Zeros
+
+        public static bool CheckZeroOnes(string s)
+        {
+            int valueOne = 0;
+            int valueZero = 0;
+            int maxValueOfOnes = 0;
+            int maxValueOfZeros = 0;
+
+            int i = 0;
+
+            while (i < s.Length)
+            {
+                if (s[i] == '1')
+                {
+                    valueOne++;
+                    maxValueOfOnes = Math.Max(maxValueOfOnes, valueOne);
+                    valueZero = 0;
+                    i++;
+                }
+                else if (s[i] == '0')
+                {
+                    valueZero++;
+                    maxValueOfZeros = Math.Max(maxValueOfZeros, valueZero);
+                    valueOne = 0;
+                    i++;
+                }
+            }
+            return maxValueOfOnes > maxValueOfZeros;
         }
 
         #endregion
