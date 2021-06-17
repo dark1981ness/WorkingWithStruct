@@ -32,18 +32,9 @@ namespace WorkingWithStruct
 
             string str = "https://leetcode.com/problems/design-tinyurl";
 
-            int idx = 0;
-            int k = 3;
+            Codec cd = new Codec();
 
-
-            while (k > 0)
-            {
-                int index = str.IndexOf('/', idx);
-                k--;
-                idx = index + 1;
-            }
-
-            Console.WriteLine(str.Substring(0,idx));
+            Console.WriteLine(cd.encode(str));
 
 
         }
@@ -2096,6 +2087,33 @@ namespace WorkingWithStruct
 
                 return hex.ToString();
             }
+        }
+
+        #endregion
+
+        #region Island Perimeter
+
+        public static int IslandPerimeter(int[][] grid)
+        {
+            int perimeter = 0;
+
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+                    if (grid[i][j] == 1)
+                    {
+                        int sideCount = 4;
+                        sideCount -= i - 1 >= 0 && grid[i - 1][j] == 1 ? 1 : 0;
+                        sideCount -= i + 1 < grid.Length && grid[i + 1][j] == 1 ? 1 : 0;
+                        sideCount -= j - 1 >= 0 && grid[i][j - 1] == 1 ? 1 : 0;
+                        sideCount -= j + 1 < grid[i].Length && grid[i][j + 1] == 1 ? 1 : 0;
+                        perimeter += sideCount;
+                    }
+                }
+            }
+
+            return perimeter;
         }
 
         #endregion
