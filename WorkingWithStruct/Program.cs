@@ -30,9 +30,10 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "011000111";
+            string str = "LOVELY";
 
-            Console.WriteLine(CheckZeroOnes(str));
+            Console.WriteLine(ToLowerCase(str));
+
 
         }
 
@@ -1968,6 +1969,55 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region To Lower Case
+
+        public static string ToLowerCase(string s)
+        {
+            // C# string ToLower;
+            //return s.ToLower();
+
+            int i = 0;
+
+
+            // string
+            string str = string.Empty;
+
+            while (i < s.Length)
+            {
+                if (s[i] >= 65 && s[i] <= 90)
+                {
+                    str += (char)(s[i] + 32);
+                }
+                else
+                {
+                    str += s[i];
+                }
+
+                i++;
+            }
+
+            return str;
+
+
+            //with char array
+            //char[] chArr = s.ToCharArray();
+
+            //while (i < chArr.Length)
+            //{
+            //    if (chArr[i] >= 65 && chArr[i] <= 90)
+            //    {
+            //        chArr[i] = (char)(chArr[i] + 32);
+            //    }
+            //    i++;
+            //}
+
+            //return new string(chArr);
+        }
+
+        #endregion
+
+
 
     }
 }
