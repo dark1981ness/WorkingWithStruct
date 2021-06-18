@@ -30,11 +30,9 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "https://leetcode.com/problems/design-tinyurl";
+            string str = "(al)G(al)()()G";
 
-            Codec cd = new Codec();
-
-            Console.WriteLine(cd.encode(str));
+            Console.WriteLine(Interpret(str));
 
 
         }
@@ -2116,6 +2114,82 @@ namespace WorkingWithStruct
             return perimeter;
         }
 
+        #endregion
+
+        #region Thousand Separator
+
+        public static string ThousandSeparator(int n)
+        {
+            StringBuilder res = new StringBuilder(n.ToString());
+            int i = res.Length - 4;
+
+            if (res.Length < 4) return res.ToString();
+
+            while (i >= 0)
+            {
+                res.Insert(i + 1, '.');
+                i -= 3;
+            }
+            return res.ToString();
+        }
+
+
+        #endregion
+
+
+        #region Queries on Number of Points Inside a Circle
+        public static int[] CountPoints(int[][] points, int[][] queries)
+        {
+            int[] result = new int[queries.Length];
+
+            for (int i = 0; i < queries.Length; i++)
+            {
+                for (int j = 0; j < points.Length; j++)
+                {
+                    if (Math.Pow((points[j][0] - queries[i][0]), 2) + Math.Pow((points[j][1] - queries[i][1]), 2) <= Math.Pow(queries[i][2], 2))
+                    {
+                        result[i]++;
+                    }
+                }
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Goal Parser Interpretation
+
+        public static string Interpret(string command)
+        {
+            int idx = 0;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (idx < command.Length)
+            {
+                if (command[idx] =='G')
+                {
+                    sb.Append(command[idx]);
+                    idx++;
+                    continue;
+                }
+                if (command[idx] == '(' && command[idx+1] ==')')
+                {
+                    sb.Append('o');
+                    idx += 2;
+                    continue;
+                }
+                if (command[idx] =='(' && command[idx+1]=='a')
+                {
+                    sb.Append("al");
+                    idx += 4;
+                    continue;
+                }
+            }
+
+            return sb.ToString();
+            //return command.Replace("()", "o").Replace("(al)", "al");
+        }
         #endregion
 
     }
