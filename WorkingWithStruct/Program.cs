@@ -30,10 +30,14 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "(al)G(al)()()G";
+            string[] list1 = { "KFC" };
 
-            Console.WriteLine(Interpret(str));
+            string[] list2 = { "KFC" };
 
+            foreach (var item in FindRestaurant(list1, list2))
+            {
+                Console.WriteLine(item);
+            }
 
         }
 
@@ -2167,19 +2171,19 @@ namespace WorkingWithStruct
 
             while (idx < command.Length)
             {
-                if (command[idx] =='G')
+                if (command[idx] == 'G')
                 {
                     sb.Append(command[idx]);
                     idx++;
                     continue;
                 }
-                if (command[idx] == '(' && command[idx+1] ==')')
+                if (command[idx] == '(' && command[idx + 1] == ')')
                 {
                     sb.Append('o');
                     idx += 2;
                     continue;
                 }
-                if (command[idx] =='(' && command[idx+1]=='a')
+                if (command[idx] == '(' && command[idx + 1] == 'a')
                 {
                     sb.Append("al");
                     idx += 4;
@@ -2191,6 +2195,72 @@ namespace WorkingWithStruct
             //return command.Replace("()", "o").Replace("(al)", "al");
         }
         #endregion
+
+        #region Detect Capital
+
+        public static bool DetectCapitalUse(string word)
+        {
+            int ucount = 0;
+
+            bool l = false;
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (i > 0 && l)
+                {
+                    if (Char.IsUpper(word[i])) return false;
+                }
+                if (ucount > 1 && Char.IsLower(word[i])) return false;
+                if (Char.IsUpper(word[i]))
+                {
+                    ucount++;
+                }
+                else
+                {
+                    l = true;
+                }
+            }
+            return true;
+        }
+
+        #endregion
+
+        #region Minimum Index Sum of Two Lists
+
+        public static string[] FindRestaurant(string[] list1, string[] list2)
+        {
+            List<string> temp = new List<string>();
+            Dictionary<string, int> keyValues = new Dictionary<string, int>();
+            Dictionary<string, int> hm = new Dictionary<string, int>();
+
+            for (int i = 0; i < list1.Length; i++)
+            {
+                hm.Add(list1[i], i);
+            }
+
+            for (int i = 0; i < list2.Length; i++)
+            {
+                if (hm.ContainsKey(list2[i]))
+                {
+                    keyValues.Add(list2[i], hm[list2[i]] + i);
+                }
+            }
+
+            var minValue = keyValues.OrderBy(kvp => kvp.Value).First();
+
+            foreach (var item in keyValues)
+            {
+                if (item.Value == minValue.Value)
+                {
+                    temp.Add(item.Key);
+                }
+            }
+
+            return temp.ToArray();
+        }
+
+        #endregion
+
 
     }
 }
