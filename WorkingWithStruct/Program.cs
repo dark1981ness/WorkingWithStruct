@@ -20,25 +20,17 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //int[][] arr = new int[4][];
-            //arr[0] = new int[] { 1, 2, 1 };
-            //arr[1] = new int[] { 4, 3, 4 };
-            //arr[2] = new int[] { 3, 2, 1 };
+            int[][] arr = new int[3][];
+            arr[0] = new int[] { 1950, 1961 };
+            arr[1] = new int[] { 1960, 1971 };
+            arr[2] = new int[] { 1970, 1981 };
             //arr[3] = new int[] { 1, 1, 1 };
 
             //SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
 
             //subrectangle.PrintMatrix();
 
-            string[] list1 = { "KFC" };
-
-            string[] list2 = { "KFC" };
-
-            foreach (var item in FindRestaurant(list1, list2))
-            {
-                Console.WriteLine(item);
-            }
-
+            MaximumPopulation(arr);
         }
 
 
@@ -2261,6 +2253,49 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Maximum Population Year
 
+        public static int MaximumPopulation(int[][] logs)
+        {
+            int valuesSum = 0;
+            int maxCount = 0;
+            int result = 0;
+            Dictionary<int, int> hm = new Dictionary<int, int>();
+
+            foreach (var item in logs)
+            {
+                if (!hm.ContainsKey(item[0]))
+                {
+                    hm[item[0]] = 1;
+                }
+                else
+                {
+                    hm[item[0]]++;
+                }
+
+                if (!hm.ContainsKey(item[1]))
+                {
+                    hm[item[1]] = -1;
+                }
+                else
+                {
+                    hm[item[1]]--;
+                }
+            }
+
+            foreach (var item in hm.OrderBy(x => x.Key))
+            {
+                valuesSum += item.Value;
+                if (valuesSum > maxCount)
+                {
+                    maxCount = valuesSum;
+                    result = item.Key;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
