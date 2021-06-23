@@ -20,17 +20,22 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[][] arr = new int[3][];
-            arr[0] = new int[] { 1950, 1961 };
-            arr[1] = new int[] { 1960, 1971 };
-            arr[2] = new int[] { 1970, 1981 };
+            //int[][] arr = new int[3][];
+            //arr[0] = new int[] { 1950, 1961 };
+            //arr[1] = new int[] { 1960, 1971 };
+            //arr[2] = new int[] { 1970, 1981 };
             //arr[3] = new int[] { 1, 1, 1 };
 
             //SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
 
             //subrectangle.PrintMatrix();
 
-            MaximumPopulation(arr);
+            string str = "dsahjpjauf";
+            string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
+
+            //Console.WriteLine(NumMatchingSubseq(str, strArr));
+
+            Console.WriteLine(str.GetEnumerator());
         }
 
 
@@ -2296,6 +2301,65 @@ namespace WorkingWithStruct
             return result;
         }
 
+        #endregion
+
+
+        #region Number of Matching Subsequences
+
+        public static int NumMatchingSubseq(string s, string[] words)
+        {
+            int count = 0;
+            int k = 0;
+
+            Dictionary<string, int> hm = new Dictionary<string, int>();
+
+            while (k < words.Length)
+            {
+                if (!hm.ContainsKey(words[k]))
+                {
+                    hm[words[k]] = 0;
+                }
+                else
+                {
+                    hm[words[k]]++;
+                }
+                k++;
+            }
+
+            foreach (var item in hm)
+            {
+                if (IsSub(item.Key,s))
+                {
+                    count = count + item.Value + 1;
+                }
+            }
+
+            return count;
+        }
+
+        public static bool IsSub(string s, string t)
+        {
+            int j = 0;
+
+            for (int i = 0; i < t.Length && j< s.Length; i++)
+            {
+                if (s[j] == t[i])
+                    j++;
+            }
+
+            return j == s.Length;
+        }
+
+        #endregion
+
+        #region Maximum Product of Two Elements in an Array
+
+        public static int MaxProduct(int[] nums)
+        {
+            Array.Sort(nums);
+
+            return ((nums[nums.Length - 1] - 1) * (nums[nums.Length - 2] - 1));
+        }
         #endregion
     }
 }
