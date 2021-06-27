@@ -2408,6 +2408,30 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Number Of Rectangles That Can Form The Largest Square
 
+        public static int CountGoodRectangles(int[][] rectangles)
+        {
+            int result = 0;
+
+            HashSet<int> hs = new HashSet<int>();
+
+            for (int i = 0; i < rectangles.Length; i++)
+            {
+                hs.Add(rectangles[i].Min());
+            }
+
+            for (int i = 0; i < rectangles.Length; i++)
+            {
+                if (hs.Max() == rectangles[i].Min())
+                {
+                    result++;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
