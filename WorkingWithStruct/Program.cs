@@ -30,12 +30,12 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "dsahjpjauf";
-            string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
+            string str = "2-5g-3-J";
+            //string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
 
             //Console.WriteLine(NumMatchingSubseq(str, strArr));
 
-            Console.WriteLine(str.GetEnumerator());
+            Console.WriteLine(LicenseKeyFormatting(str, 2));
         }
 
 
@@ -2328,7 +2328,7 @@ namespace WorkingWithStruct
 
             foreach (var item in hm)
             {
-                if (IsSub(item.Key,s))
+                if (IsSub(item.Key, s))
                 {
                     count = count + item.Value + 1;
                 }
@@ -2341,7 +2341,7 @@ namespace WorkingWithStruct
         {
             int j = 0;
 
-            for (int i = 0; i < t.Length && j< s.Length; i++)
+            for (int i = 0; i < t.Length && j < s.Length; i++)
             {
                 if (s[j] == t[i])
                     j++;
@@ -2361,5 +2361,53 @@ namespace WorkingWithStruct
             return ((nums[nums.Length - 1] - 1) * (nums[nums.Length - 2] - 1));
         }
         #endregion
+
+        #region License Key Formatting
+
+        public static string LicenseKeyFormatting(string s, int k)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string tempValue = s.Replace("-", string.Empty).ToUpper();
+
+            if (tempValue.Length % k == 0)
+            {
+                int i = tempValue.Length / k;
+                int idx = 0;
+                while (i > 0)
+                {
+                    sb.Append(tempValue.Substring(idx, k));
+                    idx += k;
+                    i--;
+                    if (i != 0) sb.Append("-");
+                }
+            }
+
+            if (tempValue.Length % k != 0)
+            {
+                int i = tempValue.Length / k;
+                if (i == 0) sb.Append(tempValue);
+                int idx = tempValue.Length - k;
+                while (i > 0)
+                {
+                    sb.Insert(0, tempValue.Substring(idx, k));
+                    idx -= k;
+                    i--;
+                    if (i != 0) sb.Insert(0,"-");
+                    if (i == 0)
+                    {
+                        int value = tempValue.Length - (sb.Length - tempValue.Length / k);
+                        sb.Insert(0, "-");
+                        sb.Insert(0, tempValue.Substring(0, value -1));
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        #endregion
+
+
     }
 }
