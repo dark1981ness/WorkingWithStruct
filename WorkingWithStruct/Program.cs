@@ -35,7 +35,9 @@ namespace WorkingWithStruct
 
             //Console.WriteLine(NumMatchingSubseq(str, strArr));
 
-            Console.WriteLine(LicenseKeyFormatting(str, 2));
+            int[] arr = { 1, 3, 5, 4, 7 };
+
+            Console.WriteLine( FindLengthOfLCIS(arr));
         }
 
 
@@ -2429,6 +2431,32 @@ namespace WorkingWithStruct
                 }
             }
 
+            return result;
+        }
+
+        #endregion
+
+        #region Longest Continuous Increasing Subsequence
+        public static int FindLengthOfLCIS(int[] nums)
+        {
+            int idx = 0;
+            int result = 1;
+            int tempValue = 1;
+
+            while (idx < nums.Length - 1)
+            {
+                if(nums[idx] < nums[idx + 1])
+                {
+                   
+                    tempValue++;
+                    result = Math.Max(tempValue, result);
+                }
+                else
+                {
+                    tempValue = 1;
+                }
+                idx++;
+            }
             return result;
         }
 
