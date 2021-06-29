@@ -2480,5 +2480,29 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region Max Consecutive Ones III
+
+        public static int LongestOnes(int[] nums, int k)
+        {
+
+            int zeroCount = 0;
+            int l = 0;
+            int maxLen = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0) zeroCount++;
+                while (zeroCount > k)
+                {
+                    if (nums[l] == 0) zeroCount--;
+                    l++;
+                }
+                maxLen = Math.Max(maxLen, i - l + 1);
+            }
+            return maxLen;
+
+        }
+
+        #endregion
     }
 }
