@@ -30,14 +30,14 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "2-5g-3-J";
+            string str = "azxxzy";
             //string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
 
             //Console.WriteLine(NumMatchingSubseq(str, strArr));
 
             int[] arr = { 1, 3, 5, 4, 7 };
 
-            Console.WriteLine( FindLengthOfLCIS(arr));
+            Console.WriteLine(RemoveDuplicates(str));
         }
 
 
@@ -2458,6 +2458,25 @@ namespace WorkingWithStruct
                 idx++;
             }
             return result;
+        }
+
+        #endregion
+
+        #region Remove All Adjacent Duplicates In String
+
+        public static string RemoveDuplicates(string s)
+        {
+            int i = 0;
+            while (i < s.Length - 1)
+            {
+                if (s[i].Equals(s[i+1]))
+                {
+                    s = s.Remove(i, 2);
+                    i = -1;
+                }
+                i++;
+            }
+            return s;
         }
 
         #endregion
