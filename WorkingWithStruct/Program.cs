@@ -30,14 +30,14 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            string str = "azxxzy";
+            int[] str = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
             //string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
 
             //Console.WriteLine(NumMatchingSubseq(str, strArr));
 
             int[] arr = { 1, 3, 5, 4, 7 };
 
-            Console.WriteLine(RemoveDuplicates(str));
+            Console.WriteLine(LongestOnes(str, 2));
         }
 
 
@@ -2500,6 +2500,36 @@ namespace WorkingWithStruct
                 maxLen = Math.Max(maxLen, i - l + 1);
             }
             return maxLen;
+
+        }
+
+        #endregion
+
+        #region Third Maximum Number
+
+        public static int ThirdMax(int[] nums)
+        {
+            //SortedSet<int> hs = new SortedSet<int>(nums);
+
+            //return hs.Count < 3 ? hs.LastOrDefault() : hs.ElementAt(hs.Count - 3);
+
+            int idx = nums.Length - 1;
+            int thirdMax;
+
+
+            Array.Sort(nums);
+
+            if (nums.Length < 3) return nums.LastOrDefault();
+
+            while (idx > 0)
+            {
+                if (nums[idx] > nums[idx - 1])
+                {
+                    thirdMax = nums[idx - 1];
+                }
+
+                idx--;
+            }
 
         }
 
