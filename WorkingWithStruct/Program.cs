@@ -37,7 +37,7 @@ namespace WorkingWithStruct
 
             int[] arr = { 1, 3, 5, 4, 7 };
 
-            Console.WriteLine(LongestOnes(str, 2));
+            Console.WriteLine(2u);
         }
 
 
@@ -2509,27 +2509,27 @@ namespace WorkingWithStruct
 
         public static int ThirdMax(int[] nums)
         {
-            //SortedSet<int> hs = new SortedSet<int>(nums);
+            SortedSet<int> hs = new SortedSet<int>(nums);
 
-            //return hs.Count < 3 ? hs.LastOrDefault() : hs.ElementAt(hs.Count - 3);
+            return hs.Count < 3 ? hs.LastOrDefault() : hs.ElementAt(hs.Count - 3);
 
             int idx = nums.Length - 1;
             int thirdMax;
 
 
-            Array.Sort(nums);
+            //Array.Sort(nums);
 
-            if (nums.Length < 3) return nums.LastOrDefault();
+            //if (nums.Length < 3) return nums.LastOrDefault();
 
-            while (idx > 0)
-            {
-                if (nums[idx] > nums[idx - 1])
-                {
-                    thirdMax = nums[idx - 1];
-                }
+            //while (idx > 0)
+            //{
+            //    if (nums[idx] > nums[idx - 1])
+            //    {
+            //        thirdMax = nums[idx - 1];
+            //    }
 
-                idx--;
-            }
+            //    idx--;
+            //}
 
         }
 
@@ -2588,6 +2588,51 @@ namespace WorkingWithStruct
                 }
                 return false;
             }
+        }
+
+        #endregion
+
+        #region Count Primes
+
+        public static int CountPrimes(int n)
+        {
+            //var numbers = new List<uint>();
+
+            //for (uint i = 2; i < n; i++)
+            //{
+            //    numbers.Add(i);
+            //}
+
+            //for (int i = 0; i < numbers.Count; i++)
+            //{
+            //    for (uint j = 2; j < n; j++)
+            //    {
+            //        numbers.Remove(numbers[i] * j);
+            //    }
+            //}
+
+            //return numbers.Count;
+
+            bool[] dp = new bool[n];
+            Array.Fill(dp, true);
+            for (int i = 2; i * i < n; i++)
+            {
+                if (dp[i])
+                {
+                    for (int j = i * i; j < n; j += i)
+                        dp[j] = false;
+                }
+            }
+
+            int result = 0;
+
+            for (int i = 2; i < n; i++)
+            {
+                if (dp[i])
+                    result++;
+            }
+
+            return result;
         }
 
         #endregion
