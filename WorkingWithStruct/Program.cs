@@ -2534,5 +2534,62 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region Design Parking System
+
+        public class ParkingSystem
+        {
+
+            public int Big { get; set; }
+            public int Medium { get; set; }
+            public int Small { get; set; }
+
+            public ParkingSystem(int big, int medium, int small)
+            {
+                Big = big;
+                Medium = medium;
+                Small = small;
+            }
+
+            public bool AddCar(int carType)
+            {
+                switch (carType)
+                {
+                    case 1:
+                        if (Big > 0)
+                        {
+                            Big--;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    case 2:
+                        if (Medium > 0)
+                        {
+                            Medium--;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    case 3:
+                        if (Small > 0)
+                        {
+                            Small--;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                }
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
