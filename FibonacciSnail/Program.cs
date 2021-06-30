@@ -5,19 +5,19 @@ namespace FibonacciSnail
 {
     class Program
     {
-        protected static int originalTopCursorPos;
-        protected static int originalLeftCursorPos;
+        protected static int originalTopCursorPos = Console.CursorTop;
+        protected static int originalLeftCursorPos = Console.CursorLeft;
+        protected static int originalCenterTopCursorPos = Console.WindowHeight / 2;
+        protected static int originalCenterLeftCursorPos = Console.WindowLeft / 2;
         protected static string headerMsg = "Fibonacci Snail";
 
         static void Main(string[] args)
         {
             Console.Clear();
-            originalTopCursorPos = Console.CursorTop;
-            originalLeftCursorPos = Console.CursorLeft;
-
             Console.SetCursorPosition(((Console.WindowWidth - headerMsg.Length) / 2), originalTopCursorPos);
             Console.WriteLine(headerMsg);
             Console.WriteLine();
+            DrawSnail(1, 180, 270);
         }
 
         private static List<int> FibNumSeq(int n)
@@ -38,9 +38,20 @@ namespace FibonacciSnail
             return fibSeq;
         }
        
-        private static void DrawSnail(List<int> values)
+        private static void DrawSnail(int radius, int startAngleValue, int endAngleValue)
         {
-            Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 2);
+            double posX, posY;
+            char drawSimbol = '*';
+            Console.SetCursorPosition(originalCenterLeftCursorPos, originalCenterTopCursorPos);
+            for (int i = startAngleValue; i < endAngleValue; i++)
+            {
+                posX = Math.Round(radius * Math.Cos(i), 2, MidpointRounding.AwayFromZero);
+                posY = Math.Round(radius * Math.Sin(i), 2, MidpointRounding.AwayFromZero);
+
+                Console.WriteLine($"X - {posX} / Y - {posY}");
+               // Console.SetCursorPosition(posX + originalCenterLeftCursorPos, posY + originalCenterTopCursorPos);
+                //Console.Write(drawSimbol);
+            }
 
         }
     }
