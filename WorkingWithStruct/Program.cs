@@ -30,14 +30,11 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            int[] str = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
-            //string[] strArr = { "ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax" };
+            //int[] str = { 1,2,3,4 };
 
-            //Console.WriteLine(NumMatchingSubseq(str, strArr));
+            string str = "aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga";
 
-            int[] arr = { 1, 3, 5, 4, 7 };
-
-            Console.WriteLine(2u);
+            Console.WriteLine(ValidPalindrome(str));
         }
 
 
@@ -2633,6 +2630,80 @@ namespace WorkingWithStruct
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region MyRegion
+
+        public static int FindLHS(int[] nums)
+        {
+            Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
+            int result = 0;
+
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (keyValuePairs.ContainsKey(nums[i]))
+                {
+                    keyValuePairs[nums[i]]++;
+                }
+                else
+                {
+                    keyValuePairs.Add(nums[i], 1);
+                }
+            }
+
+            foreach (var item in keyValuePairs)
+            {
+                if (keyValuePairs.ContainsKey(item.Key - 1))
+                {
+                    int currCnt = keyValuePairs[item.Key] + keyValuePairs[item.Key - 1];
+                    result = Math.Max(result, currCnt);
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Valid Palindrome II
+
+        public static bool ValidPalindrome(string s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            int tempValue = 0;
+
+            while (left < right)
+            {
+                if (s[left] != s[right])
+                {
+                    if (tempValue==0)
+                    {
+                        left += 1;
+                        tempValue += 1;
+                        continue;
+                    }
+                    else if (tempValue==1)
+                    {
+                        left -= 1;
+                        right -= 1;
+                        tempValue += 1;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                left += 1;
+                right -= 1;
+            }
+            return true;
+
         }
 
         #endregion
