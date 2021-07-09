@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WorkingWithStruct
 {
@@ -32,9 +33,9 @@ namespace WorkingWithStruct
 
             //int[] str = { 1,2,3,4 };
 
-            string str = "aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga";
+            string str = "race a car";
 
-            Console.WriteLine(ValidPalindrome(str));
+            Console.WriteLine(IsPalindrome(str));
         }
 
 
@@ -2705,6 +2706,32 @@ namespace WorkingWithStruct
             return true;
 
         }
+
+        #endregion
+
+        #region Valid Palindrome
+
+        public static bool IsPalindrome(string s)
+        {
+            string pattern = @"[^0-9a-zA-Z]+";
+            string target = String.Empty;
+            Regex regex = new Regex(pattern);
+            s = regex.Replace(s, target);
+
+            int left = 0;
+            int right = s.Length - 1;
+
+            while (true)
+            {
+                if (left > right) return true;
+
+                if (char.ToLower(s[left]) != char.ToLower(s[right])) return false;
+
+                left++;
+                right--;
+            }
+        }
+
 
         #endregion
     }
