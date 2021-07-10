@@ -35,7 +35,7 @@ namespace WorkingWithStruct
 
             string str = "race a car";
 
-            Console.WriteLine(IsPalindrome(str));
+            Console.WriteLine(AddStrings("456","77"));
         }
 
 
@@ -2393,12 +2393,12 @@ namespace WorkingWithStruct
                     sb.Insert(0, tempValue.Substring(idx, k));
                     idx -= k;
                     i--;
-                    if (i != 0) sb.Insert(0,"-");
+                    if (i != 0) sb.Insert(0, "-");
                     if (i == 0)
                     {
                         int value = tempValue.Length - (sb.Length - tempValue.Length / k);
                         sb.Insert(0, "-");
-                        sb.Insert(0, tempValue.Substring(0, value -1));
+                        sb.Insert(0, tempValue.Substring(0, value - 1));
                     }
                 }
             }
@@ -2443,9 +2443,9 @@ namespace WorkingWithStruct
 
             while (idx < nums.Length - 1)
             {
-                if(nums[idx] < nums[idx + 1])
+                if (nums[idx] < nums[idx + 1])
                 {
-                   
+
                     tempValue++;
                     result = Math.Max(tempValue, result);
                 }
@@ -2467,7 +2467,7 @@ namespace WorkingWithStruct
             int i = 0;
             while (i < s.Length - 1)
             {
-                if (s[i].Equals(s[i+1]))
+                if (s[i].Equals(s[i + 1]))
                 {
                     s = s.Remove(i, 2);
                     i = -1;
@@ -2681,13 +2681,13 @@ namespace WorkingWithStruct
             {
                 if (s[left] != s[right])
                 {
-                    if (tempValue==0)
+                    if (tempValue == 0)
                     {
                         left += 1;
                         tempValue += 1;
                         continue;
                     }
-                    else if (tempValue==1)
+                    else if (tempValue == 1)
                     {
                         left -= 1;
                         right -= 1;
@@ -2790,6 +2790,55 @@ namespace WorkingWithStruct
 
             return counterLeft == counterRight;
         }
+
+        #endregion
+
+        #region Add Strings
+
+        public static string AddStrings(string num1, string num2)
+        {
+            int i = num1.Length - 1;
+            int j = num2.Length - 1;
+            int shift = 0;
+            int digit1;
+            int digit2;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i >= 0 || j >= 0 || shift == 1)
+            {
+
+                if (i < 0)
+                {
+                    digit1 = 0;
+                }
+                else
+                {
+                    digit1 = num1[i] - '0';
+                }
+
+                if (j < 0)
+                {
+                    digit2 = 0;
+                }
+                else
+                {
+                    digit2 = num2[j] - '0';
+                }
+
+                int result = digit1 + digit2 + shift;
+
+                sb.Insert(0, result % 10);
+
+                shift = result / 10;
+
+                i--;
+                j--;
+            }
+
+            return sb.ToString();
+        }
+
 
         #endregion
 
