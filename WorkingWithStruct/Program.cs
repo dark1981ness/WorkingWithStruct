@@ -2734,5 +2734,64 @@ namespace WorkingWithStruct
 
 
         #endregion
+
+        #region Longest Increasing Subsequence
+
+        //public static int LengthOfLIS(int[] nums)
+        //{
+        //    int idx = 0;
+        //    int result = 1;
+        //    int tempValue = 1;
+
+        //    while (idx < nums.Length - 1)
+        //    {
+        //        if (nums[idx] < nums[idx + 1])
+        //        {
+
+        //            tempValue++;
+        //            result = Math.Max(tempValue, result);
+        //        }
+        //        else
+        //        {
+        //            tempValue = 1;
+        //        }
+        //        idx++;
+        //    }
+        //    return result;
+        //}
+
+        #endregion
+
+        #region Determine if String Halves Are Alike
+
+        public static bool HalvesAreAlike(string s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            int counterLeft = 0;
+            int counterRight = 0;
+            HashSet<char> hs = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u' };
+
+            while (left < right)
+            {
+                if (hs.Contains(char.ToLower(s[left])))
+                {
+                    counterLeft++;
+                }
+
+                if (hs.Contains(char.ToLower(s[right])))
+                {
+                    counterRight++;
+                }
+
+                left++;
+                right--;
+            }
+
+            return counterLeft == counterRight;
+        }
+
+        #endregion
+
     }
 }
