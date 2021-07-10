@@ -35,7 +35,7 @@ namespace WorkingWithStruct
 
             string str = "race a car";
 
-            Console.WriteLine(AddStrings("456","77"));
+            Console.WriteLine(FirstUniqChar("aabb"));
         }
 
 
@@ -2837,6 +2837,48 @@ namespace WorkingWithStruct
             }
 
             return sb.ToString();
+        }
+
+
+        #endregion
+
+
+        #region First Unique Character in a String
+
+        public static int FirstUniqChar(string s)
+        {
+            Dictionary<char, int> hm = new Dictionary<char, int>();
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!hm.ContainsKey(s[i]))
+                {
+                    hm[s[i]] = 1;
+                }
+                else
+                {
+                    hm[s[i]]++;
+                }
+            }
+
+            foreach (var item in hm)
+            {
+                if (item.Value == 1)
+                {
+                    stringBuilder.Append(item.Key);
+                }
+            }
+
+            string result = stringBuilder.ToString();
+
+            return result.Length == 0 ? -1 : s.IndexOf(result[0]);
+
+            //char min = hm.FirstOrDefault(x => x.Value == 1).Key;
+
+            //return min == 0 ? -1: s.IndexOf(min);
+
         }
 
 
