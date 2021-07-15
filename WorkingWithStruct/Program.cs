@@ -31,11 +31,13 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            //int[] str = { 1,2,3,4 };
+            //int[] str = { 3, 2, 1 };
 
-            string str = "race a car";
+            string str = "kqe";
+            string str2 = "ekeq";
 
-            Console.WriteLine(FirstUniqChar("aabb"));
+
+            Console.WriteLine(CustomSortString(str, str2));
         }
 
 
@@ -2881,6 +2883,13 @@ namespace WorkingWithStruct
 
         }
 
+
+        #endregion
+
+
+        #region Custom Sort String
+
+        
 
         #endregion
 
