@@ -33,11 +33,11 @@ namespace WorkingWithStruct
 
             //int[] str = { 3, 2, 1 };
 
-            string str = ".L.R...LR..L..";
-            
+            string str = "cad";
+            string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
 
 
-            Console.WriteLine(PushDominoes(str));
+            Console.WriteLine(CountConsistentStrings(str, strArr));
         }
 
 
@@ -2886,6 +2886,32 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Count the Number of Consistent Strings
 
+        public static int CountConsistentStrings(string allowed, string[] words)
+        {
+
+            HashSet<char> hs = new HashSet<char>(allowed);
+            int count = 0;
+            int idx = 0;
+
+            while (idx < words.Length)
+            {
+                for (int i = 0; i < words[idx].Length; i++)
+                {
+                    if (!hs.Contains(words[idx][i]))
+                    {
+                        count--;
+                        break;
+                    }
+                }
+                count++;
+                idx++;
+            }
+
+            return count;
+        }
+
+        #endregion
     }
 }
