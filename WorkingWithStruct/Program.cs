@@ -33,11 +33,11 @@ namespace WorkingWithStruct
 
             //int[] str = { 3, 2, 1 };
 
-            string str = "kqe";
-            string str2 = "ekeq";
+            string str = ".L.R...LR..L..";
+            
 
 
-            Console.WriteLine(CustomSortString(str, str2));
+            Console.WriteLine(PushDominoes(str));
         }
 
 
@@ -2886,12 +2886,6 @@ namespace WorkingWithStruct
 
         #endregion
 
-
-        #region Custom Sort String
-
-        
-
-        #endregion
 
     }
 }
