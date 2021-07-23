@@ -2954,6 +2954,25 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Subtract the Product and Sum of Digits of an Integer
+
+        public static int SubtractProductAndSum(int n)
+        {
+            int prodValue = 1;
+            int sumValue = 0;
+
+            while (n > 0)
+            {
+                int tempValue = n % 10;
+                prodValue *= tempValue;
+                sumValue += tempValue;
+                n /= 10;
+            }
+
+            return prodValue - sumValue;
+        }
+
+        #endregion
 
     }
 }
