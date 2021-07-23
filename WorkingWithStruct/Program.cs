@@ -2913,5 +2913,26 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region Build Array from Permutation
+
+        public static int[] BuildArray(int[] nums)
+        {
+            int[] result = new int[nums.Length];
+
+            int idx = 0;
+
+            while (idx < nums.Length)
+            {
+
+                result[idx] = nums[nums[idx]];
+                idx++;
+            }
+
+            return result;
+        }
+        #endregion
+
+
     }
 }
