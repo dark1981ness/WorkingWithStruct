@@ -33,11 +33,11 @@ namespace WorkingWithStruct
 
             //int[] str = { 3, 2, 1 };
 
-            string str = "cad";
-            string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
+            //string str = "cad";
+            //string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
 
 
-            Console.WriteLine(CountConsistentStrings(str, strArr));
+            Console.WriteLine(MySqrt(5));
         }
 
 
@@ -1136,23 +1136,28 @@ namespace WorkingWithStruct
 
         public static int MySqrt(int x)
         {
-            double left = 1;
-            double right = x;
-            double approx = 0;
-            double middle = 0;
+            long left = 0;
+            long right = int.MaxValue / 2 + 1;
+            long approx;
+            long middle;
 
-            while (Math.Abs(approx - x) > 1e-10)
+            if (x == 0) return 0;
+            if (x == 1) return 1;
+
+            while (left < right)
             {
                 middle = left + (right - left) / 2;
                 approx = middle * middle;
 
-                if (approx > x)
+                if (approx == middle)
+                    return (int)middle;
+                else if (approx > x)
                     right = middle;
                 else
-                    left = middle;
+                    left = middle + 1;
             }
 
-            return (int)middle;
+            return (int)left - 1;
         }
 
         #endregion
