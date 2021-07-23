@@ -2933,6 +2933,27 @@ namespace WorkingWithStruct
         }
         #endregion
 
+        #region Concatenation of Array
+
+        public static int[] GetConcatenation(int[] nums)
+        {
+            int[] result = new int[nums.Length * 2];
+            int idx = 0;
+
+            while (idx < nums.Length)
+            {
+                result[idx] = nums[idx];
+
+                result[idx + nums.Length] = nums[idx];
+
+                idx++;
+            }
+
+            return result;
+        }
+
+        #endregion
+
 
     }
 }
