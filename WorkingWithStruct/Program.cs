@@ -2979,5 +2979,41 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Check if All Characters Have Equal Number of Occurrences
+
+        public static bool AreOccurrencesEqual(string s)
+        {
+            Dictionary<char, int> hm = new Dictionary<char, int>();
+
+            int idx = 0;
+
+            while (idx < s.Length)
+            {
+                if (!hm.ContainsKey(s[idx]))
+                {
+                    hm.Add(s[idx], 1);
+                }
+                else
+                {
+                    hm[s[idx]]++;
+                }
+
+                idx++;
+            }
+
+
+            foreach (var item in hm)
+            {
+                if (item.Value > 0 && item.Value != hm[s[0]])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        #endregion
+
     }
 }
