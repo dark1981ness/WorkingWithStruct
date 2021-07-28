@@ -3102,5 +3102,23 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Maximum Repeating Substring
+
+        public static int MaxRepeating(string sequence, string word)
+        {
+            int result = 0;
+            string tempString = word;
+
+            while(sequence.IndexOf(tempString) != -1)
+            {
+                tempString += word;
+                result++;
+            }
+
+            return result;
+        }
+
+        #endregion
+
     }
 }
