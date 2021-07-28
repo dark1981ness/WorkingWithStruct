@@ -37,7 +37,7 @@ namespace WorkingWithStruct
             //string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
 
 
-            Console.WriteLine(MySqrt(5));
+            BeautifulArray(5);
         }
 
 
@@ -3030,6 +3030,75 @@ namespace WorkingWithStruct
 
         }
 
+
+        #endregion
+
+        #region Beautiful Array
+
+        public static void BeautifulArray(int n)
+        {
+            int[] result = new int[n];
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = i+1;
+            }
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.WriteLine(result[i]);
+            }
+        }
+
+        #endregion
+
+        #region Mean of Array After Removing Some Elements
+
+        public static double TrimMean(int[] arr)
+        {
+            Array.Sort(arr);
+            double sum = 0;
+            int count = 0;
+
+            for (int i = (int)(arr.Length * 0.05); i < arr.Length - (int)(arr.Length * 0.05); i++)
+            {
+                sum += arr[i];
+                count++;
+            }
+
+            return sum / count;
+        }
+
+        #endregion
+
+        #region Sum of Digits of String After Convert
+
+        public static int GetLucky(string s, int k)
+        {
+            int tempValue;
+            int result = 0;
+
+            foreach (var item in s)
+            {
+                tempValue = item - 'a' + 1;
+                result += tempValue / 10 + tempValue % 10;
+            }
+
+            while (k > 0)
+            {
+                int transform = 0;
+                while (result > 0)
+                {
+                    transform += result % 10;
+                    result /= 10;
+                }
+
+                result = transform;
+                k--;
+            }
+
+            return result;
+        }
 
         #endregion
 
