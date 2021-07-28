@@ -3084,7 +3084,7 @@ namespace WorkingWithStruct
                 result += tempValue / 10 + tempValue % 10;
             }
 
-            while (k > 0)
+            while (k > 1)
             {
                 int transform = 0;
                 while (result > 0)
