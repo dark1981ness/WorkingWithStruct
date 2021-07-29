@@ -31,13 +31,13 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            //int[] str = { 3, 2, 1 };
+            int[] str = { 2, 3, 1, 2 };
 
             //string str = "cad";
             //string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
 
 
-            BeautifulArray(5);
+            Console.WriteLine(CanBeIncreasing(str));
         }
 
 
@@ -3041,7 +3041,7 @@ namespace WorkingWithStruct
 
             for (int i = 0; i < result.Length; i++)
             {
-                result[i] = i+1;
+                result[i] = i + 1;
             }
 
             for (int i = 0; i < result.Length; i++)
@@ -3109,13 +3109,37 @@ namespace WorkingWithStruct
             int result = 0;
             string tempString = word;
 
-            while(sequence.IndexOf(tempString) != -1)
+            while (sequence.IndexOf(tempString) != -1)
             {
                 tempString += word;
                 result++;
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region Remove One Element to Make the Array Strictly Increasing
+
+        public static bool CanBeIncreasing(int[] nums)
+        {
+            int count = 0;
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (nums[i] <= nums[i - 1])
+                    count++;
+                if (i >= 2 && nums[i - 2] >= nums[i])
+                {
+                    nums[i] = nums[i - 1];
+                }
+                if (count > 1)
+                    return false;
+
+            }
+
+            return true;
         }
 
         #endregion
