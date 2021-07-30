@@ -21,27 +21,10 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //int[][] arr = new int[3][];
-            //arr[0] = new int[] { 1950, 1961 };
-            //arr[1] = new int[] { 1960, 1971 };
-            //arr[2] = new int[] { 1970, 1981 };
-            //arr[3] = new int[] { 1, 1, 1 };
-
-            //SubrectangleQueries subrectangle = new SubrectangleQueries(arr);
-
-            //subrectangle.PrintMatrix();
-
-            int[] nums = { 0, 1, 2, 3, 4 };
-            int[] index = { 0, 1, 2, 2, 1 };
-
-            //string str = "cad";
-            //string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
+            string[] str = { "rwjje","aittjje","auyyn","lqtktn","lmjwn" };
 
 
-            foreach (var item in CreateTargetArray(nums, index))
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine(UniqueMorseRepresentations(str));
         }
 
 
@@ -2522,8 +2505,8 @@ namespace WorkingWithStruct
 
             return hs.Count < 3 ? hs.LastOrDefault() : hs.ElementAt(hs.Count - 3);
 
-            int idx = nums.Length - 1;
-            int thirdMax;
+            //int idx = nums.Length - 1;
+            //int thirdMax;
 
 
             //Array.Sort(nums);
@@ -3167,6 +3150,43 @@ namespace WorkingWithStruct
             }
 
             return target;
+        }
+
+        #endregion
+
+        #region Unique Morse Code Words
+
+        public static int UniqueMorseRepresentations(string[] words)
+        {
+            Dictionary<string, int> hm = new Dictionary<string, int>();
+
+            string[] morseCode = { ".-", "-...", "-.-.", "-..",
+                ".", "..-.", "--.", "....", "..", ".---", "-.-",
+                ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
+                "...", "-", "..-", "...-", ".--", "-..-", "-.--",
+                "--.." };
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                StringBuilder morseConv = new StringBuilder();
+                for (int j = 0; j < words[i].Length; j++)
+                {
+                    morseConv.Append(morseCode[words[i][j] - 'a']);
+                }
+
+                string tempStr = morseConv.ToString();
+
+                if (!hm.ContainsKey(tempStr))
+                {
+                    hm[tempStr] = 1;
+                }
+                else
+                {
+                    hm[tempStr]++;
+                }
+            }
+
+            return hm.Count;
         }
 
         #endregion
