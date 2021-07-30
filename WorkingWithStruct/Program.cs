@@ -31,13 +31,17 @@ namespace WorkingWithStruct
 
             //subrectangle.PrintMatrix();
 
-            int[] str = { 2, 3, 1, 2 };
+            int[] nums = { 0, 1, 2, 3, 4 };
+            int[] index = { 0, 1, 2, 2, 1 };
 
             //string str = "cad";
             //string[] strArr = { "cc", "acd", "b", "ba", "bac", "bad", "ac", "d" };
 
 
-            Console.WriteLine(CanBeIncreasing(str));
+            foreach (var item in CreateTargetArray(nums, index))
+            {
+                Console.WriteLine(item);
+            }
         }
 
 
@@ -3140,6 +3144,29 @@ namespace WorkingWithStruct
             }
 
             return true;
+        }
+
+        #endregion
+
+        #region Create Target Array in the Given Order
+
+        public static int[] CreateTargetArray(int[] nums, int[] index)
+        {
+            int[] target = new int[nums.Length];
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+
+                for (int j = nums.Length - 1; j > index[i]; j--)
+                {
+                    target[j] = target[j - 1];
+
+                }
+
+                target[index[i]] = nums[i];
+            }
+
+            return target;
         }
 
         #endregion
