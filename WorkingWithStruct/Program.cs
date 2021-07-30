@@ -3193,27 +3193,33 @@ namespace WorkingWithStruct
             #region With HashSet
             HashSet<string> hs = new HashSet<string>();
 
-            string[] morseCode = { ".-", "-...", "-.-.", "-..",
-                ".", "..-.", "--.", "....", "..", ".---", "-.-",
-                ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
-                "...", "-", "..-", "...-", ".--", "-..-", "-.--",
-                "--.." };
-
             for (int i = 0; i < words.Length; i++)
             {
-                StringBuilder morseConv = new StringBuilder();
-                for (int j = 0; j < words[i].Length; j++)
-                {
-                    morseConv.Append(morseCode[words[i][j] - 'a']);
-                }
-
-                string tempStr = morseConv.ToString();
+                string tempStr = ConvertToMorse(words[i]);
 
                 hs.Add(tempStr);
             }
 
             return hs.Count;
             #endregion
+        }
+
+        private static string ConvertToMorse(string word)
+        {
+            string[] morseCode = { ".-", "-...", "-.-.", "-..",
+                ".", "..-.", "--.", "....", "..", ".---", "-.-",
+                ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
+                "...", "-", "..-", "...-", ".--", "-..-", "-.--",
+                "--.." };
+
+            StringBuilder morseConv = new StringBuilder();
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                morseConv.Append(morseCode[word[i] - 'a']);
+            }
+            
+            return morseConv.ToString();
         }
 
         #endregion
