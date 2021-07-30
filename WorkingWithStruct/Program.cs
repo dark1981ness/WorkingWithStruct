@@ -3158,7 +3158,40 @@ namespace WorkingWithStruct
 
         public static int UniqueMorseRepresentations(string[] words)
         {
-            Dictionary<string, int> hm = new Dictionary<string, int>();
+            #region With HashMap
+            //Dictionary<string, int> hm = new Dictionary<string, int>();
+
+            //string[] morseCode = { ".-", "-...", "-.-.", "-..",
+            //    ".", "..-.", "--.", "....", "..", ".---", "-.-",
+            //    ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
+            //    "...", "-", "..-", "...-", ".--", "-..-", "-.--",
+            //    "--.." };
+
+            //for (int i = 0; i < words.Length; i++)
+            //{
+            //    StringBuilder morseConv = new StringBuilder();
+            //    for (int j = 0; j < words[i].Length; j++)
+            //    {
+            //        morseConv.Append(morseCode[words[i][j] - 'a']);
+            //    }
+
+            //    string tempStr = morseConv.ToString();
+
+            //    if (!hm.ContainsKey(tempStr))
+            //    {
+            //        hm[tempStr] = 1;
+            //    }
+            //    else
+            //    {
+            //        hm[tempStr]++;
+            //    }
+            //}
+
+            //return hm.Count;
+            #endregion
+
+            #region With HashSet
+            HashSet<string> hs = new HashSet<string>();
 
             string[] morseCode = { ".-", "-...", "-.-.", "-..",
                 ".", "..-.", "--.", "....", "..", ".---", "-.-",
@@ -3176,17 +3209,11 @@ namespace WorkingWithStruct
 
                 string tempStr = morseConv.ToString();
 
-                if (!hm.ContainsKey(tempStr))
-                {
-                    hm[tempStr] = 1;
-                }
-                else
-                {
-                    hm[tempStr]++;
-                }
+                hs.Add(tempStr);
             }
 
-            return hm.Count;
+            return hs.Count;
+            #endregion
         }
 
         #endregion
