@@ -21,10 +21,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] str = { "rwjje","aittjje","auyyn","lqtktn","lmjwn" };
-
-
-            Console.WriteLine(UniqueMorseRepresentations(str));
+            Console.WriteLine(ConvertToTitle(52));
         }
 
 
@@ -3218,8 +3215,28 @@ namespace WorkingWithStruct
             {
                 morseConv.Append(morseCode[word[i] - 'a']);
             }
-            
+
             return morseConv.ToString();
+        }
+
+        #endregion
+
+        #region Excel Sheet Column Title
+
+        public static string ConvertToTitle(int columnNumber)
+        {
+            string result = string.Empty;
+
+            while (columnNumber > 0)
+            {
+                columnNumber -= 1;
+                int tempValue = columnNumber % 26;
+                char tempChar = (char)('A' + tempValue);
+                result = result.Insert(0, tempChar.ToString());
+                columnNumber /= 26;
+            }
+
+            return result;
         }
 
         #endregion
