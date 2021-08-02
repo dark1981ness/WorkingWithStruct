@@ -21,7 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            Console.WriteLine(ConvertToTitle(52));
+            string s = "abcdefghijklmnopqrstuvwxyzva";
+            string t = "abcdefghijklmnopqrstuvwxyzck";
+            Console.WriteLine(IsIsomorphic(s, t));
         }
 
 
@@ -3241,5 +3243,42 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Isomorphic Strings
+
+        public static bool IsIsomorphic(string s, string t)
+        {
+            Dictionary<char, int> hashMapS = new Dictionary<char, int>();
+            Dictionary<char, int> hashMapT = new Dictionary<char, int>();
+
+            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder tBuilder = new StringBuilder();
+
+            int idx = 0;
+
+            while (idx < s.Length)
+            {
+                if (!hashMapS.ContainsKey(s[idx]))
+                {
+                    hashMapS[s[idx]] = idx;
+                }
+
+                if (!hashMapT.ContainsKey(t[idx]))
+                {
+                    hashMapT[t[idx]] = idx;
+                }
+
+                sBuilder.Append(hashMapS[s[idx]]);
+                sBuilder.Append(" ");
+
+                tBuilder.Append(hashMapT[t[idx]]);
+                tBuilder.Append(" ");
+
+                idx++;
+            }
+
+            return sBuilder.ToString().Equals(tBuilder.ToString());
+        }
+
+        #endregion
     }
 }
