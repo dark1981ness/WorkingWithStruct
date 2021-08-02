@@ -23,7 +23,7 @@ namespace WorkingWithStruct
         {
             string s = "abcdefghijklmnopqrstuvwxyzva";
             string t = "abcdefghijklmnopqrstuvwxyzck";
-            Console.WriteLine(IsIsomorphic(s, t));
+            Console.WriteLine(IsPerfectSquare(1));
         }
 
 
@@ -3279,6 +3279,26 @@ namespace WorkingWithStruct
             return sBuilder.ToString().Equals(tBuilder.ToString());
         }
 
+        #endregion
+
+        #region Valid Perfect Square
+        public static bool IsPerfectSquare(int num)
+        {
+            long left = 1;
+            long right = num;
+
+            while (left <= right)
+            {
+                var middle = left + (right - left) / 2;
+                if (middle * middle == num)
+                    return true;
+                else if (middle * middle < num)
+                    left = middle + 1;
+                else
+                    right = middle - 1;
+            }
+            return false;
+        }
         #endregion
     }
 }
