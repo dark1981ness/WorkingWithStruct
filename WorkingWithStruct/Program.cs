@@ -21,9 +21,12 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "abcdefghijklmnopqrstuvwxyzva";
-            string t = "abcdefghijklmnopqrstuvwxyzck";
-            Console.WriteLine(IsPerfectSquare(1));
+            int temp = 623461;
+            foreach (var item in PrimeFactors(temp))
+            {
+                Console.WriteLine(item);
+            }
+            
         }
 
 
@@ -3298,6 +3301,70 @@ namespace WorkingWithStruct
                     right = middle - 1;
             }
             return false;
+        }
+        #endregion
+
+        #region test
+
+        public static List<int> PrimeFactors(int value)
+        {
+            List<int> primes = new List<int>();
+
+            for (int i = 2; i <= value; i++)
+            {
+                while (value % i == 0)
+                {
+                    primes.Add(i);
+                    value /= i;
+                }
+            }
+
+            return primes;
+        }
+
+        public static bool IsPerfect(int number)
+        {
+            bool flag = false;
+
+            List<int> tempList = Digits(number);
+
+            int digitalRoot = DigitalRoot(number, 10);
+
+            return flag;
+        }
+
+        private static List<int> Digits(int number)
+        {
+            List<int> list = new List<int>();
+            while (number > 0)
+            {
+                list.Add(number % 10);
+                number /= 10;
+            }
+            return list;
+        }
+
+        private static int DigitalRoot(int number, int numBase)
+        {
+            while (number > 9)
+            {
+                number = DigitalSum(number,numBase);
+            }
+
+            return number;
+        }
+
+        private static int DigitalSum(int number, int numBase)
+        {
+            int sum = 0;
+
+            while (number > 0)
+            {
+                sum += number % numBase;
+                number /= numBase;
+            }
+
+            return sum;
         }
         #endregion
     }
