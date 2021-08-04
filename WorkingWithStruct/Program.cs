@@ -3304,6 +3304,17 @@ namespace WorkingWithStruct
         }
         #endregion
 
+        #region Distribute Candies
+
+        public static int DistributeCandies(int[] candyType)
+        {
+            HashSet<int> hs = new HashSet<int>(candyType);
+
+            return Math.Min(candyType.Length / 2, hs.Count);
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
