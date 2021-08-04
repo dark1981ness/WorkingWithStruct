@@ -21,11 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int temp = 623461;
-            foreach (var item in PrimeFactors(temp))
-            {
-                Console.WriteLine(item);
-            }
+            char[] temp = { 'h', 'a', 'y', 'n', 'a', 'H' };
+
+            ReverseString(temp);
             
         }
 
@@ -3311,6 +3309,27 @@ namespace WorkingWithStruct
             HashSet<int> hs = new HashSet<int>(candyType);
 
             return Math.Min(candyType.Length / 2, hs.Count);
+        }
+
+        #endregion
+
+        #region Reverse String
+
+        public static void ReverseString(char[] s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            char tempChar;
+
+            while (left<right)
+            {
+                tempChar = s[right];
+                s[right] = s[left];
+                s[left] = tempChar;
+
+                left++;
+                right--;
+            }
         }
 
         #endregion
