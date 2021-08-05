@@ -3334,6 +3334,44 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Reverse Words in a String III
+
+        public static string ReverseWords(string s)
+        {
+            string[] subs = s.Split(' ');
+            StringBuilder stringBuilder = new StringBuilder();
+            int idx = 0;
+
+            while (idx < subs.Length)
+            {
+                stringBuilder.Append(ReverseStr(subs[idx].ToCharArray()));
+                stringBuilder.Append(' ');
+                idx++;
+            }
+
+            return stringBuilder.ToString().Trim();
+        }
+
+        private static string ReverseStr(char[] s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            char tempChar;
+
+            while (left < right)
+            {
+                tempChar = s[right];
+                s[right] = s[left];
+                s[left] = tempChar;
+
+                left++;
+                right--;
+            }
+
+            return new string(s);
+        }
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
