@@ -21,10 +21,13 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            char[] temp = { 'h', 'a', 'y', 'n', 'a', 'H' };
+            //char[] temp = { 'h', 'a', 'y', 'n', 'a', 'H' };
+            string s = "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl";
+            int k = 39;
 
-            ReverseString(temp);
-            
+
+            Console.WriteLine(ReverseStr(s, k));
+
         }
 
 
@@ -3321,7 +3324,7 @@ namespace WorkingWithStruct
             int right = s.Length - 1;
             char tempChar;
 
-            while (left<right)
+            while (left < right)
             {
                 tempChar = s[right];
                 s[right] = s[left];
@@ -3372,6 +3375,36 @@ namespace WorkingWithStruct
         }
         #endregion
 
+        #region Reverse String II
+
+        public static string ReverseStr(string s, int k)
+        {
+            char[] result = s.ToCharArray();
+            int idx = 0;
+
+            while (idx < result.Length)
+            {
+                int left = idx;
+                int right = Math.Min(idx + k - 1, result.Length - 1);
+
+                while (left <= right)
+                {
+                    char tempChar = result[right];
+                    result[right] = result[left];
+                    result[left] = tempChar;
+
+                    left++;
+                    right--;
+                }
+
+                idx += 2 * k;
+            }
+
+            return new string(result);
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
@@ -3416,7 +3449,7 @@ namespace WorkingWithStruct
         {
             while (number > 9)
             {
-                number = DigitalSum(number,numBase);
+                number = DigitalSum(number, numBase);
             }
 
             return number;
