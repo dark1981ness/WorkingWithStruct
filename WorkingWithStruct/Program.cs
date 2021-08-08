@@ -21,12 +21,41 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //char[] temp = { 'h', 'a', 'y', 'n', 'a', 'H' };
-            string s = "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl";
-            int k = 39;
+            string str = "hello world world";
+            int count = 0;
 
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str.IndexOf(' ', i) >= 0)
+                {
+                    int idx = str.IndexOf(' ');
+                    Console.WriteLine(idx);
+                    while (idx > 0)
+                    {
+                        if (str[idx] == 'l')
+                        {
+                            break;
+                        }
 
-            Console.WriteLine(ReverseStr(s, k));
+                        idx--;
+                    }
+                }
+                if (str.IndexOf(' ', i) != -1)
+                {
+                    int idx = str.Length - 1;
+                    while (idx > 0)
+                    {
+                        if (str[idx] == 'l')
+                        {
+                            break;
+                        }
+
+                        idx--;
+                    }
+                }
+
+                i += str.IndexOf(' ', i);
+            }
 
         }
 
@@ -3401,6 +3430,21 @@ namespace WorkingWithStruct
             }
 
             return new string(result);
+        }
+
+        #endregion
+
+        #region Maximum Number of Words You Can Type
+
+        public static int CanBeTypedWords(string text, string brokenLetters)
+        {
+            int result = 0;
+            string[] words = text.Split(' ');
+            HashSet<char> hs = new HashSet<char>(brokenLetters);
+
+            if (brokenLetters is null) return words.Length;
+
+            return result;
         }
 
         #endregion
