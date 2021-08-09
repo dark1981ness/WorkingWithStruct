@@ -3503,6 +3503,34 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Check if All the Integers in a Range Are Covered
+
+        public static bool IsCovered(int[][] ranges, int left, int right)
+        {
+            HashSet<int> hs = new HashSet<int>();
+
+            for (int i = left; i <= right; i++)
+            {
+                hs.Add(i);
+            }
+
+            for (int i = 0; i < ranges.Length; i++)
+            {
+                for (int j = ranges[i][0]; j <= ranges[i][1]; j++)
+                {
+                    hs.Remove(j);
+                }
+                if (hs.Count == 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
