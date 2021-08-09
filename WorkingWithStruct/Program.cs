@@ -21,13 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string str = "veikxddtjgpixjrux srxiqrczp cxaldqsvsxpzn xrlxovsjy ervh cdtxwnahcvj xazmhniydmzsseuhq htrsuiabtzcjglilehrpxqcadk ynls r pjkiwtcmvldcr t urevy fjmeutye gjnyd wv fueploq eol zofra xnwaxnwh lpckcgzfcslugpmu judahwebqnwtk gfttojiqcffstkcq nfxbw ugnviyeincmuzoosfy kdazdudaztlnj rqg umaohfgtvk i vfhdvuvbih falmmrke rv zsaqn oswdlfq eapt mnr swcoa jhmui t vkm tumfqvj ehcycfgzxjkhxhdbymmwxy xnsxxerahbrr silb rqmhfbyopev fstlsvpblocrvrheghvgiuqftknewskmhbk nchoj bo cxovzradanq fofsrtmnytq brcixelmzvdxmm";
-            string bl = "wqchprenozi";
+            int[] nums = { 5, 6, 2, 7, 4 };
 
-            
-
-
-            Console.WriteLine(CanBeTypedWords(str,bl));
+            Console.WriteLine(MaxProductDifference(nums));
         }
 
 
@@ -3492,6 +3488,17 @@ namespace WorkingWithStruct
 
             return count;
             #endregion
+        }
+
+        #endregion
+
+        #region Maximum Product Difference Between Two Pairs
+
+        public static int MaxProductDifference(int[] nums)
+        {
+            Array.Sort(nums);
+
+            return (nums[nums.Length - 1] * nums[nums.Length - 2]) - ((nums[0] * nums[1]));
         }
 
         #endregion
