@@ -21,42 +21,13 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string str = "hello world world";
-            int count = 0;
+            string str = "veikxddtjgpixjrux srxiqrczp cxaldqsvsxpzn xrlxovsjy ervh cdtxwnahcvj xazmhniydmzsseuhq htrsuiabtzcjglilehrpxqcadk ynls r pjkiwtcmvldcr t urevy fjmeutye gjnyd wv fueploq eol zofra xnwaxnwh lpckcgzfcslugpmu judahwebqnwtk gfttojiqcffstkcq nfxbw ugnviyeincmuzoosfy kdazdudaztlnj rqg umaohfgtvk i vfhdvuvbih falmmrke rv zsaqn oswdlfq eapt mnr swcoa jhmui t vkm tumfqvj ehcycfgzxjkhxhdbymmwxy xnsxxerahbrr silb rqmhfbyopev fstlsvpblocrvrheghvgiuqftknewskmhbk nchoj bo cxovzradanq fofsrtmnytq brcixelmzvdxmm";
+            string bl = "wqchprenozi";
 
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (str.IndexOf(' ', i) >= 0)
-                {
-                    int idx = str.IndexOf(' ');
-                    Console.WriteLine(idx);
-                    while (idx > 0)
-                    {
-                        if (str[idx] == 'l')
-                        {
-                            break;
-                        }
+            
 
-                        idx--;
-                    }
-                }
-                if (str.IndexOf(' ', i) != -1)
-                {
-                    int idx = str.Length - 1;
-                    while (idx > 0)
-                    {
-                        if (str[idx] == 'l')
-                        {
-                            break;
-                        }
 
-                        idx--;
-                    }
-                }
-
-                i += str.IndexOf(' ', i);
-            }
-
+            Console.WriteLine(CanBeTypedWords(str,bl));
         }
 
 
@@ -3438,13 +3409,89 @@ namespace WorkingWithStruct
 
         public static int CanBeTypedWords(string text, string brokenLetters)
         {
-            int result = 0;
-            string[] words = text.Split(' ');
+            #region w/o string array
+            /*
+             *  Runtime: 72 ms, faster than 92.27% of C# online submissions for Maximum Number of Words You Can Type.
+             *  Memory Usage: 22.9 MB, less than 78.26% of C# online submissions for Maximum Number of Words You Can Type.
+             */
+
+            //HashSet<char> hs = new HashSet<char>(brokenLetters);
+            //int count = 0;
+
+            //for (int i = 0; i < text.Length; i++)
+            //{
+
+            //    if (text.IndexOf(' ', i) != -1)
+            //    {
+            //        count++;
+            //        int idx = text.IndexOf(' ', i);
+            //        while (idx >= i)
+            //        {
+            //            if (hs.Contains(text[idx]))
+            //            {
+            //                count--;
+            //                break;
+            //            }
+
+            //            idx--;
+            //        }
+            //        i = text.IndexOf(' ', i);
+            //    }
+            //    else
+            //    {
+            //        count++;
+            //        int idx = text.Length - 1;
+            //        while (idx >= i)
+            //        {
+            //            if (hs.Contains(text[idx]))
+            //            {
+            //                count--;
+            //                break;
+            //            }
+
+            //            idx--;
+            //        }
+            //        break;
+            //    }
+
+
+            //}
+
+            //return count; 
+            #endregion
+
+            #region split text by whitespace to string array
+            /*
+             *  Runtime: 72 ms, faster than 92.27% of C# online submissions for Maximum Number of Words You Can Type.
+             *  Memory Usage: 23.3 MB, less than 39.61% of C# online submissions for Maximum Number of Words You Can Type.
+             */
+
+
             HashSet<char> hs = new HashSet<char>(brokenLetters);
+            string[] words = text.Split(' ');
+            int count = words.Length;
 
-            if (brokenLetters is null) return words.Length;
+            if (brokenLetters is null) return count;
 
-            return result;
+            for (int i = 0; i < words.Length; i++)
+            {
+                int left = 0;
+                int right = words[i].Length - 1;
+
+                while (left <= right)
+                {
+                    if (hs.Contains(words[i][left])|| hs.Contains(words[i][right]))
+                    {
+                        count--;
+                        break;
+                    }
+                    left++;
+                    right--;
+                }
+            }
+
+            return count;
+            #endregion
         }
 
         #endregion
