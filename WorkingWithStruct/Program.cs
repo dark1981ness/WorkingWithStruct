@@ -21,7 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
+            string[] words = { "caaaaa", "aaaaaaaaa", "a", "bbb", "bbbbbbbbb", "bbb", "cc", "cccccccccccc", "ccccccc", "ccccccc", "cc", "cccc", "c", "cccccccc", "c" };
 
+            Console.WriteLine(MakeEqual(words));
         }
 
 
@@ -3563,7 +3565,7 @@ namespace WorkingWithStruct
 
             for (int i = 0; i < s.Length; i++)
             {
-                if (s[i]!= tempchar)
+                if (s[i] != tempchar)
                 {
                     stringBuilder.Append(s[i]);
                     tempchar = s[i];
@@ -3641,6 +3643,40 @@ namespace WorkingWithStruct
                 hs.Remove(startIdx);
             }
             return ans;
+        }
+
+        #endregion
+
+        #region Redistribute Characters to Make All Strings Equal
+
+        public static bool MakeEqual(string[] words)
+        {
+            if (words.Length == 1) return true;
+
+            Dictionary<char, int> ht = new Dictionary<char, int>();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                for (int j = 0; j < words[i].Length; j++)
+                {
+                    if (!ht.ContainsKey(words[i][j]))
+                    {
+                        ht[words[i][j]] = 1;
+                    }
+                    else
+                    {
+                        ht[words[i][j]]++;
+                    }
+                }
+            }
+
+            foreach (var item in ht)
+            {
+                if (item.Value % words.Length != 0)
+                    return false;
+            }
+
+            return true;
         }
 
         #endregion
