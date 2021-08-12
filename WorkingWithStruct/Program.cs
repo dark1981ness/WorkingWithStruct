@@ -3703,6 +3703,25 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Minimum Distance to the Target Element
+
+        public static int GetMinDistance(int[] nums, int target, int start)
+        {
+            int i = 0;
+            int min = int.MaxValue;
+            while (i < nums.Length)
+            {
+                if (nums[i] == target)
+                {
+                    min = Math.Min(min, Math.Abs(i - start));
+                }
+                i++;
+            }
+            return min;
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
