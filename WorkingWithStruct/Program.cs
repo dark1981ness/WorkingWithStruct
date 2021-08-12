@@ -21,9 +21,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] words = { "caaaaa", "aaaaaaaaa", "a", "bbb", "bbbbbbbbb", "bbb", "cc", "cccccccccccc", "ccccccc", "ccccccc", "cc", "cccc", "c", "cccccccc", "c" };
-
-            Console.WriteLine(MakeEqual(words));
+            
         }
 
 
@@ -3677,6 +3675,30 @@ namespace WorkingWithStruct
             }
 
             return true;
+        }
+
+        #endregion
+
+        #region Get Maximum in Generated Array
+
+        public static int GetMaximumGenerated(int n)
+        {
+
+            if (n <= 0)
+                return 0;
+
+            int[] arr = new int[n + 1];
+
+            arr[0] = 0;
+            arr[1] = 1;
+
+            for (int i = 1; i < arr.Length / 2; i++)
+            {
+                arr[i * 2] = arr[i];
+                arr[i * 2 + 1] = arr[i] + arr[i + 1];
+            }
+
+            return arr.Max();
         }
 
         #endregion
