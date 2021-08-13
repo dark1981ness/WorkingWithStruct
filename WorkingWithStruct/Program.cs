@@ -21,7 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            
+            string s = "RLRRLLRLRL";
+
+
         }
 
 
@@ -3718,6 +3720,27 @@ namespace WorkingWithStruct
                 i++;
             }
             return min;
+        }
+
+        #endregion
+
+        #region Split a String in Balanced Strings
+
+        public static int BalancedStringSplit(string s)
+        {
+            int counter = 0;
+            int result = 0;
+            foreach (var c in s)
+            {
+                if (c.Equals('R'))
+                    counter++;
+                else
+                    counter--;
+
+                if (counter == 0)
+                    result++;
+            }
+            return result;
         }
 
         #endregion
