@@ -21,9 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "RLRRLLRLRL";
+            string s = "52";
 
-
+            Console.WriteLine(LargestOddNumber(s));
         }
 
 
@@ -3741,6 +3741,26 @@ namespace WorkingWithStruct
                     result++;
             }
             return result;
+        }
+
+        #endregion
+
+        #region Largest Odd Number in Stringon
+
+        public static string LargestOddNumber(string num)
+        {
+            int idx = num.Length - 1;
+
+            while (idx >= 0)
+            {
+                if ((num[idx] - '0') % 2 != 0)
+                {
+                    return num.Substring(0, idx + 1);
+                }
+                idx--;
+            }
+
+            return string.Empty;
         }
 
         #endregion
