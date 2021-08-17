@@ -21,9 +21,18 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "52";
+            string firstWord = "acb";
+            string secondWord = "cba";
+            string targetWord = "cbd";
 
-            Console.WriteLine(LargestOddNumber(s));
+            int idx = 0;
+
+            while (idx < firstWord.Length)
+            {
+
+            }
+
+
         }
 
 
@@ -3761,6 +3770,33 @@ namespace WorkingWithStruct
             }
 
             return string.Empty;
+        }
+
+        #endregion
+
+        #region Check if Word Equals Summation of Two Words
+
+        public static bool IsSumEqual(string firstWord, string secondWord, string targetWord)
+        {
+            int firstNumericValue = ConvertToInt(firstWord);
+            int secondNumericValue = ConvertToInt(secondWord);
+            int thirdNumericValue = ConvertToInt(targetWord);
+
+            return (firstNumericValue + secondNumericValue) == thirdNumericValue ? true : false;
+        }
+
+        private static int ConvertToInt(string value)
+        {
+            int idx = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while (idx < value.Length)
+            {
+                stringBuilder.Append((value[idx] - 'a'));
+                idx++;
+            }
+
+            return Convert.ToInt32(stringBuilder.ToString());
         }
 
         #endregion
