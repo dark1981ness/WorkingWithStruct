@@ -21,18 +21,12 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string firstWord = "acb";
-            string secondWord = "cba";
-            string targetWord = "cbd";
 
-            int idx = 0;
-
-            while (idx < firstWord.Length)
+            int n = 15;
+            foreach (var item in FizzBuzz(n))
             {
-
+                Console.Write(item);
             }
-
-
         }
 
 
@@ -3797,6 +3791,47 @@ namespace WorkingWithStruct
             }
 
             return Convert.ToInt32(stringBuilder.ToString());
+        }
+
+        #endregion
+
+
+        #region Fizz Buzz
+
+        public static IList<string> FizzBuzz(int n)
+        {
+            string firstPart = "Fizz";
+            string secondPart = "Buzz";
+            var result = new List<string>();
+            int idx = 1;
+
+            while (idx <= n)
+            {
+                switch (idx % 3)
+                {
+                    case 0 when idx % 5 == 0:
+                        result.Add(string.Concat(firstPart,secondPart));
+                        break;
+                    case 0:
+                        result.Add(firstPart);
+                        break;
+                    default:
+                        if (idx % 5 == 0)
+                        {
+                            result.Add(secondPart);
+                        }
+                        else
+                        {
+                            result.Add(idx.ToString());
+                        }
+
+                        break;
+                }
+
+                idx++;
+            }
+
+            return result;
         }
 
         #endregion
