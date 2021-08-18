@@ -22,11 +22,9 @@ namespace WorkingWithStruct
         static void Main(string[] args)
         {
 
-            int n = 15;
-            foreach (var item in FizzBuzz(n))
-            {
-                Console.Write(item);
-            }
+            string n = "1001";
+            CheckOnesSegment(n);
+
         }
 
 
@@ -3795,7 +3793,6 @@ namespace WorkingWithStruct
 
         #endregion
 
-
         #region Fizz Buzz
 
         public static IList<string> FizzBuzz(int n)
@@ -3810,7 +3807,7 @@ namespace WorkingWithStruct
                 switch (idx % 3)
                 {
                     case 0 when idx % 5 == 0:
-                        result.Add(string.Concat(firstPart,secondPart));
+                        result.Add(string.Concat(firstPart, secondPart));
                         break;
                     case 0:
                         result.Add(firstPart);
@@ -3832,6 +3829,50 @@ namespace WorkingWithStruct
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region Check if Binary String Has at Most One Segment of Ones
+
+        public static bool CheckOnesSegment(string s)
+        {
+            int idx = 0;
+            int counter = 0;
+
+            if (s.Length == 1) return true;
+
+            while (idx < s.Length)
+            {
+                if ((s[idx] - '0') == 1)
+                    counter++;
+                else
+                    counter--;
+
+                if (counter > 1) return true;
+
+                idx++;
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #region Find Center of Star Graph
+
+        public static int FindCenter(int[][] edges)
+        {
+            return edges[0].Intersect(edges[1]).First();
+        }
+
+        #endregion
+
+        #region Flipping an Image
+
+        public static int[][] FlipAndInvertImage(int[][] image)
+        {
+            return image.Select(x => x.Reverse().Select(y => y ^ 1).ToArray()).ToArray();
         }
 
         #endregion
