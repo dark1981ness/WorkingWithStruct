@@ -22,9 +22,25 @@ namespace WorkingWithStruct
         static void Main(string[] args)
         {
 
-            string n = "1001";
-            CheckOnesSegment(n);
+            //int[] releaseTimes = { 9, 29, 49, 50 };
+            //string keysPressed = "cbcd";
 
+            //Dictionary<char, int> ht = new Dictionary<char, int>();
+
+            //ht[keysPressed[0]] = releaseTimes[0];
+
+            //for (int i = 1; i < keysPressed.Length; i++)
+            //{
+            //    if (!ht.ContainsKey(keysPressed[i]))
+            //    {
+            //        ht[keysPressed[i]] = releaseTimes[i] - releaseTimes[i - 1];
+            //    }
+            //    else
+            //    {
+            //        ht[keysPressed[i]] = Math.Max(ht[keysPressed[i]], (releaseTimes[i] - releaseTimes[i - 1]));
+            //    }
+            //}
+            //Console.WriteLine(ht.OrderBy(x => x.Value).ThenBy(key => key.Key).LastOrDefault().Key);
         }
 
 
@@ -3859,6 +3875,31 @@ namespace WorkingWithStruct
         }
 
         #endregion
+
+        #region Slowest Key
+
+        public static char SlowestKey(int[] releaseTimes, string keysPressed)
+        {
+            Dictionary<char, int> ht = new Dictionary<char, int>();
+
+            ht[keysPressed[0]] = releaseTimes[0];
+
+            for (int i = 1; i < keysPressed.Length; i++)
+            {
+                if (!ht.ContainsKey(keysPressed[i]))
+                {
+                    ht[keysPressed[i]] = releaseTimes[i] - releaseTimes[i - 1];
+                }
+                else
+                {
+                    ht[keysPressed[i]] = Math.Max(ht[keysPressed[i]], (releaseTimes[i] - releaseTimes[i - 1]));
+                }
+            }
+            return ht.OrderBy(x => x.Value).ThenBy(key => key.Key).LastOrDefault().Key;
+        }
+
+        #endregion
+
 
         #region test
 
