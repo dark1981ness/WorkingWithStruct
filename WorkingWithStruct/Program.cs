@@ -3837,24 +3837,7 @@ namespace WorkingWithStruct
 
         public static bool CheckOnesSegment(string s)
         {
-            int idx = 0;
-            int counter = 0;
-
-            if (s.Length == 1) return true;
-
-            while (idx < s.Length)
-            {
-                if ((s[idx] - '0') == 1)
-                    counter++;
-                else
-                    counter--;
-
-                if (counter > 1) return true;
-
-                idx++;
-            }
-
-            return false;
+            return s.IndexOf("01") == -1;
         }
 
         #endregion
