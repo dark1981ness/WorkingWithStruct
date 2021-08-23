@@ -3921,6 +3921,31 @@ namespace WorkingWithStruct
         }
         #endregion
 
+        #region Sort Array by Increasing Frequency
+
+        public static int[] FrequencySort(int[] nums)
+        {
+            Dictionary<int, int> ht = new Dictionary<int, int>();
+
+            int idx = 0;
+
+            while (idx < nums.Length)
+            {
+                if (!ht.ContainsKey(nums[idx]))
+                {
+                    nums[idx] = 1;
+                }
+                else
+                {
+                    nums[idx]++;
+                }
+            }
+
+
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
