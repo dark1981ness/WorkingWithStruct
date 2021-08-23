@@ -21,26 +21,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
+            int[] nums = { -1, 1, -6, 4, 5, -6, 1, 4, 1 };
 
-            //int[] releaseTimes = { 9, 29, 49, 50 };
-            //string keysPressed = "cbcd";
-
-            //Dictionary<char, int> ht = new Dictionary<char, int>();
-
-            //ht[keysPressed[0]] = releaseTimes[0];
-
-            //for (int i = 1; i < keysPressed.Length; i++)
-            //{
-            //    if (!ht.ContainsKey(keysPressed[i]))
-            //    {
-            //        ht[keysPressed[i]] = releaseTimes[i] - releaseTimes[i - 1];
-            //    }
-            //    else
-            //    {
-            //        ht[keysPressed[i]] = Math.Max(ht[keysPressed[i]], (releaseTimes[i] - releaseTimes[i - 1]));
-            //    }
-            //}
-            //Console.WriteLine(ht.OrderBy(x => x.Value).ThenBy(key => key.Key).LastOrDefault().Key);
+            FrequencySort(nums);
         }
 
 
@@ -3926,22 +3909,36 @@ namespace WorkingWithStruct
         public static int[] FrequencySort(int[] nums)
         {
             Dictionary<int, int> ht = new Dictionary<int, int>();
-
+            int[] result = new int[nums.Length];
             int idx = 0;
+            int j = 0;
 
             while (idx < nums.Length)
             {
                 if (!ht.ContainsKey(nums[idx]))
                 {
-                    nums[idx] = 1;
+                    ht[nums[idx]] = 1;
                 }
                 else
                 {
-                    nums[idx]++;
+                    ht[nums[idx]]++;
+                }
+
+                idx++;
+            }
+
+            foreach (var item in ht.OrderBy(x => x.Value).ThenByDescending(key => key.Key))
+            {
+                int i = 0;
+                while (i < item.Value)
+                {
+                    result[j] = item.Key;
+                    j++;
+                    i++;
                 }
             }
 
-
+            return result;
         }
 
         #endregion
