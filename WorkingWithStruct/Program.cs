@@ -3900,6 +3900,26 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Find Greatest Common Divisor of Array
+
+        public static int FindGCD(int[] nums)
+        {
+            Array.Sort(nums);
+
+            return GCD(nums[nums.Length - 1], nums[0]);
+        }
+
+        private static int GCD(int a,int b)
+        {
+            while (b!=0)
+            {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+        #endregion
 
         #region test
 
