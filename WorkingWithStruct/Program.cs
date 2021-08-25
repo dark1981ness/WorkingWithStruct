@@ -3947,20 +3947,31 @@ namespace WorkingWithStruct
 
         public static string MakeGood(string s)
         {
-            StringBuilder stringBuilder = new();
-            Stack<char> ac = new();
+            StringBuilder stringBuilder = new StringBuilder();
+            Stack<char> ac = new Stack<char>();
 
-            if (s.Length <= 1) return s;
+            if (s.Length < 2) return s;
 
             int idx = 0;
 
-            while (idx < s.Length - 1)
+            while (idx < s.Length)
             {
-                if()
+                if (ac.Count > 0 && Math.Abs(ac.Peek() - s[idx]) == 32 )
+                {
+                    ac.Pop();
+                }
+                else
+                {
+                    ac.Push(s[idx]);
+                }
                 
                 idx++;
             }
 
+            while (ac.Count > 0)
+            {
+                stringBuilder.Insert(0, ac.Pop());
+            }
 
             return stringBuilder.ToString();
         }
