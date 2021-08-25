@@ -3943,6 +3943,30 @@ namespace WorkingWithStruct
 
         #endregion
 
+        #region Make The String Great
+
+        public static string MakeGood(string s)
+        {
+            StringBuilder stringBuilder = new();
+            Stack<char> ac = new();
+
+            if (s.Length <= 1) return s;
+
+            int idx = 0;
+
+            while (idx < s.Length - 1)
+            {
+                if()
+                
+                idx++;
+            }
+
+
+            return stringBuilder.ToString();
+        }
+
+        #endregion
+
         #region test
 
         public static List<int> PrimeFactors(int value)
