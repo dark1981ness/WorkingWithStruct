@@ -21,10 +21,45 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] nums = { -1, 1, -6, 4, 5, -6, 1, 4, 1 };
-
-            FrequencySort(nums);
+            string str = "z";
+            char ch = 'z';
+            Console.WriteLine(ReversePrefix(str, ch));
         }
+
+        #region Reverse Prefix of Word
+        private static string ReversePrefix(string word, char ch)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            Stack<char> stack = new Stack<char>();
+
+            int idx = 0;
+
+            while (idx < word.Length)
+            {
+                stack.Push(word[idx]);
+                if (word[idx] == ch)
+                {
+
+                    while (stack.Count > 0)
+                    {
+                        stringBuilder.Append(stack.Pop());
+                    }
+                    idx++;
+                    while (idx < word.Length)
+                    {
+                        stringBuilder.Append(word[idx]);
+                        idx++;
+                    }
+
+                    return stringBuilder.ToString();
+                }
+
+                idx++;
+            }
+
+            return word;
+        } 
+        #endregion
 
 
         #region Replace All Digits with Characters
