@@ -21,10 +21,28 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string str = "z";
-            char ch = 'z';
-            Console.WriteLine(ReversePrefix(str, ch));
+            string str = "bza";
+            Console.WriteLine(MinTimeToType(str));
         }
+
+
+        #region Minimum Time to Type Word Using Special Typewriter
+
+        public static int MinTimeToType(string word)
+        {
+            int minTime = word.Length + 1;
+
+            int idx = 0;
+
+            while (idx < word.Length - 1)
+            {
+                idx++;
+            }
+
+            return minTime;
+        }
+
+        #endregion
 
         #region Reverse Prefix of Word
         private static string ReversePrefix(string word, char ch)
