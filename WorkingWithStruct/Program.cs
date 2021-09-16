@@ -21,10 +21,33 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string str = "abc";
-            Console.WriteLine(MinTimeToType(str));
+            string word = "ab";
+            string[] patterns = { "a", "a", "a"};
+
+
+            Console.WriteLine(NumOfStrings(patterns,word));
         }
 
+
+        #region Number of Strings That Appear as Substrings in Word
+
+        public static int NumOfStrings(string[] patterns, string word)
+        {
+            int idx = 0;
+            int result = 0;
+
+            while (idx < patterns.Length)
+            {
+                if (word.Contains(patterns[idx]))
+                    result++;
+
+                idx++;
+            }
+
+            return result;
+        }
+
+        #endregion
 
         #region Minimum Time to Type Word Using Special Typewriter
 
@@ -80,7 +103,7 @@ namespace WorkingWithStruct
             }
 
             return word;
-        } 
+        }
         #endregion
 
 
@@ -3949,9 +3972,9 @@ namespace WorkingWithStruct
             return GCD(nums[nums.Length - 1], nums[0]);
         }
 
-        private static int GCD(int a,int b)
+        private static int GCD(int a, int b)
         {
-            while (b!=0)
+            while (b != 0)
             {
                 var temp = b;
                 b = a % b;
@@ -4013,7 +4036,7 @@ namespace WorkingWithStruct
 
             while (idx < s.Length)
             {
-                if (ac.Count > 0 && Math.Abs(ac.Peek() - s[idx]) == 32 )
+                if (ac.Count > 0 && Math.Abs(ac.Peek() - s[idx]) == 32)
                 {
                     ac.Pop();
                 }
@@ -4021,7 +4044,7 @@ namespace WorkingWithStruct
                 {
                     ac.Push(s[idx]);
                 }
-                
+
                 idx++;
             }
 
