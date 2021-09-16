@@ -21,7 +21,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string str = "bza";
+            string str = "abc";
             Console.WriteLine(MinTimeToType(str));
         }
 
@@ -30,12 +30,16 @@ namespace WorkingWithStruct
 
         public static int MinTimeToType(string word)
         {
-            int minTime = word.Length + 1;
-
+            int minTime = word.Length;
+            char last = 'a';
             int idx = 0;
 
-            while (idx < word.Length - 1)
+            while (idx < word.Length)
             {
+                int start = (word[idx] - last + 26) % 26;
+                int end = (last - word[idx] + 26) % 26;
+                minTime += Math.Min(start, end);
+                last = word[idx];
                 idx++;
             }
 
