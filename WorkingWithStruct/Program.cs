@@ -21,13 +21,42 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string word = "ab";
-            string[] patterns = { "a", "a", "a"};
+            string[] patterns = { "d1/", "d2/", "./", "d3/", "../", "d31/" };
 
-
-            Console.WriteLine(NumOfStrings(patterns,word));
+            Console.WriteLine(MinOperations(patterns));
         }
 
+
+        #region Crawler Log Folder
+
+        public static int MinOperations(string[] logs)
+        {
+            Stack<string> stack = new Stack<string>();
+
+            int idx = 0;
+
+            while (idx < logs.Length)
+            {
+                if (logs[idx].Equals("../") && stack.Count > 0)
+                {
+                    stack.Pop();
+                }
+                if (logs[idx].Equals("./"))
+                {
+                    idx++;
+                    continue;
+                }
+                if(!logs[idx].Equals("../"))
+                {
+                    stack.Push(logs[idx]);
+                }
+                idx++;
+            }
+
+            return stack.Count;
+        }
+
+        #endregion
 
         #region Number of Strings That Appear as Substrings in Word
 
