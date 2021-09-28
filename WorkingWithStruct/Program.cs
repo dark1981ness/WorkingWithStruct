@@ -21,10 +21,48 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#";
-            Console.WriteLine(FreqAlphabets(s));
+            string[] s = { "++X", "++X", "X++" };
+            Console.WriteLine(FinalValueAfterOperations(s).ToString());
         }
 
+
+        #region Final Value of Variable After Performing Operations
+        public static int FinalValueAfterOperations(string[] operations)
+        {
+            int x = 0;
+            int idx = 0;
+
+            //int left = 0;
+            //int right = operations.Length - 1;
+
+            //while (left<=right)
+            //{
+            //    if (left == right)
+            //    {
+            //        _ = operations[left].Contains("++") ? x++ : x--;
+            //    }
+            //    else
+            //    {
+            //        _ = operations[left].Contains("++") ? x++ : x--;
+            //        _ = operations[right].Contains("++") ? x++ : x--;
+            //    }
+
+            //    left++;
+            //    right--;
+            //}
+
+
+            while (idx < operations.Length)
+            {
+                _ = operations[idx].Contains("++") ? x++ : x--;
+
+                idx++;
+            }
+
+
+            return x;
+        }
+        #endregion
 
         #region Decrypt String from Alphabet to Integer Mapping
 
