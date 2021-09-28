@@ -26,6 +26,28 @@ namespace WorkingWithStruct
         }
 
 
+        #region Replace All ?'s to Avoid Consecutive Repeating Characters
+        public static string ModifyString(string s)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            int idx = 0;
+
+            while (idx < s.Length)
+            {
+
+                if (s[idx].Equals('?'))
+                {
+
+                }
+                idx++;
+            }
+
+            return stringBuilder.ToString();
+        }
+
+
+        #endregion
+
         #region Final Value of Variable After Performing Operations
         public static int FinalValueAfterOperations(string[] operations)
         {
@@ -113,7 +135,7 @@ namespace WorkingWithStruct
                     idx++;
                     continue;
                 }
-                if(!logs[idx].Equals("../"))
+                if (!logs[idx].Equals("../"))
                 {
                     stack.Push(logs[idx]);
                 }
