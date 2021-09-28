@@ -21,11 +21,40 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] patterns = { "d1/", "d2/", "./", "d3/", "../", "d31/" };
-
-            Console.WriteLine(MinOperations(patterns));
+            string s = "12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#";
+            Console.WriteLine(FreqAlphabets(s));
         }
 
+
+        #region Decrypt String from Alphabet to Integer Mapping
+
+        public static string FreqAlphabets(string s)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            int idx = s.Length - 1;
+
+            while (idx >= 0)
+            {
+                char tempValue;
+                if (s[idx] == '#')
+                {
+                    tempValue = (char)('a' - 1 + Int32.Parse(s.Substring(idx - 2, 2)));
+                    stringBuilder.Insert(0, tempValue);
+                    idx -= 3;
+                }
+                else
+                {
+                    tempValue = (char)('0' + s[idx]);
+                    stringBuilder.Insert(0, tempValue);
+                    idx--;
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        #endregion
 
         #region Crawler Log Folder
 
