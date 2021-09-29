@@ -21,11 +21,43 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] target = { 3, 7, 9 };
-            int[] arr = { 3, 7, 11 };
-            Console.WriteLine(CanBeEqual(target, arr));
+            string s = "aaaabbbbcccc";
+            
+            Console.WriteLine(SortString(s));
         }
 
+
+        #region Increasing Decreasing String
+
+        public static string SortString(string s)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            SortedDictionary<char, int> ht = new SortedDictionary<char, int>();
+            int idx = 0;
+
+            while (idx<s.Length)
+            {
+                if (!ht.ContainsKey(s[idx]))
+                {
+                    ht[s[idx]] = 1;
+                }
+                else
+                {
+                    ht[s[idx]]++;
+                }
+
+                idx++;
+            }
+
+            while (ht.Count > 0)
+            {
+                
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        #endregion
 
         #region Make Two Arrays Equal by Reversing Sub-arrays
 
