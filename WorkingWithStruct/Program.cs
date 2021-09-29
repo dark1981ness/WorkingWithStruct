@@ -21,10 +21,38 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] s = { "++X", "++X", "X++" };
-            Console.WriteLine(FinalValueAfterOperations(s).ToString());
+            string s = "abcbe";
+            Console.WriteLine(LongestPalindrome(s).ToString());
         }
 
+
+        #region Longest Palindrome
+
+        public static int LongestPalindrome(string s)
+        {
+            Dictionary<char, int> ht = new Dictionary<char, int>();
+
+            int result = 0;
+
+            if (s.Length < 2) return ++result;
+
+            foreach (var item in s)
+            {
+                if (!ht.ContainsKey(item))
+                {
+                    ht[item] = 1;
+                }
+                else
+                {
+                    ht.Remove(item);
+                    result += 2;
+                }
+            }
+
+            return ht.Count > 0 ? ++result : result;
+        }
+
+        #endregion
 
         #region Replace All ?'s to Avoid Consecutive Repeating Characters
         public static string ModifyString(string s)
