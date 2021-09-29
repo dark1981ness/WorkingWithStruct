@@ -21,10 +21,73 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "abcbe";
-            Console.WriteLine(LongestPalindrome(s).ToString());
+            int[] target = { 3, 7, 9 };
+            int[] arr = { 3, 7, 11 };
+            Console.WriteLine(CanBeEqual(target, arr));
         }
 
+
+        #region Make Two Arrays Equal by Reversing Sub-arrays
+
+        public static bool CanBeEqual(int[] target, int[] arr)
+        {
+
+            /*
+             with sorting
+             */
+            Array.Sort(target);
+            Array.Sort(arr);
+
+            return target.SequenceEqual(arr);
+
+            /*
+             hashtable
+             */
+            //Dictionary<int, int> ht = new Dictionary<int, int>();
+
+            //int idx = 0;
+            //int left = 0;
+            //int right = arr.Length - 1;
+
+            //while (idx < target.Length)
+            //{
+            //    if (!ht.ContainsKey(target[idx]))
+            //    {
+            //        ht[target[idx]] = 1;
+            //    }
+            //    else
+            //    {
+            //        ht[target[idx]]++;
+            //    }
+            //    idx++;
+            //}
+
+            //while (left <= right)
+            //{
+            //    if (ht.ContainsKey(arr[left]) && ht[arr[left]] > 1)
+            //    {
+            //        ht[arr[left]]--;
+            //    }
+            //    else
+            //    {
+            //        ht.Remove(arr[left]);
+            //    }
+            //    if (ht.ContainsKey(arr[right]) && ht[arr[right]] > 1)
+            //    {
+
+            //        ht[arr[right]]--;
+            //    }
+            //    else
+            //    {
+            //        ht.Remove(arr[right]);
+            //    }
+            //    left++;
+            //    right--;
+            //}
+
+            //return ht.Count == 0 ? true : false;
+        }
+        #endregion
 
         #region Longest Palindrome
 
