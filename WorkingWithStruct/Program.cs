@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace WorkingWithStruct
 {
@@ -26,8 +27,35 @@ namespace WorkingWithStruct
             Console.WriteLine(SortString(s));
         }
 
+        #region MyRegion
 
-        #region Increasing Decreasing String
+        #endregion
+
+        #region Destination City
+
+        public static string DestCity(IList<IList<string>> paths)
+        {
+            Dictionary<string, string> pathHash = new Dictionary<string, string>();
+
+            foreach (IList<string> p in paths)
+            {
+                pathHash.Add(p[0], p[1]);
+            }
+
+            foreach (var s in pathHash)
+            {
+                if (!pathHash.ContainsKey(s.Value))
+                {
+                    return s.Value;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        #endregion
+
+        #region Increasing Decreasing String(доделать)
 
         public static string SortString(string s)
         {
@@ -149,7 +177,7 @@ namespace WorkingWithStruct
 
         #endregion
 
-        #region Replace All ?'s to Avoid Consecutive Repeating Characters
+        #region Replace All ?'s to Avoid Consecutive Repeating Characters(доделать)
         public static string ModifyString(string s)
         {
             StringBuilder stringBuilder = new StringBuilder();
