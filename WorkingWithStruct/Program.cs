@@ -27,8 +27,29 @@ namespace WorkingWithStruct
             Console.WriteLine(SortString(s));
         }
 
-        #region MyRegion
+        #region Final Prices With a Special Discount in a Shop
 
+        public static int[] FinalPrices(int[] prices)
+        {
+            int[] result = new int[prices.Length];
+
+            for (int i = 0; i < prices.Length; i++)
+            {
+                int discount = 0;
+                for (int j = i + 1; j < prices.Length; j++)
+                {
+                    if (prices[j] <= prices[i])
+                    {
+                        discount = prices[j];
+                        break;
+                    }
+                }
+
+                result[i] = prices[i] - discount;
+            }
+
+            return result;
+        }
         #endregion
 
         #region Destination City
