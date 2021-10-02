@@ -22,7 +22,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "aaaabbbbcccc";
+            string s = "ggggggg";
             
             Console.WriteLine(SortString(s));
         }
@@ -76,7 +76,7 @@ namespace WorkingWithStruct
 
         #endregion
 
-        #region Increasing Decreasing String(доделать)
+        #region Increasing Decreasing String
 
         public static string SortString(string s)
         {
@@ -98,9 +98,29 @@ namespace WorkingWithStruct
                 idx++;
             }
 
-            while (ht.Count > 0)
+            int countIdx = ht.Max(x=>x.Value);
+
+            while (countIdx > 0)
             {
+                for (int i = 0; i < ht.Count; i++)
+                {
+                    if (ht.ElementAt(i).Value > 0)
+                    {
+                        stringBuilder.Append(ht.ElementAt(i).Key);
+                        ht[ht.ElementAt(i).Key]--;
+                    }
+                }
+
+                for (int i = ht.Count - 1; i >= 0 ; i--)
+                {
+                    if (ht.ElementAt(i).Value > 0)
+                    {
+                        stringBuilder.Append(ht.ElementAt(i).Key);
+                        ht[ht.ElementAt(i).Key]--;
+                    }
+                }
                 
+                countIdx--;
             }
 
             return stringBuilder.ToString();
