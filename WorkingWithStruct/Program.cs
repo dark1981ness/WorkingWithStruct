@@ -22,10 +22,27 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "ggggggg";
-            
-            Console.WriteLine(SortString(s));
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7 };
+            int k = 3;
+            RotateSecondVer(nums,k);
         }
+
+
+        #region Rotate Array
+
+        public static void RotateSecondVer(int[] nums, int k)
+        {
+            int t = nums[nums.Length - 1];
+            for (int i = nums.Length - 1; i > k; i--)
+                nums[i] = nums[i - k - 1];
+            nums[k - 1] = t;
+
+            foreach (var item in nums)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        #endregion
 
         #region Final Prices With a Special Discount in a Shop
 
