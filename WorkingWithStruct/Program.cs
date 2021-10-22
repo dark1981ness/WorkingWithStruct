@@ -22,21 +22,109 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7 };
-            int k = 3;
-            RotateSecondVer(nums,k);
+            string s = "the sky is blue";
+
+            Console.WriteLine(ReverseWordsInString(s));
+
         }
 
+        #region Reverse Words in a String
+
+        public static string ReverseWordsInString(string s)
+        {
+            int idx = 0;
+            StringBuilder result = new StringBuilder();
+
+            while (idx < s.Length)
+            {
+                if (s[idx].Equals(' '))
+                {
+                    idx++;
+                    continue;
+                }
+                else
+                {
+                    string tempString = string.Empty;
+
+                    while (!s[idx].Equals(' '))
+                    {
+                        tempString += s[idx];
+                        idx++;
+                        if (idx == s.Length)
+                        {
+                            break;
+                        }
+                    }
+
+                    result.Insert(0, tempString);
+                    result.Insert(0, ' ');
+                }
+            }
+
+            return result.ToString().Trim();
+        }
+
+        #endregion
+
+        #region Squares of a Sorted Array
+
+        public static int[] SortedSquares(int[] nums)
+        {
+            int left = 0;
+            int right = nums.Length - 1;
+
+            while (left <= right)
+            {
+                if (left == right)
+                {
+                    nums[left] = nums[left] * nums[left];
+                }
+                else
+                {
+                    nums[left] = nums[left] * nums[left];
+                    nums[right] = nums[right] * nums[right];
+                }
+                
+                left++;
+                right--;
+            }
+
+            //Array.Sort(nums);
+
+            return nums;
+        }
+        #endregion
+
+        #region Longest Substring Without Repeating Characters
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            int k = 0;
+            int idx = 0;
+
+            while (s[idx] < s[idx + 1])
+            {
+                k++;
+                idx++;
+            }
+
+            return k;
+        }
+
+        #endregion
 
         #region Rotate Array
 
         public static void RotateSecondVer(int[] nums, int k)
         {
-            int t = nums[nums.Length - 1];
-            for (int i = nums.Length - 1; i > k; i--)
-                nums[i] = nums[i - k - 1];
-            nums[k - 1] = t;
+            int[] tempArr = new int[nums.Length];
 
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var idx = (i + nums.Length - k) % nums.Length;
+                tempArr[i] = nums[idx];
+            }
+            nums = tempArr;
             foreach (var item in nums)
             {
                 Console.WriteLine(item);
@@ -101,7 +189,7 @@ namespace WorkingWithStruct
             SortedDictionary<char, int> ht = new SortedDictionary<char, int>();
             int idx = 0;
 
-            while (idx<s.Length)
+            while (idx < s.Length)
             {
                 if (!ht.ContainsKey(s[idx]))
                 {
@@ -115,7 +203,7 @@ namespace WorkingWithStruct
                 idx++;
             }
 
-            int countIdx = ht.Max(x=>x.Value);
+            int countIdx = ht.Max(x => x.Value);
 
             while (countIdx > 0)
             {
@@ -128,7 +216,7 @@ namespace WorkingWithStruct
                     }
                 }
 
-                for (int i = ht.Count - 1; i >= 0 ; i--)
+                for (int i = ht.Count - 1; i >= 0; i--)
                 {
                     if (ht.ElementAt(i).Value > 0)
                     {
@@ -136,7 +224,7 @@ namespace WorkingWithStruct
                         ht[ht.ElementAt(i).Key]--;
                     }
                 }
-                
+
                 countIdx--;
             }
 
