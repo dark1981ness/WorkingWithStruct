@@ -22,11 +22,19 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "the sky is blue";
+            int[] s = { 2, 2, 2, 0, 1 };
 
-            Console.WriteLine(ReverseWordsInString(s));
+            Console.WriteLine(FindMin(s));
 
         }
+
+        #region Find Minimum in Rotated Sorted Array II
+
+        public static int FindMin(int[] nums)
+        {
+            return nums.Min();
+        }
+        #endregion
 
         #region Reverse Words in a String
 
@@ -95,7 +103,7 @@ namespace WorkingWithStruct
         }
         #endregion
 
-        #region Longest Substring Without Repeating Characters
+        #region Longest Substring Without Repeating Characters(доделать)
 
         public static int LengthOfLongestSubstring(string s)
         {
@@ -113,7 +121,7 @@ namespace WorkingWithStruct
 
         #endregion
 
-        #region Rotate Array
+        #region Rotate Array(?)
 
         public static void RotateSecondVer(int[] nums, int k)
         {
