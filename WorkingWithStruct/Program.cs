@@ -22,9 +22,10 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] s = { 2, 2, 2, 0, 1 };
+            int[] s = { 10,1,10,10,10 };
 
             Console.WriteLine(FindMin(s));
+
 
         }
 
@@ -32,7 +33,45 @@ namespace WorkingWithStruct
 
         public static int FindMin(int[] nums)
         {
-            return nums.Min();
+            int first = 0;
+            int last = nums.Length - 1;
+
+            if (nums.Length == 1)
+            {
+                return nums[0];
+            }
+            else if (nums[first] < nums[last])
+            {
+                return nums[first];
+            }
+            else if (nums.Length == 2)
+            {
+                return nums[first] > nums[last] ? nums[last] : nums[first];
+            }
+            else
+            {
+                while (first<last)
+                {
+                    var mid = (first + last) / 2;
+
+                    if (nums[mid] < nums[mid - 1] && nums[mid] < nums[mid + 1])
+                    {
+                        return nums[mid];
+                    }
+                    else if (nums[mid] > nums[mid-1] && nums[mid] < nums[mid + 1])
+                    {
+                        last = mid - 1;
+                    }
+                    else
+                    {
+                        first = mid + 1;
+                    }
+                }
+                return nums[first] > nums[first - 1] ? nums[first - 1] : nums[first];
+            }
+
+            /* WITH LINQ */
+            //return nums.Min();
         }
         #endregion
 
