@@ -22,12 +22,37 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] s = { 1 };
+            int[] num1 = { 3,1 };
+            int[] num2 = { 2, 3 };
+            int[] num3 = { 1,2 };
 
-            Console.WriteLine(FindMin(s));
+            IList<int> list = TwoOutOfThree(num1, num2, num3);
 
-
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
+
+        #region Two Out of Three
+
+        public static IList<int> TwoOutOfThree(int[] nums1, int[] nums2, int[] nums3)
+        {
+            IList<int> result = new List<int>();
+            HashSet<int> hs1 = new HashSet<int>(nums1);
+            HashSet<int> hs2 = new HashSet<int>(nums2);
+            HashSet<int> hs3 = new HashSet<int>(nums3);
+
+
+            foreach (var item in hs1)
+            {
+                
+            }
+
+
+            return result;
+        }
+        #endregion
 
         #region Find Minimum in Rotated Sorted Array II
 
