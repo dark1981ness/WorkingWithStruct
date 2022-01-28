@@ -22,16 +22,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] num1 = { 3,1 };
-            int[] num2 = { 2, 3 };
-            int[] num3 = { 1,2 };
-
-            IList<int> list = TwoOutOfThree(num1, num2, num3);
-
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine(CheckPalindrome("po"));
         }
 
         #region Find First Palindromic String in the Array
@@ -56,35 +47,16 @@ namespace WorkingWithStruct
         {
             int left = 0;
             int right = s.Length - 1;
-            int tempValue = 0;
 
-            while (left < right)
+            while (true)
             {
-                if (s[left] != s[right])
-                {
-                    if (tempValue == 0)
-                    {
-                        left += 1;
-                        tempValue += 1;
-                        continue;
-                    }
-                    else if (tempValue == 1)
-                    {
-                        left -= 1;
-                        right -= 1;
-                        tempValue += 1;
-                        continue;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                if (left > right) return true;
 
-                left += 1;
-                right -= 1;
+                if (s[left] != s[right]) return false;
+
+                left++;
+                right--;
             }
-            return true;
 
         }
 
