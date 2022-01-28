@@ -34,6 +34,62 @@ namespace WorkingWithStruct
             }
         }
 
+        #region Find First Palindromic String in the Array
+
+        public static string FirstPalindrome(string[] words)
+        {
+            int i = 0;
+            while (i<words.Length)
+            {
+                if (CheckPalindrome(words[i]))
+                {
+                    return words[i];
+                }
+
+                i++;
+            }
+            
+            return String.Empty;
+        }
+
+        public static bool CheckPalindrome(string s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            int tempValue = 0;
+
+            while (left < right)
+            {
+                if (s[left] != s[right])
+                {
+                    if (tempValue == 0)
+                    {
+                        left += 1;
+                        tempValue += 1;
+                        continue;
+                    }
+                    else if (tempValue == 1)
+                    {
+                        left -= 1;
+                        right -= 1;
+                        tempValue += 1;
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                left += 1;
+                right -= 1;
+            }
+            return true;
+
+        }
+
+        #endregion
+
         #region Two Out of Three
 
         public static IList<int> TwoOutOfThree(int[] nums1, int[] nums2, int[] nums3)
