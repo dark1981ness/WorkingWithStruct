@@ -22,8 +22,37 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            Console.WriteLine(CheckPalindrome("po"));
+            string[] arrStr = {"pleasewait", "continuetofight", "continuetwin"};
+            Console.WriteLine(MostWordsFound(arrStr));
         }
+
+        #region Maximum Number of Words Found in Sentences
+
+        public static int MostWordsFound(string[] sentences)
+        {
+            int result = int.MinValue;
+
+            for (int i = 0; i < sentences.Length; i++)
+            {
+                int idx = 0;
+                int count = 0;
+                do
+                {
+                    idx = sentences[i].IndexOf(' ', idx);
+
+                    count++;
+
+                    idx += 1;
+
+                } while (idx > 0);
+
+                result = result < count? count : result;
+            }
+
+            return result;
+        }
+
+        #endregion
 
         #region Find First Palindromic String in the Array
 
