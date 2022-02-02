@@ -22,9 +22,32 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] arrStr = {"pleasewait", "continuetofight", "continuetwin"};
-            Console.WriteLine(MostWordsFound(arrStr));
+            int[] testArr = { 1, 2, 3, 1 };
+            int k = 3;
+            Console.WriteLine(ContainsNearbyDuplicate(testArr,k));
         }
+
+
+        #region Contains Duplicate II(в процессе)
+
+        public static bool ContainsNearbyDuplicate(int[] nums, int k)
+        {
+            int left = 0;
+            int right = nums.Length - 1;
+
+            while (left < right)
+            {
+                if (nums[left] == nums[right] && Math.Abs(left - right) <= k)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+
+        #endregion
 
         #region Maximum Number of Words Found in Sentences
 
