@@ -22,10 +22,27 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] testArr = { 2, 7, 11, 15 };
-            int k = 9;
-            Console.WriteLine(TwoSum(testArr, k));
+            string res = "ZY";
+            Console.WriteLine(TitleToNumber(res));
+            //int res = 25 / 26;
+            //Console.WriteLine(res);
         }
+
+        #region Excel Sheet Column Number
+        public static int TitleToNumber(string columnTitle)
+        {
+            int result = 0;
+
+            foreach (var item in columnTitle)
+            {
+                result *= 26;
+                result += item - 'A' + 1;
+            }
+
+            return result;
+        }
+
+        #endregion
 
 
         #region Two Sum II - Input Array Is Sorted
