@@ -22,11 +22,36 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int[] testArr = { 1, 2, 3, 1 };
-            int k = 3;
-            Console.WriteLine(ContainsNearbyDuplicate(testArr,k));
+            int[] testArr = { 2, 7, 11, 15 };
+            int k = 9;
+            Console.WriteLine(TwoSum(testArr, k));
         }
 
+
+        #region Two Sum II - Input Array Is Sorted
+
+        public static int[] TwoSum(int[] numbers, int target)
+        {
+
+
+            if (numbers.Length - 1 <= target)
+            {
+                int arrLength = numbers.Length;
+                Hashtable twoSumList = new Hashtable();
+                for (int i = 0; i < arrLength; i++)
+                {
+                    int diff = target - numbers[i];
+                    if (twoSumList.ContainsKey(diff))
+                    {
+                        return new int[] { (int)twoSumList[diff], i };
+                    }
+                    twoSumList[numbers[i]] = i;
+                } 
+            }
+            return null;
+        }
+
+        #endregion
 
         #region Contains Duplicate II(в процессе)
 
@@ -69,7 +94,7 @@ namespace WorkingWithStruct
 
                 } while (idx > 0);
 
-                result = result < count? count : result;
+                result = result < count ? count : result;
             }
 
             return result;
@@ -82,7 +107,7 @@ namespace WorkingWithStruct
         public static string FirstPalindrome(string[] words)
         {
             int i = 0;
-            while (i<words.Length)
+            while (i < words.Length)
             {
                 if (CheckPalindrome(words[i]))
                 {
@@ -91,7 +116,7 @@ namespace WorkingWithStruct
 
                 i++;
             }
-            
+
             return String.Empty;
         }
 
@@ -126,7 +151,7 @@ namespace WorkingWithStruct
 
             foreach (var item in hs1)
             {
-                
+
             }
 
 
