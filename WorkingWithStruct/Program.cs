@@ -22,10 +22,8 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string val_1 = "1s3 PSt";
-            string[] val_2 = { "step", "steps", "stripe", "stepple" };
-
-            Console.WriteLine(ShortestCompletingWord(val_1, val_2));
+            string val_1 = "pwwkew";
+            LengthOfLongestSubstring(val_1);
 
         }
         #region 748. Shortest Completing Word
@@ -380,18 +378,31 @@ namespace WorkingWithStruct
 
         #region Longest Substring Without Repeating Characters(доделать)
 
-        public static int LengthOfLongestSubstring(string s)
+        public static void LengthOfLongestSubstring(string s)
         {
-            int k = 0;
-            int idx = 0;
+            //int k = 0;
+            int i = s.Length - 1;
+            Dictionary<char,int> keyValuePairs = new Dictionary<char,int>();
 
-            while (s[idx] < s[idx + 1])
+            while (i >= 0)
             {
-                k++;
-                idx++;
+                if (!keyValuePairs.ContainsKey(s[i]))
+                {
+                    keyValuePairs.Add(s[i], 1);
+                }
+                else
+                {
+                    keyValuePairs[s[i]]++;
+                }
+
+                i--;
             }
 
-            return k;
+            foreach (var item in keyValuePairs)
+            {
+                Console.WriteLine($"{item.Key} / {item.Value}");
+            }
+            //return k;
         }
 
         #endregion
