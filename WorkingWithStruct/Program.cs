@@ -22,11 +22,116 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string res = "ZY";
-            Console.WriteLine(TitleToNumber(res));
-            //int res = 25 / 26;
-            //Console.WriteLine(res);
+            string val_1 = "1s3 PSt";
+            string[] val_2 = { "step", "steps", "stripe", "stepple" };
+
+            Console.WriteLine(ShortestCompletingWord(val_1, val_2));
+
         }
+        #region 748. Shortest Completing Word
+
+        public static string ShortestCompletingWord(string licensePlate, string[] words)
+        {
+            string result = string.Empty;
+            int tempLength = int.MaxValue;
+
+            licensePlate = licensePlate.ToLower();
+
+            foreach (string word in words)
+            {
+                if (word.Length >= tempLength)
+                {
+                    continue;
+                }
+                bool isComplete = IsComplete(ConvertToDic(word), ConvertToDic(licensePlate));
+                if (isComplete)
+                {
+                    tempLength = word.Length;
+                    result = word;
+                }
+            }
+           
+            return result;
+        }
+
+        private static Dictionary<char, int> ConvertToDic(string word)
+        {
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+
+            int n = word.Length - 1;
+
+            word = word.ToLower();
+
+            while (n >= 0)
+            {
+                if (dict.ContainsKey(word[n]))
+                {
+                    dict[word[n]]++;
+                }
+                if (!dict.ContainsKey(word[n]) && Char.IsLetter(word[n]))
+                {
+                    dict.Add(word[n], 1);
+                }
+                n--;
+            }
+
+            return dict;
+        }
+
+        private static bool IsComplete(Dictionary<char,int> compDictF, Dictionary<char,int> compDictS)
+        {
+
+            foreach (char key in compDictS.Keys)
+            {
+                if (!compDictF.ContainsKey(key))
+                {
+                    return false;
+                }
+
+                if (compDictF[key] < compDictS[key])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        #endregion
+
+        #region Word Pattern
+        public static void WordPattern(string pattern, string s)
+        {
+            List<int> values = new List<int>();
+            List<string> values2 = new List<string>(s.Split(' ')); 
+            int[] ints = new int[values2.Count];
+            for (int i = 0; i < ints.Length; i++)
+            {
+                ints[i] = i;
+            }
+
+
+            for (int i = 0; i < values2.Count; i++)
+            {
+                for (int j = i+1; j < values2.Count; j++)
+                {
+                    if (values2[i].Equals(values2[j]))
+                    {
+                        ints[j] = i;
+                    }
+                }
+            }
+
+            foreach (var item in ints)
+            {
+                Console.WriteLine(item);
+            }
+
+
+        }
+
+        #endregion
 
         #region Excel Sheet Column Number
         public static int TitleToNumber(string columnTitle)
