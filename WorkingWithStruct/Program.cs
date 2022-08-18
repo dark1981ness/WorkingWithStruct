@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections;
+using System.Diagnostics;
 
 namespace WorkingWithStruct
 {
@@ -22,10 +23,76 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string val_1 = "pwwkew";
-            LengthOfLongestSubstring(val_1);
+            string[] words = { "adsdf", "sfd" };
 
+            foreach (var item in FindWords(words))
+            {
+                Console.WriteLine(item);
+            }
         }
+
+        #region 500. Keyboard Row
+        public static string[] FindWords(string[] words)
+        {
+            List<string> result = new List<string>();
+            List<string> keyboardRows = new List<string>{ "qwertyuiop", "asdfghjkl", "zxcvbnm" };
+
+            foreach (string word in words)
+            {
+                for (int i = 0; i < keyboardRows.Count; i++)
+                {
+                    if (isSubset(keyboardRows[i], word))
+                    {
+                        result.Add(word);
+                    }
+                }
+            }
+
+            return result.ToArray();
+
+            bool isSubset(string fWord, string sWord)
+            {
+                string tempString = string.Empty;
+
+                Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
+
+                HashSet<char> charsSet = new HashSet<char>(sWord.ToLower().ToCharArray());
+
+                tempString = string.Join("", charsSet);
+
+                for (int i = 0; i < fWord.Length; i++)
+                {
+                    if (keyValuePairs.ContainsKey(fWord[i]))
+                    {
+                        keyValuePairs[fWord[i]] += 1;
+                    }
+                    else
+                    {
+                        keyValuePairs.Add(fWord[i], 1);
+                    }
+                }
+
+                for (int i = 0; i < tempString.Length; i++)
+                {
+
+                    
+
+                    if (!keyValuePairs.ContainsKey(tempString[i]))
+                    {
+                        return false;
+                    }
+                    else if (keyValuePairs[tempString[i]] > 0)
+                    {
+                        keyValuePairs[tempString[i]] -= 1;
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
+
         #region 748. Shortest Completing Word
 
         public static string ShortestCompletingWord(string licensePlate, string[] words)
