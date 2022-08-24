@@ -23,13 +23,48 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] words = { "adsdf", "sfd" };
-
-            foreach (var item in FindWords(words))
-            {
-                Console.WriteLine(item);
-            }
+            string s = "1111";
+            MaxScore(s);
         }
+
+
+        #region 1422. Maximum Score After Splitting a String
+
+        public static int MaxScore(string s)
+        {
+            int score = int.MinValue;
+            int sumLeft = 0;
+
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                int tempScore;
+                int sumRight = 0;
+
+                if (s[i] == 48)
+                {
+                    sumLeft++;
+                }
+
+                for (int j = i + 1; j < s.Length; j++)
+                {
+                    if (s[j] == 49)
+                    {
+                        sumRight++;
+                    }
+                }
+
+                tempScore = sumLeft + sumRight;
+
+                if (tempScore > score)
+                {
+                    score = tempScore;
+                }
+            }
+
+            return score;
+        }
+
+        #endregion
 
         #region 500. Keyboard Row
         public static string[] FindWords(string[] words)
