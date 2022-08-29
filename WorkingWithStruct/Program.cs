@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WorkingWithStruct
 {
@@ -23,10 +24,116 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "1111";
-            MaxScore(s);
+            string s = "walks";
+            ReorderSpaces(s);
+            
         }
 
+
+        #region 1592. Rearrange Spaces Between Words
+
+        public static string ReorderSpaces(string text)
+        {
+            string result = string.Empty;
+            int whitespacesCount = 0;
+            int extraSpaces;
+            int spacesBetweenWords;
+            List<string> tempArr = new List<string>();
+
+            //int i = 0;
+            //int j = text.Length - 1;
+
+            //while (i < j)
+            //{
+            //    if (text[i] == ' ')
+            //    {
+            //        whitespacesCount++;
+            //    }
+            //    if (text[j] == ' ')
+            //    {
+            //        whitespacesCount++;
+            //    }
+            //    i++;
+            //    j--;
+            //}
+
+            //for (int k = 0; k < text.Length; k++)
+            //{
+            //    string tempString = string.Empty;
+
+            //    if (text[k] != ' ')
+            //    {
+            //        while (text[k] != ' ')
+            //        {
+
+            //            tempString += text[k];
+            //            k++;
+            //            if (k == text.Length)
+            //                break;
+            //        }
+            //        k--;
+            //        result += tempString;
+            //    }
+            //}
+
+
+            for (int k = 0; k < text.Length; k++)
+            {
+                string tempString = string.Empty;
+
+                if (text[k] != ' ')
+                {
+                    while (text[k] != ' ')
+                    {
+
+                        tempString += text[k];
+                        k++;
+                        if (k == text.Length)
+                            break;
+                    }
+                    k--;
+                    tempArr.Add(tempString);
+                }
+                else
+                {
+                    whitespacesCount++;
+                }
+            }
+
+            if (tempArr.Count == 1)
+            {
+                return text;
+            }
+
+            spacesBetweenWords = whitespacesCount / (tempArr.Count - 1);
+            extraSpaces = whitespacesCount - (spacesBetweenWords * (tempArr.Count - 1));
+
+            for (int i = 0; i < tempArr.Count; i++)
+            {
+                if (i == tempArr.Count - 1)
+                {
+                    result += tempArr[i].PadRight(tempArr[i].Length + extraSpaces);
+                }
+                else
+                {
+                    result += tempArr[i].PadRight(tempArr[i].Length + spacesBetweenWords);
+                }
+
+            }
+
+            Console.WriteLine($"Whitespaces count is: {whitespacesCount}");
+
+            foreach (var item in tempArr)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine(result);
+            Console.WriteLine(result.Length);
+            return result;
+        }
+
+        #endregion
 
         #region 1422. Maximum Score After Splitting a String
 
