@@ -24,7 +24,7 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "walks";
+            string s = "  hello";
             ReorderSpaces(s);
             
         }
@@ -40,6 +40,7 @@ namespace WorkingWithStruct
             int spacesBetweenWords;
             List<string> tempArr = new List<string>();
 
+            #region get whitespaces count
             //int i = 0;
             //int j = text.Length - 1;
 
@@ -55,27 +56,8 @@ namespace WorkingWithStruct
             //    }
             //    i++;
             //    j--;
-            //}
-
-            //for (int k = 0; k < text.Length; k++)
-            //{
-            //    string tempString = string.Empty;
-
-            //    if (text[k] != ' ')
-            //    {
-            //        while (text[k] != ' ')
-            //        {
-
-            //            tempString += text[k];
-            //            k++;
-            //            if (k == text.Length)
-            //                break;
-            //        }
-            //        k--;
-            //        result += tempString;
-            //    }
-            //}
-
+            //} 
+            #endregion
 
             for (int k = 0; k < text.Length; k++)
             {
@@ -102,7 +84,8 @@ namespace WorkingWithStruct
 
             if (tempArr.Count == 1)
             {
-                return text;
+                extraSpaces = whitespacesCount;
+                return tempArr[0].PadRight(tempArr[0].Length + extraSpaces);
             }
 
             spacesBetweenWords = whitespacesCount / (tempArr.Count - 1);
@@ -121,15 +104,6 @@ namespace WorkingWithStruct
 
             }
 
-            Console.WriteLine($"Whitespaces count is: {whitespacesCount}");
-
-            foreach (var item in tempArr)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine(result);
-            Console.WriteLine(result.Length);
             return result;
         }
 
