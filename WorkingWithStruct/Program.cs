@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace WorkingWithStruct
 {
@@ -29,6 +30,38 @@ namespace WorkingWithStruct
             
         }
 
+
+        #region 1332. Remove Palindromic Subsequences
+
+        public static int RemovePalindromeSub(string s)
+        {
+            int result = 0;
+
+            
+
+
+            return result;
+
+            static bool IsPolindrome(string value)
+            {
+                int i = 0;
+                int j = value.Length - 1;
+
+                while (i <= j)
+                {
+                    if (value[i] != value[j])
+                    {
+                        return false;
+                    }
+                    i++;
+                    j--;
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
 
         #region 1592. Rearrange Spaces Between Words
 
