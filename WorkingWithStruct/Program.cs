@@ -35,12 +35,19 @@ namespace WorkingWithStruct
 
         public static int RemovePalindromeSub(string s)
         {
-            int result = 0;
+            if (s.Length == 0 )
+            {
+                return 0;
+            }
 
-            
-
-
-            return result;
+            if (IsPolindrome(s))
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
 
             static bool IsPolindrome(string value)
             {
