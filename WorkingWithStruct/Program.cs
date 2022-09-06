@@ -25,11 +25,33 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "  hello";
-            ReorderSpaces(s);
+            string s = "HZ sg L";
+            ToGoatLatin(s);
             
         }
 
+
+        #region 824. Goat Latin
+
+        public static string ToGoatLatin(string sentence)
+        {
+            string vowels= "aeiouAEIOU";
+            string result = string.Empty;
+
+            int i = 0, j = 0;
+
+            foreach (var item in sentence.Split(' '))
+            {
+                result += ' ' + (vowels.Contains(item[0]) ? item : item.Substring(1) + item[0]) + "ma";
+                for (j = 0, i++; j < i; j++)
+                {
+                    result += "a";
+                }
+            }
+            return result.Substring(1);
+        }
+
+        #endregion
 
         #region 1332. Remove Palindromic Subsequences
 
