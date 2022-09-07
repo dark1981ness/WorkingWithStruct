@@ -25,11 +25,30 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "HZ sg L";
-            ToGoatLatin(s);
+            string s = "Test1ng-Leet=code-Q!";
+            ReverseOnlyLetters(s);
             
         }
 
+
+        #region 917. Reverse Only Letters
+
+        public static void ReverseOnlyLetters(string s)
+        {
+            char[] chars = new char[s.Length];
+            int i = 0, j = s.Length - 1;
+
+            while (i < j)
+            {
+                i++;
+                j--;
+            }
+
+
+            Console.WriteLine(new String(chars));
+        }
+
+        #endregion
 
         #region 824. Goat Latin
 
