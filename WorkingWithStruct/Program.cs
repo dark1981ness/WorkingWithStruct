@@ -25,27 +25,47 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "Test1ng-Leet=code-Q!";
-            ReverseOnlyLetters(s);
+            string s = "a";
+            Console.WriteLine(ReverseOnlyLetters(s));
             
         }
 
 
         #region 917. Reverse Only Letters
 
-        public static void ReverseOnlyLetters(string s)
+        public static string ReverseOnlyLetters(string s)
         {
             char[] chars = new char[s.Length];
             int i = 0, j = s.Length - 1;
 
-            while (i < j)
+            if (s.Length == 1)
             {
-                i++;
-                j--;
+                return s;
             }
 
+            while (i <= j)
+            {
+                if (!char.IsLetter(s[i]))
+                {
+                    chars[i] = s[i];
+                    i++;
+                }
+                if (!char.IsLetter(s[j]))
+                {
+                    chars[j] = s[j];
+                    j--;
+                }
+                if (char.IsLetter(s[i]) && char.IsLetter(s[j]))
+                {
+                    chars[i] = s[j];
+                    chars[j] = s[i];
+                    i++;
+                    j--;
+                }
+                
+            }
 
-            Console.WriteLine(new String(chars));
+            return new String(chars);
         }
 
         #endregion
