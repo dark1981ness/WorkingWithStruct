@@ -30,6 +30,16 @@ namespace WorkingWithStruct
             
         }
 
+        #region 929. Unique Email Addresses
+
+        public static int NumUniqueEmails(string[] emails)
+        {
+            int result = 0;
+
+            return result;
+        }
+
+        #endregion
 
         #region 917. Reverse Only Letters
 
