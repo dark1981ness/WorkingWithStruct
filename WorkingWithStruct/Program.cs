@@ -34,9 +34,36 @@ namespace WorkingWithStruct
 
         public static int NumUniqueEmails(string[] emails)
         {
-            int result = 0;
+            HashSet<string> strings = new HashSet<string>();
 
-            return result;
+            for (int i = 0; i < emails.Length; i++)
+            {
+                if (!strings.Contains(emails[i]))
+                {
+                    strings.Add(emails[i]);
+                }
+            }
+
+            string emailcleanUp(string value)
+            {
+                string result = string.Empty;
+                int i = 0;
+
+                while (i < value.Length)
+                {
+                    if (value[i] == '.')
+                    {
+                        i++;
+                        continue;
+                    }
+
+                    result += value[i];
+                    i++;
+                }
+
+                return result;
+            }
+            return strings.Count;
         }
 
         #endregion
