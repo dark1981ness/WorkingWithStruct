@@ -25,8 +25,8 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "a";
-            Console.WriteLine(ReverseOnlyLetters(s));
+            string[] s = { "test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com" };
+            Console.WriteLine(NumUniqueEmails(s));
             
         }
 
