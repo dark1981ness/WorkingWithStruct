@@ -38,9 +38,15 @@ namespace WorkingWithStruct
 
             for (int i = 0; i < emails.Length; i++)
             {
-                if (!strings.Contains(emails[i]))
+                string[] strings1 = emails[i].Split('@');
+
+                string tmpStr = emailcleanUp(strings1[0]);
+
+                string tmpStr2 = tmpStr + '@' + strings1[1];
+
+                if (!strings.Contains(tmpStr2))
                 {
-                    strings.Add(emails[i]);
+                    strings.Add(tmpStr2);
                 }
             }
 
@@ -57,12 +63,17 @@ namespace WorkingWithStruct
                         continue;
                     }
 
+                    if (value[i] == '+')
+                    {
+                        return result;
+                    }
                     result += value[i];
                     i++;
                 }
 
                 return result;
             }
+
             return strings.Count;
         }
 
