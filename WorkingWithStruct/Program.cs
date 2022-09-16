@@ -30,6 +30,22 @@ namespace WorkingWithStruct
             
         }
 
+
+        #region 844. Backspace String Compare
+
+        public static bool BackspaceCompare(string s, string t)
+        {
+
+            string StringBuild(string value)
+            {
+
+            }
+
+            return true;
+        }
+
+        #endregion
+
         #region 929. Unique Email Addresses
 
         public static int NumUniqueEmails(string[] emails)
