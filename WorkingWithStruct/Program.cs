@@ -25,8 +25,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string[] s = { "test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com" };
-            Console.WriteLine(NumUniqueEmails(s));
+            string s = "a#c";
+            string t = "b";
+            Console.WriteLine(BackspaceCompare(s,t));
             
         }
 
@@ -35,13 +36,26 @@ namespace WorkingWithStruct
 
         public static bool BackspaceCompare(string s, string t)
         {
+            return StringBuild(s).Equals(StringBuild(t));
 
             string StringBuild(string value)
             {
+                Stack<char> stack = new Stack<char>();
 
+                foreach (char item in value)
+                {
+                    if (item != '#')
+                    {
+                        stack.Push(item);
+                    }else if (stack.Count > 0)
+                    {
+                        stack.Pop();
+                    }
+                }
+
+                return new string(stack.ToArray());
             }
-
-            return true;
+            
         }
 
         #endregion
