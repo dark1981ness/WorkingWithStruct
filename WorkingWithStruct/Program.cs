@@ -25,12 +25,43 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "a#c";
-            string t = "b";
-            Console.WriteLine(BackspaceCompare(s,t));
+            string s = "alex";
+            string t = "aaleexeex";
+            Console.WriteLine(IsLongPressedName(s,t));
             
         }
 
+        #region 925. Long Pressed Name
+
+        public static bool IsLongPressedName(string name, string typed)
+        {
+            int i = 0;
+            int j = 0;
+
+            if (name.Length > typed.Length)
+            {
+                return false;
+            }
+
+            while (j < typed.Length)
+            {
+                if (i == name.Length)
+                {
+                    i--;
+                }
+                if (name[i] != typed[j])
+                {
+                    i--;
+                }
+
+                i++;
+                j++;
+            }
+
+            return i == name.Length;
+        }
+
+        #endregion
 
         #region 844. Backspace String Compare
 
