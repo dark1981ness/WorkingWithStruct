@@ -45,17 +45,20 @@ namespace WorkingWithStruct
 
             while (j < typed.Length)
             {
-                if (i == name.Length)
+                if (i < name.Length && name[i] == typed[j])
                 {
-                    i--;
+                    i++;
+                    j++;
                 }
-                if (name[i] != typed[j])
+                else if (i > 0 && name[i - 1] == typed[j])
                 {
-                    i--;
+                    j++;
+                }
+                else
+                {
+                    return false;
                 }
 
-                i++;
-                j++;
             }
 
             return i == name.Length;
