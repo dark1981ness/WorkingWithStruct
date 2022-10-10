@@ -25,21 +25,16 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "2019-01-09";
+            string s = "2019-02-10";
             Console.WriteLine(DayOfYear(s));
-            
+
         }
 
         #region 1154. Day of the Year
 
         public static int DayOfYear(string date)
         {
-            int daysCount = 0;
-
-
-
-
-            return daysCount;
+            return DateTime.Parse(date).DayOfYear;
         }
 
         #endregion
