@@ -25,10 +25,45 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "2019-02-10";
-            Console.WriteLine(DayOfYear(s));
+            string s = "a";
+            Console.WriteLine(MaxLengthBetweenEqualCharacters(s));
 
         }
+
+
+        #region 1624. Largest Substring Between Two Equal Characters
+
+        public static int MaxLengthBetweenEqualCharacters(string s)
+        {
+            int maxSubLength = int.MinValue;
+
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
+
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                int tmpCount = int.MinValue;
+
+                if (!keyValuePairs.ContainsKey(s[i]))
+                {
+                    keyValuePairs.Add(s[i], i);
+                }
+                else
+                {
+                    tmpCount = i - keyValuePairs[s[i]] - 1;
+                }
+
+                if (tmpCount > maxSubLength)
+                {
+                    maxSubLength = tmpCount;
+                }
+            }
+
+
+            return maxSubLength >= 0 ? maxSubLength : -1 ;
+        }
+
+        #endregion
 
         #region 1154. Day of the Year
 
