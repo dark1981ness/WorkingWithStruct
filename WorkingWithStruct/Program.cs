@@ -30,6 +30,14 @@ namespace WorkingWithStruct
 
         }
 
+        #region 2264. Largest 3-Same-Digit Number in String
+
+        public static string LargestGoodInteger(string num)
+        {
+
+        }
+
+        #endregion
 
         #region 1624. Largest Substring Between Two Equal Characters
 
