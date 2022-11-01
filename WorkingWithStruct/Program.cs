@@ -25,8 +25,9 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "a";
-            Console.WriteLine(MaxLengthBetweenEqualCharacters(s));
+            string s = "444";
+            Console.WriteLine(LargestGoodInteger(s));
+
 
         }
 
@@ -34,7 +35,23 @@ namespace WorkingWithStruct
 
         public static string LargestGoodInteger(string num)
         {
+            int maxvalue = int.MinValue;
+            string result = string.Empty;
+            int k = 3;
 
+            for (int i = 0; i < num.Length - (k - 1); i++)
+            {
+                if (num[i] == num[i + 1] && num[i] == num[i + 2])
+                {
+                    if (maxvalue < num[i] - 48)
+                    {
+                        maxvalue = num[i] - 48;
+                        result = num.Substring(i, k);
+                    }
+                }
+            }
+
+            return result;
         }
 
         #endregion
@@ -68,7 +85,7 @@ namespace WorkingWithStruct
             }
 
 
-            return maxSubLength >= 0 ? maxSubLength : -1 ;
+            return maxSubLength >= 0 ? maxSubLength : -1;
         }
 
         #endregion
@@ -132,7 +149,8 @@ namespace WorkingWithStruct
                     if (item != '#')
                     {
                         stack.Push(item);
-                    }else if (stack.Count > 0)
+                    }
+                    else if (stack.Count > 0)
                     {
                         stack.Pop();
                     }
@@ -140,7 +158,7 @@ namespace WorkingWithStruct
 
                 return new string(stack.ToArray());
             }
-            
+
         }
 
         #endregion
@@ -225,7 +243,7 @@ namespace WorkingWithStruct
                     i++;
                     j--;
                 }
-                
+
             }
 
             return new String(chars);
@@ -237,7 +255,7 @@ namespace WorkingWithStruct
 
         public static string ToGoatLatin(string sentence)
         {
-            string vowels= "aeiouAEIOU";
+            string vowels = "aeiouAEIOU";
             string result = string.Empty;
 
             int i = 0, j = 0;
@@ -259,7 +277,7 @@ namespace WorkingWithStruct
 
         public static int RemovePalindromeSub(string s)
         {
-            if (s.Length == 0 )
+            if (s.Length == 0)
             {
                 return 0;
             }
@@ -415,7 +433,7 @@ namespace WorkingWithStruct
         public static string[] FindWords(string[] words)
         {
             List<string> result = new List<string>();
-            List<string> keyboardRows = new List<string>{ "qwertyuiop", "asdfghjkl", "zxcvbnm" };
+            List<string> keyboardRows = new List<string> { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
 
             foreach (string word in words)
             {
@@ -455,7 +473,7 @@ namespace WorkingWithStruct
                 for (int i = 0; i < tempString.Length; i++)
                 {
 
-                    
+
 
                     if (!keyValuePairs.ContainsKey(tempString[i]))
                     {
@@ -495,7 +513,7 @@ namespace WorkingWithStruct
                     result = word;
                 }
             }
-           
+
             return result;
         }
 
@@ -523,7 +541,7 @@ namespace WorkingWithStruct
             return dict;
         }
 
-        private static bool IsComplete(Dictionary<char,int> compDictF, Dictionary<char,int> compDictS)
+        private static bool IsComplete(Dictionary<char, int> compDictF, Dictionary<char, int> compDictS)
         {
 
             foreach (char key in compDictS.Keys)
@@ -549,7 +567,7 @@ namespace WorkingWithStruct
         public static void WordPattern(string pattern, string s)
         {
             List<int> values = new List<int>();
-            List<string> values2 = new List<string>(s.Split(' ')); 
+            List<string> values2 = new List<string>(s.Split(' '));
             int[] ints = new int[values2.Count];
             for (int i = 0; i < ints.Length; i++)
             {
@@ -559,7 +577,7 @@ namespace WorkingWithStruct
 
             for (int i = 0; i < values2.Count; i++)
             {
-                for (int j = i+1; j < values2.Count; j++)
+                for (int j = i + 1; j < values2.Count; j++)
                 {
                     if (values2[i].Equals(values2[j]))
                     {
@@ -613,7 +631,7 @@ namespace WorkingWithStruct
                         return new int[] { (int)twoSumList[diff], i };
                     }
                     twoSumList[numbers[i]] = i;
-                } 
+                }
             }
             return null;
         }
@@ -829,7 +847,7 @@ namespace WorkingWithStruct
         {
             //int k = 0;
             int i = s.Length - 1;
-            Dictionary<char,int> keyValuePairs = new Dictionary<char,int>();
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
 
             while (i >= 0)
             {
