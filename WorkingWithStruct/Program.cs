@@ -25,18 +25,15 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            //string s = "abcdefghi";
-            //int size = 3;
-            //char fill = 'x';
+            string s = "ctoyjrwtngqwt";
+            int size = 8;
+            char fill = 'n';
 
-            //foreach (var item in DivideString(s, size, fill))
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //DivideString(s, size, fill);
+            DivideString(s, size, fill);
 
-            string tmp = "capiTalIze tHe titLe";
-            Console.WriteLine(CapitalizeTitle(tmp));
+            
+
+
 
         }
 
@@ -45,7 +42,7 @@ namespace WorkingWithStruct
 
         public static string CapitalizeTitle(string title)
         {
-            string[] strings= title.Split(' ');
+            string[] strings = title.Split(' ');
             string result = string.Empty;
 
             int i = 0;
@@ -77,33 +74,32 @@ namespace WorkingWithStruct
 
         #region 2138. Divide a String Into Groups of Size k
 
-        public static void DivideString(string s, int k, char fill)
+        public static string[] DivideString(string s, int k, char fill)
         {
-            int arrLen = s.Length / k + s.Length % k;
-
-            Console.WriteLine(arrLen);
-
-            string[] arr = new string[arrLen];
+            List<string> list = new List<string>();
+            int partsCount = s.Length / k;
 
             if (s.Length % k == 0)
             {
-                for (int i = 0; i < s.Length; i += k)
+                for (int i = 0, j = 0; i < partsCount; i++, j += k)
                 {
-                    arr[i] = s.Substring(i, k);
+                    list.Add(s.Substring(j, k));
                 }
             }
             else
             {
+                int count = k - s.Length % k;
+                string fillStr = new string(fill, count);
 
+                for (int i = 0, j = 0; i <= partsCount - 1; i++, j += k)
+                {
+                    list.Add(s.Substring(j, k));
+                }
+
+                list.Add(s.Substring((s.Length - s.Length % k), s.Length % k) + fillStr);
             }
 
-            
-
-            foreach (var item in arr)
-            {
-                Console.WriteLine(item);
-            }
-            
+            return list.ToArray();
         }
 
         #endregion
