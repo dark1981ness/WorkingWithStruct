@@ -25,11 +25,88 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "444";
-            Console.WriteLine(LargestGoodInteger(s));
+            //string s = "abcdefghi";
+            //int size = 3;
+            //char fill = 'x';
 
+            //foreach (var item in DivideString(s, size, fill))
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //DivideString(s, size, fill);
+
+            string tmp = "capiTalIze tHe titLe";
+            Console.WriteLine(CapitalizeTitle(tmp));
 
         }
+
+
+        #region 2129. Capitalize the Title
+
+        public static string CapitalizeTitle(string title)
+        {
+            string[] strings= title.Split(' ');
+            string result = string.Empty;
+
+            int i = 0;
+
+            if (title.Length == 1)
+            {
+                return result += title.ToLower();
+            }
+
+            while (i < strings.Length)
+            {
+                if (strings[i].Length == 1 || strings[i].Length == 2)
+                {
+                    result += (strings[i].ToLower() + " ");
+                }
+                else
+                {
+                    result += (char.ToUpper(strings[i][0]) + strings[i][1..].ToLower() + " ");
+                }
+
+                i++;
+            }
+
+
+            return result.Trim();
+        }
+
+        #endregion
+
+        #region 2138. Divide a String Into Groups of Size k
+
+        public static void DivideString(string s, int k, char fill)
+        {
+            int arrLen = s.Length / k + s.Length % k;
+
+            Console.WriteLine(arrLen);
+
+            string[] arr = new string[arrLen];
+
+            if (s.Length % k == 0)
+            {
+                for (int i = 0; i < s.Length; i += k)
+                {
+                    arr[i] = s.Substring(i, k);
+                }
+            }
+            else
+            {
+
+            }
+
+            
+
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
+            
+        }
+
+        #endregion
 
         #region 2264. Largest 3-Same-Digit Number in String
 
