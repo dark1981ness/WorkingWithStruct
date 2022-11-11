@@ -25,18 +25,24 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "ctoyjrwtngqwt";
-            int size = 8;
-            char fill = 'n';
-
-            DivideString(s, size, fill);
-
-            
+            int num = 8;
+            int k = 2;
 
 
-
+            DivisorSubstrings(num,k);
         }
 
+
+        #region 2269. Find the K-Beauty of a Number
+
+        public static int DivisorSubstrings(int num, int k)
+        {
+            int result = 0;
+
+            return result;
+        }
+
+        #endregion
 
         #region 2129. Capitalize the Title
 
