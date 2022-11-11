@@ -33,6 +33,18 @@ namespace WorkingWithStruct
         }
 
 
+        #region 2451. Odd String Difference
+
+        public static string OddString(string[] words)
+        {
+            string result = string.Empty;
+
+
+            return result;
+        }
+
+        #endregion
+
         #region 2269. Find the K-Beauty of a Number
 
         public static int DivisorSubstrings(int num, int k)
