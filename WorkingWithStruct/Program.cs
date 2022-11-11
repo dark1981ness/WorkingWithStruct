@@ -25,11 +25,11 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int num = 8;
+            int num = 1;
             int k = 2;
 
 
-            DivisorSubstrings(num,k);
+            DivisorSubstrings(num, k);
         }
 
 
@@ -38,6 +38,20 @@ namespace WorkingWithStruct
         public static int DivisorSubstrings(int num, int k)
         {
             int result = 0;
+            int del = (int)Math.Pow(10, k);
+            int tmpNum = num;
+
+            string tmpStr = num.ToString();
+
+            for (int i = 0; i <= tmpStr.Length - k; i++)
+            {
+                if ((num % del != 0) && (tmpNum % (num % del) == 0))
+                {
+                    result++;
+                }
+
+                num /= 10;
+            }
 
             return result;
         }
