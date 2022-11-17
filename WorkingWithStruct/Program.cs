@@ -25,11 +25,10 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            int num = 1;
-            int k = 2;
+            string[] strings = { "adc", "wzy", "abc" };
 
 
-            DivisorSubstrings(num, k);
+            OddString(strings);
         }
 
 
@@ -38,8 +37,20 @@ namespace WorkingWithStruct
         public static string OddString(string[] words)
         {
             string result = string.Empty;
+            Dictionary<int, List<int>> keyValuePairs = new Dictionary<int, List<int>>();
 
+            for (int i = 0; i < words.Length; i++)
+            {
+                List<int> ints = new List<int>();
+                for (int j = 0; j < words[i].Length - 1; j++)
+                {
+                    int tmp = words[i][j + 1] - words[i][j];
+                    ints.Add(tmp);
+                }
 
+                keyValuePairs.Add(i, ints);
+            }
+                        
             return result;
         }
 
