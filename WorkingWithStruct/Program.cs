@@ -32,6 +32,70 @@ namespace WorkingWithStruct
             DivisorSubstrings(num, k);
         }
 
+        #region 2423. Remove Letter To Equalize Frequency
+
+        public static bool EqualFrequency(string word)
+        {
+            return word.Length - new HashSet<char>(word).Count <= 1;
+
+        }
+
+        #endregion
+
+        #region 2273. Find Resultant Array After Removing Anagrams
+
+        public static IList<string> RemoveAnagrams(string[] words)
+        {
+            IList<string> tempWords = words.ToList();
+
+            for (int i = 1; i < tempWords.Count; i++)
+            {
+                bool isEqual = tempWords[i].OrderBy(x => x)
+                    .SequenceEqual(tempWords[i - 1].OrderBy(x => x));
+
+                if (isEqual)
+                {
+                    tempWords.Remove(tempWords[i]);
+                    i--;
+                }
+            }
+
+            return tempWords;
+        }
+
+        #endregion
+
+
+        #region 2287. Rearrange Characters to Make Target String
+
+        public static int RearrangeCharacters(string s, string target)
+        {
+            int[] freqArrS = new int[26];
+            int[] freqArrT = new int[26];
+            int result = int.MaxValue;
+
+            foreach (char item in s)
+            {
+                freqArrS[item - 97]++;
+            }
+
+            foreach (char item in target)
+            {
+                freqArrT[item - 97]++;
+            }
+
+            for (int i = 0; i < 26; i++)
+            {
+                if (freqArrT[i] > 0)
+                {
+                    result = Math.Min(result, freqArrS[i] / freqArrT[i]);
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
 
         #region 2451. Odd String Difference
 
