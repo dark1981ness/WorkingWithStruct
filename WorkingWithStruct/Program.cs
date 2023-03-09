@@ -20,9 +20,9 @@ namespace WorkingWithStruct {
         }
 
         static void Main(string[] args) {
-            string sentence = "cccaa";
+            string time = "0?:00";
 
-            Console.WriteLine(EqualFrequency(sentence));
+            Console.WriteLine(CountTime(time));
         }
 
 
@@ -30,7 +30,11 @@ namespace WorkingWithStruct {
         #region 2437. Number of Valid Clock Times
 
         public static int CountTime(string time) {
+            int result = 0;
 
+
+
+            return result;
         }
 
         #endregion
