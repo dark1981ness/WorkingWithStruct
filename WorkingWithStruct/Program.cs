@@ -20,24 +20,9 @@ namespace WorkingWithStruct {
         }
 
         static void Main(string[] args) {
-            string time = "0?:00";
 
-            Console.WriteLine(CountTime(time));
         }
 
-
-
-        #region 2437. Number of Valid Clock Times
-
-        public static int CountTime(string time) {
-            int result = 0;
-
-
-
-            return result;
-        }
-
-        #endregion
 
         #region 2423. Remove Letter To Equalize Frequency
 
