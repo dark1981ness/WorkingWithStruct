@@ -8,25 +8,95 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace WorkingWithStruct {
-    class Program {
-        public class ListNode {
+namespace WorkingWithStruct
+{
+    class Program
+    {
+        public class ListNode
+        {
             public int val;
             public ListNode next;
-            public ListNode(int val = 0, ListNode next = null) {
+            public ListNode(int val = 0, ListNode next = null)
+            {
                 this.val = val;
                 this.next = next;
             }
         }
 
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
+            string result = "551";
+            char digit = '5';
+            int i = 0;
+            int max = int.MinValue;
+            int idx;
+            string tmpString = string.Empty;
+
+            while (i < result.Length)
+            {
+                //idx = result.IndexOf(digit,i);
+
+                //if (idx == 0)
+                //{
+                //    tmpString = result.Substring(idx + 1);
+                //    i += idx + 1;
+                //}
+                //if (idx == result.Length - 1)
+                //{
+                //    tmpString = result.Substring(0, idx);
+                //    i++;
+                //}
+                //if (idx > 0 && idx < result.Length - 1)
+                //{
+                //    tmpString = result.Substring(0, idx) + result.Substring(idx + 1);
+                //    i++; 
+                //}
+
+
+                i = result.IndexOf(digit, i);
+
+                if (i == 0)
+                {
+                    tmpString = result.Substring(i + 1);
+                    i++;
+                }
+                else if (i == result.Length - 1)
+                {
+                    tmpString = result.Substring(0, i);
+                    i++;
+                }
+                else if (i > 0 && i < result.Length - 1)
+                {
+                    tmpString = result.Substring(0, i) + result.Substring(i + 1);
+                    i++;
+                }
+
+                max = Math.Max(max, Int32.Parse(tmpString));
+            }
+
+            Console.WriteLine(max);
 
         }
 
+        #region 2259. Remove Digit From Number to Maximize Result
+
+        public static string RemoveDigit(string number, char digit)
+        {
+            string result = string.Empty;
+
+
+
+
+
+            return result;
+        }
+
+        #endregion
 
         #region 2423. Remove Letter To Equalize Frequency
 
-        public static bool EqualFrequency(string word) {
+        public static bool EqualFrequency(string word)
+        {
             return word.Length - new HashSet<char>(word).Count <= 1;
 
         }
@@ -35,14 +105,17 @@ namespace WorkingWithStruct {
 
         #region 2273. Find Resultant Array After Removing Anagrams
 
-        public static IList<string> RemoveAnagrams(string[] words) {
+        public static IList<string> RemoveAnagrams(string[] words)
+        {
             IList<string> tempWords = words.ToList();
 
-            for (int i = 1; i < tempWords.Count; i++) {
+            for (int i = 1; i < tempWords.Count; i++)
+            {
                 bool isEqual = tempWords[i].OrderBy(x => x)
                     .SequenceEqual(tempWords[i - 1].OrderBy(x => x));
 
-                if (isEqual) {
+                if (isEqual)
+                {
                     tempWords.Remove(tempWords[i]);
                     i--;
                 }
@@ -56,21 +129,26 @@ namespace WorkingWithStruct {
 
         #region 2287. Rearrange Characters to Make Target String
 
-        public static int RearrangeCharacters(string s, string target) {
+        public static int RearrangeCharacters(string s, string target)
+        {
             int[] freqArrS = new int[26];
             int[] freqArrT = new int[26];
             int result = int.MaxValue;
 
-            foreach (char item in s) {
+            foreach (char item in s)
+            {
                 freqArrS[item - 97]++;
             }
 
-            foreach (char item in target) {
+            foreach (char item in target)
+            {
                 freqArrT[item - 97]++;
             }
 
-            for (int i = 0; i < 26; i++) {
-                if (freqArrT[i] > 0) {
+            for (int i = 0; i < 26; i++)
+            {
+                if (freqArrT[i] > 0)
+                {
                     result = Math.Min(result, freqArrS[i] / freqArrT[i]);
                 }
             }
@@ -82,13 +160,16 @@ namespace WorkingWithStruct {
 
         #region 2451. Odd String Difference
 
-        public static string OddString(string[] words) {
+        public static string OddString(string[] words)
+        {
             string result = string.Empty;
             Dictionary<int, List<int>> keyValuePairs = new Dictionary<int, List<int>>();
 
-            for (int i = 0; i < words.Length; i++) {
+            for (int i = 0; i < words.Length; i++)
+            {
                 List<int> ints = new List<int>();
-                for (int j = 0; j < words[i].Length - 1; j++) {
+                for (int j = 0; j < words[i].Length - 1; j++)
+                {
                     int tmp = words[i][j + 1] - words[i][j];
                     ints.Add(tmp);
                 }
@@ -103,15 +184,18 @@ namespace WorkingWithStruct {
 
         #region 2269. Find the K-Beauty of a Number
 
-        public static int DivisorSubstrings(int num, int k) {
+        public static int DivisorSubstrings(int num, int k)
+        {
             int result = 0;
             int del = (int)Math.Pow(10, k);
             int tmpNum = num;
 
             string tmpStr = num.ToString();
 
-            for (int i = 0; i <= tmpStr.Length - k; i++) {
-                if ((num % del != 0) && (tmpNum % (num % del) == 0)) {
+            for (int i = 0; i <= tmpStr.Length - k; i++)
+            {
+                if ((num % del != 0) && (tmpNum % (num % del) == 0))
+                {
                     result++;
                 }
 
@@ -125,21 +209,26 @@ namespace WorkingWithStruct {
 
         #region 2129. Capitalize the Title
 
-        public static string CapitalizeTitle(string title) {
+        public static string CapitalizeTitle(string title)
+        {
             string[] strings = title.Split(' ');
             string result = string.Empty;
 
             int i = 0;
 
-            if (title.Length == 1) {
+            if (title.Length == 1)
+            {
                 return result += title.ToLower();
             }
 
-            while (i < strings.Length) {
-                if (strings[i].Length == 1 || strings[i].Length == 2) {
+            while (i < strings.Length)
+            {
+                if (strings[i].Length == 1 || strings[i].Length == 2)
+                {
                     result += (strings[i].ToLower() + " ");
                 }
-                else {
+                else
+                {
                     result += (char.ToUpper(strings[i][0]) + strings[i][1..].ToLower() + " ");
                 }
 
@@ -154,20 +243,25 @@ namespace WorkingWithStruct {
 
         #region 2138. Divide a String Into Groups of Size k
 
-        public static string[] DivideString(string s, int k, char fill) {
+        public static string[] DivideString(string s, int k, char fill)
+        {
             List<string> list = new List<string>();
             int partsCount = s.Length / k;
 
-            if (s.Length % k == 0) {
-                for (int i = 0, j = 0; i < partsCount; i++, j += k) {
+            if (s.Length % k == 0)
+            {
+                for (int i = 0, j = 0; i < partsCount; i++, j += k)
+                {
                     list.Add(s.Substring(j, k));
                 }
             }
-            else {
+            else
+            {
                 int count = k - s.Length % k;
                 string fillStr = new string(fill, count);
 
-                for (int i = 0, j = 0; i <= partsCount - 1; i++, j += k) {
+                for (int i = 0, j = 0; i <= partsCount - 1; i++, j += k)
+                {
                     list.Add(s.Substring(j, k));
                 }
 
@@ -181,14 +275,18 @@ namespace WorkingWithStruct {
 
         #region 2264. Largest 3-Same-Digit Number in String
 
-        public static string LargestGoodInteger(string num) {
+        public static string LargestGoodInteger(string num)
+        {
             int maxvalue = int.MinValue;
             string result = string.Empty;
             int k = 3;
 
-            for (int i = 0; i < num.Length - (k - 1); i++) {
-                if (num[i] == num[i + 1] && num[i] == num[i + 2]) {
-                    if (maxvalue < num[i] - 48) {
+            for (int i = 0; i < num.Length - (k - 1); i++)
+            {
+                if (num[i] == num[i + 1] && num[i] == num[i + 2])
+                {
+                    if (maxvalue < num[i] - 48)
+                    {
                         maxvalue = num[i] - 48;
                         result = num.Substring(i, k);
                     }
@@ -202,23 +300,28 @@ namespace WorkingWithStruct {
 
         #region 1624. Largest Substring Between Two Equal Characters
 
-        public static int MaxLengthBetweenEqualCharacters(string s) {
+        public static int MaxLengthBetweenEqualCharacters(string s)
+        {
             int maxSubLength = int.MinValue;
 
             Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
 
 
-            for (int i = 0; i < s.Length; i++) {
+            for (int i = 0; i < s.Length; i++)
+            {
                 int tmpCount = int.MinValue;
 
-                if (!keyValuePairs.ContainsKey(s[i])) {
+                if (!keyValuePairs.ContainsKey(s[i]))
+                {
                     keyValuePairs.Add(s[i], i);
                 }
-                else {
+                else
+                {
                     tmpCount = i - keyValuePairs[s[i]] - 1;
                 }
 
-                if (tmpCount > maxSubLength) {
+                if (tmpCount > maxSubLength)
+                {
                     maxSubLength = tmpCount;
                 }
             }
@@ -231,7 +334,8 @@ namespace WorkingWithStruct {
 
         #region 1154. Day of the Year
 
-        public static int DayOfYear(string date) {
+        public static int DayOfYear(string date)
+        {
             return DateTime.Parse(date).DayOfYear;
         }
 
@@ -239,23 +343,29 @@ namespace WorkingWithStruct {
 
         #region 925. Long Pressed Name
 
-        public static bool IsLongPressedName(string name, string typed) {
+        public static bool IsLongPressedName(string name, string typed)
+        {
             int i = 0;
             int j = 0;
 
-            if (name.Length > typed.Length) {
+            if (name.Length > typed.Length)
+            {
                 return false;
             }
 
-            while (j < typed.Length) {
-                if (i < name.Length && name[i] == typed[j]) {
+            while (j < typed.Length)
+            {
+                if (i < name.Length && name[i] == typed[j])
+                {
                     i++;
                     j++;
                 }
-                else if (i > 0 && name[i - 1] == typed[j]) {
+                else if (i > 0 && name[i - 1] == typed[j])
+                {
                     j++;
                 }
-                else {
+                else
+                {
                     return false;
                 }
 
@@ -268,17 +378,22 @@ namespace WorkingWithStruct {
 
         #region 844. Backspace String Compare
 
-        public static bool BackspaceCompare(string s, string t) {
+        public static bool BackspaceCompare(string s, string t)
+        {
             return StringBuild(s).Equals(StringBuild(t));
 
-            string StringBuild(string value) {
+            string StringBuild(string value)
+            {
                 Stack<char> stack = new Stack<char>();
 
-                foreach (char item in value) {
-                    if (item != '#') {
+                foreach (char item in value)
+                {
+                    if (item != '#')
+                    {
                         stack.Push(item);
                     }
-                    else if (stack.Count > 0) {
+                    else if (stack.Count > 0)
+                    {
                         stack.Pop();
                     }
                 }
@@ -292,32 +407,39 @@ namespace WorkingWithStruct {
 
         #region 929. Unique Email Addresses
 
-        public static int NumUniqueEmails(string[] emails) {
+        public static int NumUniqueEmails(string[] emails)
+        {
             HashSet<string> strings = new HashSet<string>();
 
-            for (int i = 0; i < emails.Length; i++) {
+            for (int i = 0; i < emails.Length; i++)
+            {
                 string[] strings1 = emails[i].Split('@');
 
                 string tmpStr = emailcleanUp(strings1[0]);
 
                 string tmpStr2 = tmpStr + '@' + strings1[1];
 
-                if (!strings.Contains(tmpStr2)) {
+                if (!strings.Contains(tmpStr2))
+                {
                     strings.Add(tmpStr2);
                 }
             }
 
-            string emailcleanUp(string value) {
+            string emailcleanUp(string value)
+            {
                 string result = string.Empty;
                 int i = 0;
 
-                while (i < value.Length) {
-                    if (value[i] == '.') {
+                while (i < value.Length)
+                {
+                    if (value[i] == '.')
+                    {
                         i++;
                         continue;
                     }
 
-                    if (value[i] == '+') {
+                    if (value[i] == '+')
+                    {
                         return result;
                     }
                     result += value[i];
@@ -334,24 +456,30 @@ namespace WorkingWithStruct {
 
         #region 917. Reverse Only Letters
 
-        public static string ReverseOnlyLetters(string s) {
+        public static string ReverseOnlyLetters(string s)
+        {
             char[] chars = new char[s.Length];
             int i = 0, j = s.Length - 1;
 
-            if (s.Length == 1) {
+            if (s.Length == 1)
+            {
                 return s;
             }
 
-            while (i <= j) {
-                if (!char.IsLetter(s[i])) {
+            while (i <= j)
+            {
+                if (!char.IsLetter(s[i]))
+                {
                     chars[i] = s[i];
                     i++;
                 }
-                if (!char.IsLetter(s[j])) {
+                if (!char.IsLetter(s[j]))
+                {
                     chars[j] = s[j];
                     j--;
                 }
-                if (char.IsLetter(s[i]) && char.IsLetter(s[j])) {
+                if (char.IsLetter(s[i]) && char.IsLetter(s[j]))
+                {
                     chars[i] = s[j];
                     chars[j] = s[i];
                     i++;
@@ -367,15 +495,18 @@ namespace WorkingWithStruct {
 
         #region 824. Goat Latin
 
-        public static string ToGoatLatin(string sentence) {
+        public static string ToGoatLatin(string sentence)
+        {
             string vowels = "aeiouAEIOU";
             string result = string.Empty;
 
             int i = 0, j = 0;
 
-            foreach (var item in sentence.Split(' ')) {
+            foreach (var item in sentence.Split(' '))
+            {
                 result += ' ' + (vowels.Contains(item[0]) ? item : item.Substring(1) + item[0]) + "ma";
-                for (j = 0, i++; j < i; j++) {
+                for (j = 0, i++; j < i; j++)
+                {
                     result += "a";
                 }
             }
@@ -386,24 +517,31 @@ namespace WorkingWithStruct {
 
         #region 1332. Remove Palindromic Subsequences
 
-        public static int RemovePalindromeSub(string s) {
-            if (s.Length == 0) {
+        public static int RemovePalindromeSub(string s)
+        {
+            if (s.Length == 0)
+            {
                 return 0;
             }
 
-            if (IsPolindrome(s)) {
+            if (IsPolindrome(s))
+            {
                 return 1;
             }
-            else {
+            else
+            {
                 return 2;
             }
 
-            static bool IsPolindrome(string value) {
+            static bool IsPolindrome(string value)
+            {
                 int i = 0;
                 int j = value.Length - 1;
 
-                while (i <= j) {
-                    if (value[i] != value[j]) {
+                while (i <= j)
+                {
+                    if (value[i] != value[j])
+                    {
                         return false;
                     }
                     i++;
@@ -418,7 +556,8 @@ namespace WorkingWithStruct {
 
         #region 1592. Rearrange Spaces Between Words
 
-        public static string ReorderSpaces(string text) {
+        public static string ReorderSpaces(string text)
+        {
             string result = string.Empty;
             int whitespacesCount = 0;
             int extraSpaces;
@@ -444,11 +583,14 @@ namespace WorkingWithStruct {
             //} 
             #endregion
 
-            for (int k = 0; k < text.Length; k++) {
+            for (int k = 0; k < text.Length; k++)
+            {
                 string tempString = string.Empty;
 
-                if (text[k] != ' ') {
-                    while (text[k] != ' ') {
+                if (text[k] != ' ')
+                {
+                    while (text[k] != ' ')
+                    {
 
                         tempString += text[k];
                         k++;
@@ -458,12 +600,14 @@ namespace WorkingWithStruct {
                     k--;
                     tempArr.Add(tempString);
                 }
-                else {
+                else
+                {
                     whitespacesCount++;
                 }
             }
 
-            if (tempArr.Count == 1) {
+            if (tempArr.Count == 1)
+            {
                 extraSpaces = whitespacesCount;
                 return tempArr[0].PadRight(tempArr[0].Length + extraSpaces);
             }
@@ -471,11 +615,14 @@ namespace WorkingWithStruct {
             spacesBetweenWords = whitespacesCount / (tempArr.Count - 1);
             extraSpaces = whitespacesCount - (spacesBetweenWords * (tempArr.Count - 1));
 
-            for (int i = 0; i < tempArr.Count; i++) {
-                if (i == tempArr.Count - 1) {
+            for (int i = 0; i < tempArr.Count; i++)
+            {
+                if (i == tempArr.Count - 1)
+                {
                     result += tempArr[i].PadRight(tempArr[i].Length + extraSpaces);
                 }
-                else {
+                else
+                {
                     result += tempArr[i].PadRight(tempArr[i].Length + spacesBetweenWords);
                 }
 
@@ -488,27 +635,33 @@ namespace WorkingWithStruct {
 
         #region 1422. Maximum Score After Splitting a String
 
-        public static int MaxScore(string s) {
+        public static int MaxScore(string s)
+        {
             int score = int.MinValue;
             int sumLeft = 0;
 
-            for (int i = 0; i < s.Length - 1; i++) {
+            for (int i = 0; i < s.Length - 1; i++)
+            {
                 int tempScore;
                 int sumRight = 0;
 
-                if (s[i] == 48) {
+                if (s[i] == 48)
+                {
                     sumLeft++;
                 }
 
-                for (int j = i + 1; j < s.Length; j++) {
-                    if (s[j] == 49) {
+                for (int j = i + 1; j < s.Length; j++)
+                {
+                    if (s[j] == 49)
+                    {
                         sumRight++;
                     }
                 }
 
                 tempScore = sumLeft + sumRight;
 
-                if (tempScore > score) {
+                if (tempScore > score)
+                {
                     score = tempScore;
                 }
             }
@@ -519,13 +672,17 @@ namespace WorkingWithStruct {
         #endregion
 
         #region 500. Keyboard Row
-        public static string[] FindWords(string[] words) {
+        public static string[] FindWords(string[] words)
+        {
             List<string> result = new List<string>();
             List<string> keyboardRows = new List<string> { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
 
-            foreach (string word in words) {
-                for (int i = 0; i < keyboardRows.Count; i++) {
-                    if (isSubset(keyboardRows[i], word)) {
+            foreach (string word in words)
+            {
+                for (int i = 0; i < keyboardRows.Count; i++)
+                {
+                    if (isSubset(keyboardRows[i], word))
+                    {
                         result.Add(word);
                     }
                 }
@@ -533,7 +690,8 @@ namespace WorkingWithStruct {
 
             return result.ToArray();
 
-            bool isSubset(string fWord, string sWord) {
+            bool isSubset(string fWord, string sWord)
+            {
                 string tempString = string.Empty;
 
                 Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
@@ -542,23 +700,29 @@ namespace WorkingWithStruct {
 
                 tempString = string.Join("", charsSet);
 
-                for (int i = 0; i < fWord.Length; i++) {
-                    if (keyValuePairs.ContainsKey(fWord[i])) {
+                for (int i = 0; i < fWord.Length; i++)
+                {
+                    if (keyValuePairs.ContainsKey(fWord[i]))
+                    {
                         keyValuePairs[fWord[i]] += 1;
                     }
-                    else {
+                    else
+                    {
                         keyValuePairs.Add(fWord[i], 1);
                     }
                 }
 
-                for (int i = 0; i < tempString.Length; i++) {
+                for (int i = 0; i < tempString.Length; i++)
+                {
 
 
 
-                    if (!keyValuePairs.ContainsKey(tempString[i])) {
+                    if (!keyValuePairs.ContainsKey(tempString[i]))
+                    {
                         return false;
                     }
-                    else if (keyValuePairs[tempString[i]] > 0) {
+                    else if (keyValuePairs[tempString[i]] > 0)
+                    {
                         keyValuePairs[tempString[i]] -= 1;
                     }
                 }
@@ -571,18 +735,22 @@ namespace WorkingWithStruct {
 
         #region 748. Shortest Completing Word
 
-        public static string ShortestCompletingWord(string licensePlate, string[] words) {
+        public static string ShortestCompletingWord(string licensePlate, string[] words)
+        {
             string result = string.Empty;
             int tempLength = int.MaxValue;
 
             licensePlate = licensePlate.ToLower();
 
-            foreach (string word in words) {
-                if (word.Length >= tempLength) {
+            foreach (string word in words)
+            {
+                if (word.Length >= tempLength)
+                {
                     continue;
                 }
                 bool isComplete = IsComplete(ConvertToDic(word), ConvertToDic(licensePlate));
-                if (isComplete) {
+                if (isComplete)
+                {
                     tempLength = word.Length;
                     result = word;
                 }
@@ -591,18 +759,22 @@ namespace WorkingWithStruct {
             return result;
         }
 
-        private static Dictionary<char, int> ConvertToDic(string word) {
+        private static Dictionary<char, int> ConvertToDic(string word)
+        {
             Dictionary<char, int> dict = new Dictionary<char, int>();
 
             int n = word.Length - 1;
 
             word = word.ToLower();
 
-            while (n >= 0) {
-                if (dict.ContainsKey(word[n])) {
+            while (n >= 0)
+            {
+                if (dict.ContainsKey(word[n]))
+                {
                     dict[word[n]]++;
                 }
-                if (!dict.ContainsKey(word[n]) && Char.IsLetter(word[n])) {
+                if (!dict.ContainsKey(word[n]) && Char.IsLetter(word[n]))
+                {
                     dict.Add(word[n], 1);
                 }
                 n--;
@@ -611,14 +783,18 @@ namespace WorkingWithStruct {
             return dict;
         }
 
-        private static bool IsComplete(Dictionary<char, int> compDictF, Dictionary<char, int> compDictS) {
+        private static bool IsComplete(Dictionary<char, int> compDictF, Dictionary<char, int> compDictS)
+        {
 
-            foreach (char key in compDictS.Keys) {
-                if (!compDictF.ContainsKey(key)) {
+            foreach (char key in compDictS.Keys)
+            {
+                if (!compDictF.ContainsKey(key))
+                {
                     return false;
                 }
 
-                if (compDictF[key] < compDictS[key]) {
+                if (compDictF[key] < compDictS[key])
+                {
                     return false;
                 }
             }
@@ -630,24 +806,30 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Word Pattern
-        public static void WordPattern(string pattern, string s) {
+        public static void WordPattern(string pattern, string s)
+        {
             List<int> values = new List<int>();
             List<string> values2 = new List<string>(s.Split(' '));
             int[] ints = new int[values2.Count];
-            for (int i = 0; i < ints.Length; i++) {
+            for (int i = 0; i < ints.Length; i++)
+            {
                 ints[i] = i;
             }
 
 
-            for (int i = 0; i < values2.Count; i++) {
-                for (int j = i + 1; j < values2.Count; j++) {
-                    if (values2[i].Equals(values2[j])) {
+            for (int i = 0; i < values2.Count; i++)
+            {
+                for (int j = i + 1; j < values2.Count; j++)
+                {
+                    if (values2[i].Equals(values2[j]))
+                    {
                         ints[j] = i;
                     }
                 }
             }
 
-            foreach (var item in ints) {
+            foreach (var item in ints)
+            {
                 Console.WriteLine(item);
             }
 
@@ -657,10 +839,12 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Excel Sheet Column Number
-        public static int TitleToNumber(string columnTitle) {
+        public static int TitleToNumber(string columnTitle)
+        {
             int result = 0;
 
-            foreach (var item in columnTitle) {
+            foreach (var item in columnTitle)
+            {
                 result *= 26;
                 result += item - 'A' + 1;
             }
@@ -673,15 +857,19 @@ namespace WorkingWithStruct {
 
         #region Two Sum II - Input Array Is Sorted
 
-        public static int[] TwoSum(int[] numbers, int target) {
+        public static int[] TwoSum(int[] numbers, int target)
+        {
 
 
-            if (numbers.Length - 1 <= target) {
+            if (numbers.Length - 1 <= target)
+            {
                 int arrLength = numbers.Length;
                 Hashtable twoSumList = new Hashtable();
-                for (int i = 0; i < arrLength; i++) {
+                for (int i = 0; i < arrLength; i++)
+                {
                     int diff = target - numbers[i];
-                    if (twoSumList.ContainsKey(diff)) {
+                    if (twoSumList.ContainsKey(diff))
+                    {
                         return new int[] { (int)twoSumList[diff], i };
                     }
                     twoSumList[numbers[i]] = i;
@@ -694,12 +882,15 @@ namespace WorkingWithStruct {
 
         #region Contains Duplicate II(в процессе)
 
-        public static bool ContainsNearbyDuplicate(int[] nums, int k) {
+        public static bool ContainsNearbyDuplicate(int[] nums, int k)
+        {
             int left = 0;
             int right = nums.Length - 1;
 
-            while (left < right) {
-                if (nums[left] == nums[right] && Math.Abs(left - right) <= k) {
+            while (left < right)
+            {
+                if (nums[left] == nums[right] && Math.Abs(left - right) <= k)
+                {
                     return true;
                 }
 
@@ -712,13 +903,16 @@ namespace WorkingWithStruct {
 
         #region Maximum Number of Words Found in Sentences
 
-        public static int MostWordsFound(string[] sentences) {
+        public static int MostWordsFound(string[] sentences)
+        {
             int result = int.MinValue;
 
-            for (int i = 0; i < sentences.Length; i++) {
+            for (int i = 0; i < sentences.Length; i++)
+            {
                 int idx = 0;
                 int count = 0;
-                do {
+                do
+                {
                     idx = sentences[i].IndexOf(' ', idx);
 
                     count++;
@@ -737,10 +931,13 @@ namespace WorkingWithStruct {
 
         #region Find First Palindromic String in the Array
 
-        public static string FirstPalindrome(string[] words) {
+        public static string FirstPalindrome(string[] words)
+        {
             int i = 0;
-            while (i < words.Length) {
-                if (CheckPalindrome(words[i])) {
+            while (i < words.Length)
+            {
+                if (CheckPalindrome(words[i]))
+                {
                     return words[i];
                 }
 
@@ -750,11 +947,13 @@ namespace WorkingWithStruct {
             return String.Empty;
         }
 
-        public static bool CheckPalindrome(string s) {
+        public static bool CheckPalindrome(string s)
+        {
             int left = 0;
             int right = s.Length - 1;
 
-            while (true) {
+            while (true)
+            {
                 if (left > right) return true;
 
                 if (s[left] != s[right]) return false;
@@ -769,14 +968,16 @@ namespace WorkingWithStruct {
 
         #region Two Out of Three
 
-        public static IList<int> TwoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+        public static IList<int> TwoOutOfThree(int[] nums1, int[] nums2, int[] nums3)
+        {
             IList<int> result = new List<int>();
             HashSet<int> hs1 = new HashSet<int>(nums1);
             HashSet<int> hs2 = new HashSet<int>(nums2);
             HashSet<int> hs3 = new HashSet<int>(nums3);
 
 
-            foreach (var item in hs1) {
+            foreach (var item in hs1)
+            {
 
             }
 
@@ -787,19 +988,24 @@ namespace WorkingWithStruct {
 
         #region Find Minimum in Rotated Sorted Array II
 
-        public static int FindMin(int[] nums) {
+        public static int FindMin(int[] nums)
+        {
             int first = 0;
             int last = nums.Length - 1;
-            while (first < last) {
+            while (first < last)
+            {
                 var mid = (first + last) / 2;
 
-                if (nums[mid] < nums[last]) {
+                if (nums[mid] < nums[last])
+                {
                     last = mid;
                 }
-                else if (nums[mid] > nums[last]) {
+                else if (nums[mid] > nums[last])
+                {
                     first = mid + 1;
                 }
-                else {
+                else
+                {
                     last--;
                 }
             }
@@ -812,22 +1018,28 @@ namespace WorkingWithStruct {
 
         #region Reverse Words in a String
 
-        public static string ReverseWordsInString(string s) {
+        public static string ReverseWordsInString(string s)
+        {
             int idx = 0;
             StringBuilder result = new StringBuilder();
 
-            while (idx < s.Length) {
-                if (s[idx].Equals(' ')) {
+            while (idx < s.Length)
+            {
+                if (s[idx].Equals(' '))
+                {
                     idx++;
                     continue;
                 }
-                else {
+                else
+                {
                     string tempString = string.Empty;
 
-                    while (!s[idx].Equals(' ')) {
+                    while (!s[idx].Equals(' '))
+                    {
                         tempString += s[idx];
                         idx++;
-                        if (idx == s.Length) {
+                        if (idx == s.Length)
+                        {
                             break;
                         }
                     }
@@ -844,15 +1056,19 @@ namespace WorkingWithStruct {
 
         #region Squares of a Sorted Array
 
-        public static int[] SortedSquares(int[] nums) {
+        public static int[] SortedSquares(int[] nums)
+        {
             int left = 0;
             int right = nums.Length - 1;
 
-            while (left <= right) {
-                if (left == right) {
+            while (left <= right)
+            {
+                if (left == right)
+                {
                     nums[left] = nums[left] * nums[left];
                 }
-                else {
+                else
+                {
                     nums[left] = nums[left] * nums[left];
                     nums[right] = nums[right] * nums[right];
                 }
@@ -869,23 +1085,28 @@ namespace WorkingWithStruct {
 
         #region Longest Substring Without Repeating Characters(доделать)
 
-        public static void LengthOfLongestSubstring(string s) {
+        public static void LengthOfLongestSubstring(string s)
+        {
             //int k = 0;
             int i = s.Length - 1;
             Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
 
-            while (i >= 0) {
-                if (!keyValuePairs.ContainsKey(s[i])) {
+            while (i >= 0)
+            {
+                if (!keyValuePairs.ContainsKey(s[i]))
+                {
                     keyValuePairs.Add(s[i], 1);
                 }
-                else {
+                else
+                {
                     keyValuePairs[s[i]]++;
                 }
 
                 i--;
             }
 
-            foreach (var item in keyValuePairs) {
+            foreach (var item in keyValuePairs)
+            {
                 Console.WriteLine($"{item.Key} / {item.Value}");
             }
             //return k;
@@ -895,15 +1116,18 @@ namespace WorkingWithStruct {
 
         #region Rotate Array(?)
 
-        public static void RotateSecondVer(int[] nums, int k) {
+        public static void RotateSecondVer(int[] nums, int k)
+        {
             int[] tempArr = new int[nums.Length];
 
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
                 var idx = (i + nums.Length - k) % nums.Length;
                 tempArr[i] = nums[idx];
             }
             nums = tempArr;
-            foreach (var item in nums) {
+            foreach (var item in nums)
+            {
                 Console.WriteLine(item);
             }
         }
@@ -911,13 +1135,17 @@ namespace WorkingWithStruct {
 
         #region Final Prices With a Special Discount in a Shop
 
-        public static int[] FinalPrices(int[] prices) {
+        public static int[] FinalPrices(int[] prices)
+        {
             int[] result = new int[prices.Length];
 
-            for (int i = 0; i < prices.Length; i++) {
+            for (int i = 0; i < prices.Length; i++)
+            {
                 int discount = 0;
-                for (int j = i + 1; j < prices.Length; j++) {
-                    if (prices[j] <= prices[i]) {
+                for (int j = i + 1; j < prices.Length; j++)
+                {
+                    if (prices[j] <= prices[i])
+                    {
                         discount = prices[j];
                         break;
                     }
@@ -932,15 +1160,19 @@ namespace WorkingWithStruct {
 
         #region Destination City
 
-        public static string DestCity(IList<IList<string>> paths) {
+        public static string DestCity(IList<IList<string>> paths)
+        {
             Dictionary<string, string> pathHash = new Dictionary<string, string>();
 
-            foreach (IList<string> p in paths) {
+            foreach (IList<string> p in paths)
+            {
                 pathHash.Add(p[0], p[1]);
             }
 
-            foreach (var s in pathHash) {
-                if (!pathHash.ContainsKey(s.Value)) {
+            foreach (var s in pathHash)
+            {
+                if (!pathHash.ContainsKey(s.Value))
+                {
                     return s.Value;
                 }
             }
@@ -952,16 +1184,20 @@ namespace WorkingWithStruct {
 
         #region Increasing Decreasing String
 
-        public static string SortString(string s) {
+        public static string SortString(string s)
+        {
             StringBuilder stringBuilder = new StringBuilder();
             SortedDictionary<char, int> ht = new SortedDictionary<char, int>();
             int idx = 0;
 
-            while (idx < s.Length) {
-                if (!ht.ContainsKey(s[idx])) {
+            while (idx < s.Length)
+            {
+                if (!ht.ContainsKey(s[idx]))
+                {
                     ht[s[idx]] = 1;
                 }
-                else {
+                else
+                {
                     ht[s[idx]]++;
                 }
 
@@ -970,16 +1206,21 @@ namespace WorkingWithStruct {
 
             int countIdx = ht.Max(x => x.Value);
 
-            while (countIdx > 0) {
-                for (int i = 0; i < ht.Count; i++) {
-                    if (ht.ElementAt(i).Value > 0) {
+            while (countIdx > 0)
+            {
+                for (int i = 0; i < ht.Count; i++)
+                {
+                    if (ht.ElementAt(i).Value > 0)
+                    {
                         stringBuilder.Append(ht.ElementAt(i).Key);
                         ht[ht.ElementAt(i).Key]--;
                     }
                 }
 
-                for (int i = ht.Count - 1; i >= 0; i--) {
-                    if (ht.ElementAt(i).Value > 0) {
+                for (int i = ht.Count - 1; i >= 0; i--)
+                {
+                    if (ht.ElementAt(i).Value > 0)
+                    {
                         stringBuilder.Append(ht.ElementAt(i).Key);
                         ht[ht.ElementAt(i).Key]--;
                     }
@@ -995,7 +1236,8 @@ namespace WorkingWithStruct {
 
         #region Make Two Arrays Equal by Reversing Sub-arrays
 
-        public static bool CanBeEqual(int[] target, int[] arr) {
+        public static bool CanBeEqual(int[] target, int[] arr)
+        {
 
             /*
              with sorting
@@ -1056,18 +1298,22 @@ namespace WorkingWithStruct {
 
         #region Longest Palindrome
 
-        public static int LongestPalindrome(string s) {
+        public static int LongestPalindrome(string s)
+        {
             Dictionary<char, int> ht = new Dictionary<char, int>();
 
             int result = 0;
 
             if (s.Length < 2) return ++result;
 
-            foreach (var item in s) {
-                if (!ht.ContainsKey(item)) {
+            foreach (var item in s)
+            {
+                if (!ht.ContainsKey(item))
+                {
                     ht[item] = 1;
                 }
-                else {
+                else
+                {
                     ht.Remove(item);
                     result += 2;
                 }
@@ -1079,13 +1325,16 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Replace All ?'s to Avoid Consecutive Repeating Characters(доделать)
-        public static string ModifyString(string s) {
+        public static string ModifyString(string s)
+        {
             StringBuilder stringBuilder = new StringBuilder();
             int idx = 0;
 
-            while (idx < s.Length) {
+            while (idx < s.Length)
+            {
 
-                if (s[idx].Equals('?')) {
+                if (s[idx].Equals('?'))
+                {
 
                 }
                 idx++;
@@ -1098,7 +1347,8 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Final Value of Variable After Performing Operations
-        public static int FinalValueAfterOperations(string[] operations) {
+        public static int FinalValueAfterOperations(string[] operations)
+        {
             int x = 0;
             int idx = 0;
 
@@ -1122,7 +1372,8 @@ namespace WorkingWithStruct {
             //}
 
 
-            while (idx < operations.Length) {
+            while (idx < operations.Length)
+            {
                 _ = operations[idx].Contains("++") ? x++ : x--;
 
                 idx++;
@@ -1135,19 +1386,23 @@ namespace WorkingWithStruct {
 
         #region Decrypt String from Alphabet to Integer Mapping
 
-        public static string FreqAlphabets(string s) {
+        public static string FreqAlphabets(string s)
+        {
             StringBuilder stringBuilder = new StringBuilder();
 
             int idx = s.Length - 1;
 
-            while (idx >= 0) {
+            while (idx >= 0)
+            {
                 char tempValue;
-                if (s[idx] == '#') {
+                if (s[idx] == '#')
+                {
                     tempValue = (char)('a' - 1 + Int32.Parse(s.Substring(idx - 2, 2)));
                     stringBuilder.Insert(0, tempValue);
                     idx -= 3;
                 }
-                else {
+                else
+                {
                     tempValue = (char)('0' + s[idx]);
                     stringBuilder.Insert(0, tempValue);
                     idx--;
@@ -1161,20 +1416,25 @@ namespace WorkingWithStruct {
 
         #region Crawler Log Folder
 
-        public static int MinOperations(string[] logs) {
+        public static int MinOperations(string[] logs)
+        {
             Stack<string> stack = new Stack<string>();
 
             int idx = 0;
 
-            while (idx < logs.Length) {
-                if (logs[idx].Equals("../") && stack.Count > 0) {
+            while (idx < logs.Length)
+            {
+                if (logs[idx].Equals("../") && stack.Count > 0)
+                {
                     stack.Pop();
                 }
-                if (logs[idx].Equals("./")) {
+                if (logs[idx].Equals("./"))
+                {
                     idx++;
                     continue;
                 }
-                if (!logs[idx].Equals("../")) {
+                if (!logs[idx].Equals("../"))
+                {
                     stack.Push(logs[idx]);
                 }
                 idx++;
@@ -1187,11 +1447,13 @@ namespace WorkingWithStruct {
 
         #region Number of Strings That Appear as Substrings in Word
 
-        public static int NumOfStrings(string[] patterns, string word) {
+        public static int NumOfStrings(string[] patterns, string word)
+        {
             int idx = 0;
             int result = 0;
 
-            while (idx < patterns.Length) {
+            while (idx < patterns.Length)
+            {
                 if (word.Contains(patterns[idx]))
                     result++;
 
@@ -1205,12 +1467,14 @@ namespace WorkingWithStruct {
 
         #region Minimum Time to Type Word Using Special Typewriter
 
-        public static int MinTimeToType(string word) {
+        public static int MinTimeToType(string word)
+        {
             int minTime = word.Length;
             char last = 'a';
             int idx = 0;
 
-            while (idx < word.Length) {
+            while (idx < word.Length)
+            {
                 int start = (word[idx] - last + 26) % 26;
                 int end = (last - word[idx] + 26) % 26;
                 minTime += Math.Min(start, end);
@@ -1224,21 +1488,26 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Reverse Prefix of Word
-        private static string ReversePrefix(string word, char ch) {
+        private static string ReversePrefix(string word, char ch)
+        {
             StringBuilder stringBuilder = new StringBuilder();
             Stack<char> stack = new Stack<char>();
 
             int idx = 0;
 
-            while (idx < word.Length) {
+            while (idx < word.Length)
+            {
                 stack.Push(word[idx]);
-                if (word[idx] == ch) {
+                if (word[idx] == ch)
+                {
 
-                    while (stack.Count > 0) {
+                    while (stack.Count > 0)
+                    {
                         stringBuilder.Append(stack.Pop());
                     }
                     idx++;
-                    while (idx < word.Length) {
+                    while (idx < word.Length)
+                    {
                         stringBuilder.Append(word[idx]);
                         idx++;
                     }
@@ -1292,17 +1561,21 @@ namespace WorkingWithStruct {
         //s consists only of lowercase English letters and digits.
         //shift(s[i - 1], s[i]) <= 'z' for all odd indices i.
 
-        public static string ReplaceDigits(string s) {
+        public static string ReplaceDigits(string s)
+        {
             int i = 0;
             StringBuilder stringBuilder = new StringBuilder();
 
-            while (i <= s.Length - 1) {
-                if (Char.IsDigit(s[i])) {
+            while (i <= s.Length - 1)
+            {
+                if (Char.IsDigit(s[i]))
+                {
                     int tempValue = (int)s[i - 1] + (int)Char.GetNumericValue(s[i]);
                     stringBuilder.Append(Convert.ToChar(tempValue));
                     i++;
                 }
-                else {
+                else
+                {
                     stringBuilder.Append(s[i]);
                     i++;
                 }
@@ -1351,7 +1624,8 @@ namespace WorkingWithStruct {
 
         //Follow up: Could you find an O(nums1.length + nums2.length) solution?
 
-        public static int[] NextGreaterElement(int[] nums1, int[] nums2) {
+        public static int[] NextGreaterElement(int[] nums1, int[] nums2)
+        {
             #region test
             //Stack<int> ts = new Stack<int>();
             //bool ctr = false;
@@ -1390,19 +1664,25 @@ namespace WorkingWithStruct {
 
 
             Stack<int> ts = new Stack<int>();
-            for (int i = 0; i < nums1.Length; i++) {
+            for (int i = 0; i < nums1.Length; i++)
+            {
                 int startIdx = Array.IndexOf(nums2, nums1[i]);
-                if (startIdx == nums2.Length - 1) {
+                if (startIdx == nums2.Length - 1)
+                {
                     ts.Push(-1);
                 }
-                else {
-                    for (; startIdx < nums2.Length; startIdx++) {
-                        if (nums2[startIdx] > nums1[i]) {
+                else
+                {
+                    for (; startIdx < nums2.Length; startIdx++)
+                    {
+                        if (nums2[startIdx] > nums1[i])
+                        {
                             ts.Push(nums2[startIdx]);
                             break;
                         }
                     }
-                    if (startIdx != nums2.Length) {
+                    if (startIdx != nums2.Length)
+                    {
                         ts.Push(-1);
                     }
                 }
@@ -1448,20 +1728,25 @@ namespace WorkingWithStruct {
         //nums[i] is 0 or 1
 
 
-        public static bool KLengthApart(int[] nums, int k) {
+        public static bool KLengthApart(int[] nums, int k)
+        {
             int i = 0;
             int counter = k;
 
-            while (i <= nums.Length - 1) {
-                if (nums[i] == 1) {
-                    if (counter < k) {
+            while (i <= nums.Length - 1)
+            {
+                if (nums[i] == 1)
+                {
+                    if (counter < k)
+                    {
                         return false;
                     }
 
                     counter = 0;
                     i++;
                 }
-                else {
+                else
+                {
                     counter += 1;
                     i++;
 
@@ -1475,31 +1760,36 @@ namespace WorkingWithStruct {
 
         #region test
 
-        public static long Factorial(int n) {
+        public static long Factorial(int n)
+        {
             if (n == 1)
                 return 1;
             else
                 return n * Factorial(n - 1);
         }
 
-        public static double Pow(int value, int pow) {
+        public static double Pow(int value, int pow)
+        {
             double tempValue = value;
 
             if (pow == 0) return 1;
 
-            for (int i = 1; i < pow; i++) {
+            for (int i = 1; i < pow; i++)
+            {
                 tempValue *= value;
             }
 
             return tempValue;
         }
 
-        public static string Exp(int n) {
+        public static string Exp(int n)
+        {
             double e = 1;
             int i = 0;
             int tempValue = n;
 
-            while (i < n) {
+            while (i < n)
+            {
                 e += 1 / (double)Factorial(tempValue);
                 tempValue--;
                 i++;
@@ -1508,13 +1798,15 @@ namespace WorkingWithStruct {
             return e.ToString("F" + 5);
         }
 
-        public static string ExpPow(int addCount, int x) {
+        public static string ExpPow(int addCount, int x)
+        {
             double e = 1;
             int i = 0;
 
             int tempValue = addCount;
 
-            while (i < addCount) {
+            while (i < addCount)
+            {
                 e += (double)Pow(x, tempValue) / (double)Factorial(tempValue);
                 tempValue--;
                 i++;
@@ -1523,7 +1815,8 @@ namespace WorkingWithStruct {
             return e.ToString("F" + 6);
         }
 
-        public static void EarthParam(int value) {
+        public static void EarthParam(int value)
+        {
             int speed = 900;
             int r = 2 * value;
 
@@ -1572,14 +1865,18 @@ namespace WorkingWithStruct {
 
 
 
-        public static bool IsSubsequence(string s, string t) {
+        public static bool IsSubsequence(string s, string t)
+        {
 
             List<int> hs = new List<int>();
             List<char> charList = t.ToList();
             int tmpIdx = 0;
-            for (int i = 0; i < s.Length; i++) {
-                for (int j = tmpIdx; j < charList.Count; j++) {
-                    if (s[i].Equals(charList[j])) {
+            for (int i = 0; i < s.Length; i++)
+            {
+                for (int j = tmpIdx; j < charList.Count; j++)
+                {
+                    if (s[i].Equals(charList[j]))
+                    {
                         hs.Add(j);
                         tmpIdx = j + 1;
                         break;
@@ -1588,16 +1885,20 @@ namespace WorkingWithStruct {
                 }
             }
 
-            if (hs.Count.Equals(s.Length)) {
+            if (hs.Count.Equals(s.Length))
+            {
                 return true;
             }
 
             return false;
         }
 
-        public static bool IsSorted(List<int> arr) {
-            for (int i = 1; i < arr.Count; i++) {
-                if (arr[i - 1] > arr[i]) {
+        public static bool IsSorted(List<int> arr)
+        {
+            for (int i = 1; i < arr.Count; i++)
+            {
+                if (arr[i - 1] > arr[i])
+                {
                     return false;
                 }
             }
@@ -1631,11 +1932,13 @@ namespace WorkingWithStruct {
         //nums.length == 2n
         //1 <= nums[i] <= 10^3
 
-        public static int[] Shuffle(int[] nums, int n) {
+        public static int[] Shuffle(int[] nums, int n)
+        {
 
             int[] result = new int[2 * n];
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; i++)
+            {
                 result[2 * i] = nums[i];
                 result[2 * i + 1] = nums[n + i];
             }
@@ -1647,12 +1950,14 @@ namespace WorkingWithStruct {
 
         #region Second Largest Digit in a String
 
-        public static int SecondHighest(string s) {
+        public static int SecondHighest(string s)
+        {
             int max = 0;
             int result = Int32.MinValue;
             HashSet<int> hs = new HashSet<int>();
 
-            for (int i = 0; i < s.Length; i++) {
+            for (int i = 0; i < s.Length; i++)
+            {
                 if (Char.IsDigit(s[i]))
                     hs.Add(s[i] - '0');
             }
@@ -1661,7 +1966,8 @@ namespace WorkingWithStruct {
 
             max = hs.Max();
 
-            foreach (var item in hs) {
+            foreach (var item in hs)
+            {
                 if (item < max && item > result)
                     result = item;
             }
@@ -1688,18 +1994,21 @@ namespace WorkingWithStruct {
 
         //s and goal will have length at most 100.
 
-        public static bool RotateString(string s, string goal) {
+        public static bool RotateString(string s, string goal)
+        {
             if (s.Length != goal.Length)
                 return false;
             if (s.Length == 0 && goal.Length == 0)
                 return true;
 
-            for (int i = 0; i < s.Length; i++) {
+            for (int i = 0; i < s.Length; i++)
+            {
                 var right = s.Substring(0, i);
 
                 var left = s.Substring(i);
 
-                if (string.Equals(goal, (left + right))) {
+                if (string.Equals(goal, (left + right)))
+                {
                     return true;
                 }
             }
@@ -1748,20 +2057,23 @@ namespace WorkingWithStruct {
 
         #region Ransom Note
 
-        public static bool CanConstruct(string ransomNote, string magazine) {
+        public static bool CanConstruct(string ransomNote, string magazine)
+        {
             Dictionary<char, int> mag = new Dictionary<char, int>();
 
             if (ransomNote.Length > magazine.Length)
                 return false;
 
-            for (int i = 0; i < magazine.Length; i++) {
+            for (int i = 0; i < magazine.Length; i++)
+            {
                 if (!mag.ContainsKey(magazine[i]))
                     mag.Add(magazine[i], 1);
                 else
                     mag[magazine[i]] += 1;
             }
 
-            for (int i = 0; i < ransomNote.Length; i++) {
+            for (int i = 0; i < ransomNote.Length; i++)
+            {
                 mag.TryGetValue(ransomNote[i], out int value);
 
                 if (value < 1)
@@ -1808,14 +2120,16 @@ namespace WorkingWithStruct {
         //The words in s are separated by a single space.
         //s contains no leading or trailing spaces.
 
-        public static string SortSentence(string s) {
+        public static string SortSentence(string s)
+        {
             string result = string.Empty;
 
             SortedDictionary<int, string> temp = new SortedDictionary<int, string>();
 
             string[] tempArr = s.Split(' ');
 
-            foreach (var item in tempArr) {
+            foreach (var item in tempArr)
+            {
                 string value = item.Substring(0, item.Length - 1);
                 int key = int.Parse((item.Substring(item.Length - 1)));
                 temp.Add(key, value);
@@ -1828,10 +2142,12 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Reverse Linked List
-        public static ListNode ReverseList(ListNode head) {
+        public static ListNode ReverseList(ListNode head)
+        {
             ListNode current = head;
             ListNode previous = new ListNode();
-            while (current != null) {
+            while (current != null)
+            {
                 ListNode nextNode = current.next;
                 current.next = previous;
                 previous.val = current.val;
@@ -1881,18 +2197,22 @@ namespace WorkingWithStruct {
 
         //1 <= s.length <= 1000
         //s contains lower-case English letters only.
-        public static IList<IList<int>> LargeGroupPositions(string s) {
+        public static IList<IList<int>> LargeGroupPositions(string s)
+        {
             int i = 0;
             var result = new List<IList<int>>();
 
-            while (i < s.Length) {
+            while (i < s.Length)
+            {
                 var tempChar = s[i];
                 var tempList = new List<int>();
-                while (i < s.Length && s[i].Equals(tempChar)) {
+                while (i < s.Length && s[i].Equals(tempChar))
+                {
                     tempList.Add(i++);
                 }
 
-                if (tempList.Count >= 3) {
+                if (tempList.Count >= 3)
+                {
                     result.Add(new List<int>() { tempList.First(), tempList.Last() });
                 }
             }
@@ -1903,10 +2223,12 @@ namespace WorkingWithStruct {
 
         #region Sign of the Product of an Array
 
-        public static int ArraySign(int[] nums) {
+        public static int ArraySign(int[] nums)
+        {
             int counter = 0;
 
-            foreach (var item in nums) {
+            foreach (var item in nums)
+            {
                 if (item == 0) return 0;
 
                 if (item < 0) counter++;
@@ -1919,10 +2241,12 @@ namespace WorkingWithStruct {
 
         #region Sum of Digits in Base K
 
-        public static int SumBase(int n, int k) {
+        public static int SumBase(int n, int k)
+        {
             int result = 0;
 
-            while (n > 0) {
+            while (n > 0)
+            {
                 result += n % k;
                 n /= k;
             }
@@ -1933,21 +2257,26 @@ namespace WorkingWithStruct {
 
         #region Count Odd Numbers in an Interval Range
 
-        public static int CountOdds(int low, int high) {
+        public static int CountOdds(int low, int high)
+        {
             int counter = 0;
 
-            if (low % 2 == 0 && high % 2 == 0) {
+            if (low % 2 == 0 && high % 2 == 0)
+            {
                 counter = (high - low) / 2;
             }
-            if (low % 2 != 0 && high % 2 != 0) {
+            if (low % 2 != 0 && high % 2 != 0)
+            {
                 counter = ((high - low) / 2) + 1;
             }
 
-            if (low % 2 == 0 && high % 2 != 0) {
+            if (low % 2 == 0 && high % 2 != 0)
+            {
                 counter = (high - (low - 1)) / 2;
             }
 
-            if (low % 2 != 0 && high % 2 == 0) {
+            if (low % 2 != 0 && high % 2 == 0)
+            {
                 counter = (high + 1 - low) / 2;
             }
 
@@ -1960,17 +2289,20 @@ namespace WorkingWithStruct {
 
         #region Jewels and Stones
 
-        public static int NumJewelsInStones(string J, string S) {
+        public static int NumJewelsInStones(string J, string S)
+        {
 
             int result = 0;
 
             Dictionary<char, int> hs = new Dictionary<char, int>();
 
-            foreach (char item in J) {
+            foreach (char item in J)
+            {
                 if (!hs.ContainsKey(item)) hs.Add(item, 0);
             }
 
-            foreach (char item in S) {
+            foreach (char item in S)
+            {
                 if (hs.ContainsKey(item)) result++;
             }
 
@@ -1981,11 +2313,13 @@ namespace WorkingWithStruct {
 
         #region Last Stone Weight
 
-        public static int LastStoneWeight(int[] stones) {
+        public static int LastStoneWeight(int[] stones)
+        {
             List<int> tempList = stones.ToList();
             tempList.Sort();
 
-            while (tempList.Count > 2) {
+            while (tempList.Count > 2)
+            {
                 int x = tempList.Last();
                 int y = tempList[tempList.Count - 2];
 
@@ -1993,17 +2327,20 @@ namespace WorkingWithStruct {
                 tempList.Remove(y);
 
 
-                if ((x - y) != 0) {
+                if ((x - y) != 0)
+                {
                     tempList.Add(x - y);
                 }
 
                 tempList.Sort();
             }
 
-            if (tempList.Count == 1) {
+            if (tempList.Count == 1)
+            {
                 return tempList.Last();
             }
-            else {
+            else
+            {
                 return tempList.Last() - tempList.First();
             }
 
@@ -2062,12 +2399,14 @@ namespace WorkingWithStruct {
         //1 <= nums.length <= 12
         //1 <= nums[i] <= 20
 
-        public static int SubsetXORSum(int[] nums) {
+        public static int SubsetXORSum(int[] nums)
+        {
             int result = 0;
 
             if (nums.Length == 0 || nums is null) return 0;
 
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
                 result += nums[i];
                 result += BitSum(nums, i, nums[i]);
             }
@@ -2075,10 +2414,12 @@ namespace WorkingWithStruct {
             return result;
         }
 
-        private static int BitSum(int[] nums, int currIdx, int xorValue) {
+        private static int BitSum(int[] nums, int currIdx, int xorValue)
+        {
             int result = 0;
 
-            for (int i = currIdx + 1; i < nums.Length; i++) {
+            for (int i = currIdx + 1; i < nums.Length; i++)
+            {
                 var tempValue = (xorValue ^ nums[i]);
                 result += tempValue;
                 result += BitSum(nums, i, tempValue);
@@ -2126,40 +2467,47 @@ namespace WorkingWithStruct {
 
         //-231 <= n <= 231 - 1
 
-        public static bool IsPowerOfTwo(int n) {
+        public static bool IsPowerOfTwo(int n)
+        {
             Console.WriteLine(n & (n - 1));
             return (n > 0) && ((n & (n - 1)) == 0);
         }
 
-        public static bool IsPowerOfThree(int n) {
+        public static bool IsPowerOfThree(int n)
+        {
             //double e = 1e-6;
             //return (Math.Log(n) / Math.Log(3) + e) % 1 <= 2 * e;
 
             return ((n > 0) && (1162261467 % n == 0));
         }
 
-        public bool IsPowerOfFour(int n) {
+        public bool IsPowerOfFour(int n)
+        {
             return n > 0 && ((n & (n - 1)) == 0) && (n & 0xAAAAAAAA) == 0;
         }
         #endregion
 
         #region  Pow(x, n)
 
-        public static double MyPow(double x, int n) {
+        public static double MyPow(double x, int n)
+        {
             if (n < 0)
                 return 1 / PowerOf(x, Math.Abs((long)n));
             else
                 return PowerOf(x, (long)n);
         }
 
-        private static double PowerOf(double x, long n) {
+        private static double PowerOf(double x, long n)
+        {
             if (n == 0) return 1;
 
-            if ((n & 1) == 0) {
+            if ((n & 1) == 0)
+            {
                 var value = PowerOf(x, n >> 1);
                 return value * value;
             }
-            else {
+            else
+            {
                 return x * PowerOf(x, n - 1);
             }
         }
@@ -2167,14 +2515,17 @@ namespace WorkingWithStruct {
 
         #region Path Crossing
 
-        public static bool IsPathCrossing(string path) {
+        public static bool IsPathCrossing(string path)
+        {
             int x = 0;
             int y = 0;
             HashSet<string> visited = new HashSet<string>();
 
             visited.Add($"{x},{y}");
-            foreach (char ch in path) {
-                switch (ch) {
+            foreach (char ch in path)
+            {
+                switch (ch)
+                {
                     case 'N':
                         y++;
                         break;
@@ -2199,7 +2550,8 @@ namespace WorkingWithStruct {
 
         #region Palindrome Partitioning
 
-        public static IList<IList<string>> Partition(string s) {
+        public static IList<IList<string>> Partition(string s)
+        {
             var result = new List<IList<string>>();
             if (string.IsNullOrEmpty(s))
                 return result;
@@ -2208,14 +2560,18 @@ namespace WorkingWithStruct {
 
         }
 
-        private static void Helper(string str, int start, List<IList<string>> result, IList<string> temp) {
-            if (start == str.Length) {
+        private static void Helper(string str, int start, List<IList<string>> result, IList<string> temp)
+        {
+            if (start == str.Length)
+            {
                 result.Add(new List<string>(temp));
                 return;
             }
 
-            for (int i = 1; i + start <= str.Length; i++) {
-                if (Reverse(str.Substring(start, i))) {
+            for (int i = 1; i + start <= str.Length; i++)
+            {
+                if (Reverse(str.Substring(start, i)))
+                {
                     temp.Add(str.Substring(start, i));
                     Helper(str, start + i, result, temp);
                     temp.RemoveAt(temp.Count - 1);
@@ -2223,11 +2579,13 @@ namespace WorkingWithStruct {
             }
         }
 
-        private static bool Reverse(string s) {
+        private static bool Reverse(string s)
+        {
             char[] chArr = s.ToCharArray();
             Array.Reverse(chArr);
             string reverse = new string(chArr);
-            if (s.Equals(reverse, StringComparison.OrdinalIgnoreCase)) {
+            if (s.Equals(reverse, StringComparison.OrdinalIgnoreCase))
+            {
                 return true;
             }
             return false;
@@ -2258,7 +2616,8 @@ namespace WorkingWithStruct {
 
         //0 <= x <= 231 - 1
 
-        public static int MySqrt(int x) {
+        public static int MySqrt(int x)
+        {
             long left = 0;
             long right = int.MaxValue / 2 + 1;
             long approx;
@@ -2267,7 +2626,8 @@ namespace WorkingWithStruct {
             if (x == 0) return 0;
             if (x == 1) return 1;
 
-            while (left < right) {
+            while (left < right)
+            {
                 middle = left + (right - left) / 2;
                 approx = middle * middle;
 
@@ -2304,7 +2664,8 @@ namespace WorkingWithStruct {
         //The given dates are valid dates between the years 1971 and 2100.
 
 
-        public static void DaysBetweenDates(string date1, string date2) {
+        public static void DaysBetweenDates(string date1, string date2)
+        {
             int daysCount;
 
             string[] fDateArr = date1.Split('-');
@@ -2324,18 +2685,23 @@ namespace WorkingWithStruct {
             #region w/o libs
             Console.WriteLine($"*----- Without DateTime struct -----*");
             Console.WriteLine();
-            if (Math.Abs(int.Parse(fDateArr[0]) - int.Parse(sDateArr[0])) > 2) {
+            if (Math.Abs(int.Parse(fDateArr[0]) - int.Parse(sDateArr[0])) > 2)
+            {
                 daysCount = DaysCount(date1) + DaysCount(date2);
-                for (int i = int.Parse(fDateArr[0]) + 1; i < int.Parse(sDateArr[0]); i++) {
-                    if (i % 4 == 0 || i % 400 == 0) {
+                for (int i = int.Parse(fDateArr[0]) + 1; i < int.Parse(sDateArr[0]); i++)
+                {
+                    if (i % 4 == 0 || i % 400 == 0)
+                    {
                         daysCount += 366;
                     }
-                    else {
+                    else
+                    {
                         daysCount += 365;
                     }
                 }
             }
-            else {
+            else
+            {
                 daysCount = DaysCount(date1) + DaysCount(date2);
             }
 
@@ -2343,7 +2709,8 @@ namespace WorkingWithStruct {
             #endregion
         }
 
-        private static int DaysCount(string date) {
+        private static int DaysCount(string date)
+        {
             int daysCount = 0;
             bool _IsLeapYear;
 
@@ -2356,7 +2723,8 @@ namespace WorkingWithStruct {
 
             bool temp = int.Parse(dateArr[0]) % 4 == 0 || int.Parse(dateArr[0]) % 400 == 0 ? _IsLeapYear = true : _IsLeapYear = false;
 
-            for (int i = 1; i <= int.Parse(dateArr[1]); i++) {
+            for (int i = 1; i <= int.Parse(dateArr[1]); i++)
+            {
                 daysCount += (int)(28 + (i + Math.Floor((decimal)i / 8)) % 2 + 2 % i + 2 * Math.Floor(1 / (decimal)i));
             }
 
@@ -2371,7 +2739,8 @@ namespace WorkingWithStruct {
 
         #region Determine Color of a Chessboard Square
 
-        public static bool SquareIsWhite(string coordinates) {
+        public static bool SquareIsWhite(string coordinates)
+        {
             int charCoord = coordinates[0] - '0';
             int digitCoord = coordinates[1];
 
@@ -2385,15 +2754,18 @@ namespace WorkingWithStruct {
 
         #region Check If Two String Arrays are Equivalent
 
-        public static bool ArrayStringsAreEqual(string[] word1, string[] word2) {
+        public static bool ArrayStringsAreEqual(string[] word1, string[] word2)
+        {
             StringBuilder fString = new StringBuilder();
             StringBuilder sString = new StringBuilder();
 
-            for (int i = 0; i < word1.Length; i++) {
+            for (int i = 0; i < word1.Length; i++)
+            {
                 fString.Append(word1[i]);
             }
 
-            for (int i = 0; i < word2.Length; i++) {
+            for (int i = 0; i < word2.Length; i++)
+            {
                 sString.Append(word2[i]);
             }
 
@@ -2410,14 +2782,16 @@ namespace WorkingWithStruct {
 
         #region Minimum Operations to Make the Array Increasing
 
-        public static int MinOperations(int[] nums) {
+        public static int MinOperations(int[] nums)
+        {
             int result = 0;
 
             if (nums.Length <= 1) return result;
 
             int previous = nums[0];
 
-            for (int i = 1; i < nums.Length; i++) {
+            for (int i = 1; i < nums.Length; i++)
+            {
                 int tempValue = 0;
                 if (nums[i] <= previous)
                     tempValue = previous - nums[i] + 1;
@@ -2456,10 +2830,12 @@ namespace WorkingWithStruct {
         //0 <= nums[i] < 10000
         //nums.length is even
 
-        public static int RepeatedNTimes(int[] nums) {
+        public static int RepeatedNTimes(int[] nums)
+        {
             Dictionary<int, int> ht = new Dictionary<int, int>();
 
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
                 if (!ht.ContainsKey(nums[i]))
                     ht.Add(nums[i], 1);
                 else
@@ -2497,10 +2873,12 @@ namespace WorkingWithStruct {
         //1 <= arr.length <= 1000
         //-1000 <= arr[i] <= 1000
 
-        public static bool UniqueOccurrences(int[] arr) {
+        public static bool UniqueOccurrences(int[] arr)
+        {
             Dictionary<int, int> ht = new Dictionary<int, int>();
 
-            for (int i = 0; i < arr.Length; i++) {
+            for (int i = 0; i < arr.Length; i++)
+            {
                 if (!ht.ContainsKey(arr[i]))
                     ht.Add(arr[i], 1);
                 else
@@ -2550,10 +2928,12 @@ namespace WorkingWithStruct {
         //0 <= timeSeries[i], duration <= 107
         //timeSeries is sorted in non-decreasing order.
 
-        public static int FindPoisonedDuration(int[] timeSeries, int duration) {
+        public static int FindPoisonedDuration(int[] timeSeries, int duration)
+        {
             int seconds = 0;
 
-            for (int i = 0; i < timeSeries.Length - 1; i++) {
+            for (int i = 0; i < timeSeries.Length - 1; i++)
+            {
                 int tempValue = timeSeries[i + 1] - timeSeries[i];
                 if (tempValue >= duration)
                     seconds += duration;
@@ -2601,10 +2981,12 @@ namespace WorkingWithStruct {
         //-3 * 104 <= nums[i] <= 3 * 104
         //Each element in the array appears twice except for one element which appears only once.
 
-        public static int SingleNumber(int[] nums) {
+        public static int SingleNumber(int[] nums)
+        {
             Dictionary<int, int> ht = new Dictionary<int, int>();
 
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
                 if (!ht.ContainsKey(nums[i]))
                     ht.Add(nums[i], 1);
                 else
@@ -2654,18 +3036,22 @@ namespace WorkingWithStruct {
         //t.length == s.length + 1
         //s and t consist of lower-case English letters.
 
-        public static char FindTheDifference(string s, string t) {
+        public static char FindTheDifference(string s, string t)
+        {
             Dictionary<char, int> ht = new Dictionary<char, int>();
 
-            for (int i = 0; i < t.Length; i++) {
+            for (int i = 0; i < t.Length; i++)
+            {
                 if (!ht.ContainsKey(t[i]))
                     ht.Add(t[i], 1);
                 else
                     ht[t[i]] += 1;
             }
 
-            for (int i = 0; i < s.Length; i++) {
-                if (ht.ContainsKey(s[i])) {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (ht.ContainsKey(s[i]))
+                {
                     ht[s[i]] -= 1;
                 }
             }
@@ -2677,12 +3063,14 @@ namespace WorkingWithStruct {
 
         #region Arranging Coins
 
-        public static int ArrangeCoins(int n) {
+        public static int ArrangeCoins(int n)
+        {
             int k = 0;
 
             if (n == 1) return 1;
 
-            while (n > k) {
+            while (n > k)
+            {
                 k++;
                 n -= k;
             }
@@ -2694,12 +3082,14 @@ namespace WorkingWithStruct {
 
         #region Find the Town Judge
 
-        public static int FindJudge(int n, int[][] trust) {
+        public static int FindJudge(int n, int[][] trust)
+        {
             if (n == 1 && trust.Length == 0) return 1;
 
             Dictionary<int, int> dict = new Dictionary<int, int>();
 
-            for (var i = 0; i < trust.Length; i++) {
+            for (var i = 0; i < trust.Length; i++)
+            {
                 dict[trust[i][1]] = dict.ContainsKey(trust[i][1]) ? dict[trust[i][1]] + 1 : 1;
             }
 
@@ -2707,7 +3097,8 @@ namespace WorkingWithStruct {
 
             var judge = dict.First(d => d.Value == n - 1).Key;
 
-            for (var i = 0; i < trust.Length; i++) {
+            for (var i = 0; i < trust.Length; i++)
+            {
                 if (trust[i][0] == judge) return -1;
             }
 
@@ -2718,14 +3109,18 @@ namespace WorkingWithStruct {
 
         #region Number of Steps to Reduce a Number to Zero
 
-        public static int NumberOfSteps(int num) {
+        public static int NumberOfSteps(int num)
+        {
             int steps = 0;
 
-            while (num > 0) {
-                if (num % 2 == 0) {
+            while (num > 0)
+            {
+                if (num % 2 == 0)
+                {
                     num /= 2;
                 }
-                else {
+                else
+                {
                     num--;
                 }
                 steps++;
@@ -2738,7 +3133,8 @@ namespace WorkingWithStruct {
 
         #region Candy
 
-        public static int Candy(int[] ratings) {
+        public static int Candy(int[] ratings)
+        {
             if (ratings is null) return 0;
 
             if (ratings.Length == 1) return 2;
@@ -2753,17 +3149,21 @@ namespace WorkingWithStruct {
         #region TopInterviewQuestionsEasy
         #region Rotate Array
 
-        public static void Rotate(int[] nums, int k) {
-            for (int i = 0; i < k; i++) {
+        public static void Rotate(int[] nums, int k)
+        {
+            for (int i = 0; i < k; i++)
+            {
                 Helper(nums);
             }
 
-            foreach (var item in nums) {
+            foreach (var item in nums)
+            {
                 Console.Write($"{item} ");
             }
         }
 
-        static void Helper(int[] arr) {
+        static void Helper(int[] arr)
+        {
             int temp = arr[arr.Length - 1];
             for (int i = arr.Length - 1; i > 0; i--)
                 arr[i] = arr[i - 1];
@@ -2776,7 +3176,8 @@ namespace WorkingWithStruct {
 
         #region MyRegion
 
-        public static int MaximumUnits(int[][] boxTypes, int truckSize) {
+        public static int MaximumUnits(int[][] boxTypes, int truckSize)
+        {
             int result = 0;
 
             if (boxTypes == null || boxTypes.Length == 0) return 0;
@@ -2785,7 +3186,8 @@ namespace WorkingWithStruct {
 
             int i = 0;
 
-            while (truckSize > 0 && i < boxTypes.Length) {
+            while (truckSize > 0 && i < boxTypes.Length)
+            {
                 int count = Math.Min(truckSize, boxTypes[i][0]);
                 result += count * boxTypes[i][1];
                 truckSize -= count;
@@ -2799,11 +3201,14 @@ namespace WorkingWithStruct {
 
         #region Number of Students Doing Homework at a Given Time
 
-        public static int BusyStudent(int[] startTime, int[] endTime, int queryTime) {
+        public static int BusyStudent(int[] startTime, int[] endTime, int queryTime)
+        {
             int counter = 0;
 
-            for (int i = 0; i < startTime.Length; i++) {
-                if (startTime[i] <= queryTime && endTime[i] >= queryTime) {
+            for (int i = 0; i < startTime.Length; i++)
+            {
+                if (startTime[i] <= queryTime && endTime[i] >= queryTime)
+                {
                     counter++;
                 }
 
@@ -2816,11 +3221,13 @@ namespace WorkingWithStruct {
 
         #region Maximum Number of Coins You Can Get
 
-        public static int MaxCoins(int[] piles) {
+        public static int MaxCoins(int[] piles)
+        {
             Array.Sort(piles);
 
             int result = 0;
-            for (int i = piles.Length / 3; i < piles.Length; i += 2) {
+            for (int i = piles.Length / 3; i < piles.Length; i += 2)
+            {
                 result += piles[i];
             }
 
@@ -2831,11 +3238,14 @@ namespace WorkingWithStruct {
 
         #region Check If a Word Occurs As a Prefix of Any Word in a Sentence
 
-        public static int IsPrefixOfWord(string sentence, string searchWord) {
+        public static int IsPrefixOfWord(string sentence, string searchWord)
+        {
             string[] tempArr = sentence.Split(' ');
 
-            for (int i = 0; i < tempArr.Length; i++) {
-                if (tempArr[i].StartsWith(searchWord)) {
+            for (int i = 0; i < tempArr.Length; i++)
+            {
+                if (tempArr[i].StartsWith(searchWord))
+                {
                     return i + 1;
                 }
 
@@ -2848,17 +3258,21 @@ namespace WorkingWithStruct {
 
         #region Latest Time by Replacing Hidden Digits
 
-        public static string MaximumTime(string time) {
+        public static string MaximumTime(string time)
+        {
             char[] tempArr = time.ToCharArray();
 
-            if (tempArr[0] == '?' && tempArr[1] == '?') {
+            if (tempArr[0] == '?' && tempArr[1] == '?')
+            {
                 tempArr[0] = '2';
                 tempArr[1] = '3';
             }
-            else if (tempArr[0] == '?' && tempArr[1] != '?') {
+            else if (tempArr[0] == '?' && tempArr[1] != '?')
+            {
                 tempArr[0] = tempArr[1] <= '3' ? '2' : '1';
             }
-            else if (tempArr[0] != '?' && tempArr[1] == '?') {
+            else if (tempArr[0] != '?' && tempArr[1] == '?')
+            {
                 tempArr[1] = tempArr[0] <= '1' ? '9' : '3';
             }
 
@@ -2877,18 +3291,22 @@ namespace WorkingWithStruct {
 
         #region Count of Matches in Tournament
 
-        public static int NumberOfMatches(int n) {
+        public static int NumberOfMatches(int n)
+        {
             int sum = 0;
 
             if (n == 1) return sum;
 
-            while (n != 1) {
+            while (n != 1)
+            {
                 sum += n / 2;
 
-                if (n % 2 == 1) {
+                if (n % 2 == 1)
+                {
                     n = (n / 2) + 1;
                 }
-                else {
+                else
+                {
                     n = (n / 2);
                 }
             }
@@ -2900,10 +3318,12 @@ namespace WorkingWithStruct {
 
         #region Truncate Sentence
 
-        public static string TruncateSentence(string s, int k) {
+        public static string TruncateSentence(string s, int k)
+        {
             int idx = 0;
 
-            while (k > 0) {
+            while (k > 0)
+            {
                 int index = s.IndexOf(' ', idx);
 
                 if (index == -1) return s;
@@ -2920,18 +3340,22 @@ namespace WorkingWithStruct {
 
         #region Maximum Nesting Depth of the Parentheses
 
-        public static int MaxDepth(string s) {
+        public static int MaxDepth(string s)
+        {
             int result = 0;
             bool isPair = false;
 
             Stack<char> sign = new Stack<char>();
 
-            foreach (var item in s.ToCharArray()) {
-                if (item == '(') {
+            foreach (var item in s.ToCharArray())
+            {
+                if (item == '(')
+                {
                     isPair = true;
                     sign.Push('(');
                 }
-                else if (item == ')') {
+                else if (item == ')')
+                {
                     result = Math.Max(result, sign.Count);
                     sign.Pop();
                 }
@@ -2945,32 +3369,41 @@ namespace WorkingWithStruct {
 
         #region Subrectangle Queries
 
-        public class SubrectangleQueries {
+        public class SubrectangleQueries
+        {
 
             private int[][] _Rect;
 
-            public SubrectangleQueries(int[][] rectangle) {
+            public SubrectangleQueries(int[][] rectangle)
+            {
                 _Rect = rectangle;
             }
 
-            public void UpdateSubrectangle(int row1, int col1, int row2, int col2, int newValue) {
-                for (int i = row1; i <= row2; i++) {
-                    for (int j = col1; j <= col2; j++) {
+            public void UpdateSubrectangle(int row1, int col1, int row2, int col2, int newValue)
+            {
+                for (int i = row1; i <= row2; i++)
+                {
+                    for (int j = col1; j <= col2; j++)
+                    {
                         _Rect[i][j] = newValue;
                     }
                 }
             }
 
-            public int GetValue(int row, int col) {
+            public int GetValue(int row, int col)
+            {
                 //if (_Rect.Length < row || _Rect[row].Length < col)
                 //    throw new IndexOutOfRangeException();
 
                 return _Rect[row][col];
             }
 
-            public void PrintMatrix() {
-                for (int i = 0; i < _Rect.Length; i++) {
-                    for (int j = 0; j < _Rect[i].Length; j++) {
+            public void PrintMatrix()
+            {
+                for (int i = 0; i < _Rect.Length; i++)
+                {
+                    for (int j = 0; j < _Rect[i].Length; j++)
+                    {
                         Console.Write($"{_Rect[i][j]} ");
                     }
                     Console.WriteLine();
@@ -2982,9 +3415,11 @@ namespace WorkingWithStruct {
 
         #region Partitioning Into Minimum Number Of Deci-Binary Numbers
 
-        public static int MinPartitions(string n) {
+        public static int MinPartitions(string n)
+        {
             int maxValue = 0;
-            foreach (var ch in n) {
+            foreach (var ch in n)
+            {
                 maxValue = Math.Max(maxValue, ch - '0');
             }
             return maxValue;
@@ -2994,7 +3429,8 @@ namespace WorkingWithStruct {
 
         #region Longer Contiguous Segments of Ones than Zeros
 
-        public static bool CheckZeroOnes(string s) {
+        public static bool CheckZeroOnes(string s)
+        {
             int valueOne = 0;
             int valueZero = 0;
             int maxValueOfOnes = 0;
@@ -3002,14 +3438,17 @@ namespace WorkingWithStruct {
 
             int i = 0;
 
-            while (i < s.Length) {
-                if (s[i] == '1') {
+            while (i < s.Length)
+            {
+                if (s[i] == '1')
+                {
                     valueOne++;
                     maxValueOfOnes = Math.Max(maxValueOfOnes, valueOne);
                     valueZero = 0;
                     i++;
                 }
-                else if (s[i] == '0') {
+                else if (s[i] == '0')
+                {
                     valueZero++;
                     maxValueOfZeros = Math.Max(maxValueOfZeros, valueZero);
                     valueOne = 0;
@@ -3023,7 +3462,8 @@ namespace WorkingWithStruct {
 
         #region To Lower Case
 
-        public static string ToLowerCase(string s) {
+        public static string ToLowerCase(string s)
+        {
             // C# string ToLower;
             //return s.ToLower();
 
@@ -3033,11 +3473,14 @@ namespace WorkingWithStruct {
             // string
             string str = string.Empty;
 
-            while (i < s.Length) {
-                if (s[i] >= 65 && s[i] <= 90) {
+            while (i < s.Length)
+            {
+                if (s[i] >= 65 && s[i] <= 90)
+                {
                     str += (char)(s[i] + 32);
                 }
-                else {
+                else
+                {
                     str += s[i];
                 }
 
@@ -3066,10 +3509,12 @@ namespace WorkingWithStruct {
 
         #region Encode and Decode TinyURL
 
-        public class Codec {
+        public class Codec
+        {
 
             //// Encodes a URL to a shortened URL
-            public string encode(string longUrl) {
+            public string encode(string longUrl)
+            {
                 int idx = GetIndex(longUrl);
 
                 string firstPart = longUrl.Substring(0, idx);
@@ -3080,7 +3525,8 @@ namespace WorkingWithStruct {
             }
 
             //// Decodes a shortened URL to its original URL.
-            public string decode(string shortUrl) {
+            public string decode(string shortUrl)
+            {
                 int idx = GetIndex(shortUrl);
 
                 string firstPart = shortUrl.Substring(0, idx);
@@ -3090,11 +3536,13 @@ namespace WorkingWithStruct {
             }
 
 
-            private static int GetIndex(string value) {
+            private static int GetIndex(string value)
+            {
                 int idx = 0;
                 int k = 3;
 
-                while (k > 0) {
+                while (k > 0)
+                {
                     int index = value.IndexOf('/', idx);
                     k--;
                     idx = index + 1;
@@ -3103,9 +3551,11 @@ namespace WorkingWithStruct {
                 return idx;
             }
 
-            private static string HexToAscII(string hex) {
+            private static string HexToAscII(string hex)
+            {
                 StringBuilder ascii = new StringBuilder();
-                for (int i = 0; i < hex.Length; i += 2) {
+                for (int i = 0; i < hex.Length; i += 2)
+                {
                     string tempString = hex.Substring(i, 2);
                     ascii.Append(Convert.ToChar(Convert.ToUInt32(tempString, 16)));
                 }
@@ -3113,10 +3563,12 @@ namespace WorkingWithStruct {
                 return ascii.ToString();
             }
 
-            private static string AscIIToHex(string value) {
+            private static string AscIIToHex(string value)
+            {
                 StringBuilder hex = new StringBuilder();
 
-                for (int i = 0; i < value.Length; i++) {
+                for (int i = 0; i < value.Length; i++)
+                {
                     string temp = string.Format("{0:X}", (int)value[i]);
                     hex.Append(temp);
                 }
@@ -3129,12 +3581,16 @@ namespace WorkingWithStruct {
 
         #region Island Perimeter
 
-        public static int IslandPerimeter(int[][] grid) {
+        public static int IslandPerimeter(int[][] grid)
+        {
             int perimeter = 0;
 
-            for (int i = 0; i < grid.Length; i++) {
-                for (int j = 0; j < grid[i].Length; j++) {
-                    if (grid[i][j] == 1) {
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+                    if (grid[i][j] == 1)
+                    {
                         int sideCount = 4;
                         sideCount -= i - 1 >= 0 && grid[i - 1][j] == 1 ? 1 : 0;
                         sideCount -= i + 1 < grid.Length && grid[i + 1][j] == 1 ? 1 : 0;
@@ -3152,13 +3608,15 @@ namespace WorkingWithStruct {
 
         #region Thousand Separator
 
-        public static string ThousandSeparator(int n) {
+        public static string ThousandSeparator(int n)
+        {
             StringBuilder res = new StringBuilder(n.ToString());
             int i = res.Length - 4;
 
             if (res.Length < 4) return res.ToString();
 
-            while (i >= 0) {
+            while (i >= 0)
+            {
                 res.Insert(i + 1, '.');
                 i -= 3;
             }
@@ -3170,12 +3628,16 @@ namespace WorkingWithStruct {
 
 
         #region Queries on Number of Points Inside a Circle
-        public static int[] CountPoints(int[][] points, int[][] queries) {
+        public static int[] CountPoints(int[][] points, int[][] queries)
+        {
             int[] result = new int[queries.Length];
 
-            for (int i = 0; i < queries.Length; i++) {
-                for (int j = 0; j < points.Length; j++) {
-                    if (Math.Pow((points[j][0] - queries[i][0]), 2) + Math.Pow((points[j][1] - queries[i][1]), 2) <= Math.Pow(queries[i][2], 2)) {
+            for (int i = 0; i < queries.Length; i++)
+            {
+                for (int j = 0; j < points.Length; j++)
+                {
+                    if (Math.Pow((points[j][0] - queries[i][0]), 2) + Math.Pow((points[j][1] - queries[i][1]), 2) <= Math.Pow(queries[i][2], 2))
+                    {
                         result[i]++;
                     }
                 }
@@ -3187,23 +3649,28 @@ namespace WorkingWithStruct {
 
         #region Goal Parser Interpretation
 
-        public static string Interpret(string command) {
+        public static string Interpret(string command)
+        {
             int idx = 0;
 
             StringBuilder sb = new StringBuilder();
 
-            while (idx < command.Length) {
-                if (command[idx] == 'G') {
+            while (idx < command.Length)
+            {
+                if (command[idx] == 'G')
+                {
                     sb.Append(command[idx]);
                     idx++;
                     continue;
                 }
-                if (command[idx] == '(' && command[idx + 1] == ')') {
+                if (command[idx] == '(' && command[idx + 1] == ')')
+                {
                     sb.Append('o');
                     idx += 2;
                     continue;
                 }
-                if (command[idx] == '(' && command[idx + 1] == 'a') {
+                if (command[idx] == '(' && command[idx + 1] == 'a')
+                {
                     sb.Append("al");
                     idx += 4;
                     continue;
@@ -3217,20 +3684,25 @@ namespace WorkingWithStruct {
 
         #region Detect Capital
 
-        public static bool DetectCapitalUse(string word) {
+        public static bool DetectCapitalUse(string word)
+        {
             int ucount = 0;
 
             bool l = false;
 
-            for (int i = 0; i < word.Length; i++) {
-                if (i > 0 && l) {
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (i > 0 && l)
+                {
                     if (Char.IsUpper(word[i])) return false;
                 }
                 if (ucount > 1 && Char.IsLower(word[i])) return false;
-                if (Char.IsUpper(word[i])) {
+                if (Char.IsUpper(word[i]))
+                {
                     ucount++;
                 }
-                else {
+                else
+                {
                     l = true;
                 }
             }
@@ -3241,25 +3713,31 @@ namespace WorkingWithStruct {
 
         #region Minimum Index Sum of Two Lists
 
-        public static string[] FindRestaurant(string[] list1, string[] list2) {
+        public static string[] FindRestaurant(string[] list1, string[] list2)
+        {
             List<string> temp = new List<string>();
             Dictionary<string, int> keyValues = new Dictionary<string, int>();
             Dictionary<string, int> hm = new Dictionary<string, int>();
 
-            for (int i = 0; i < list1.Length; i++) {
+            for (int i = 0; i < list1.Length; i++)
+            {
                 hm.Add(list1[i], i);
             }
 
-            for (int i = 0; i < list2.Length; i++) {
-                if (hm.ContainsKey(list2[i])) {
+            for (int i = 0; i < list2.Length; i++)
+            {
+                if (hm.ContainsKey(list2[i]))
+                {
                     keyValues.Add(list2[i], hm[list2[i]] + i);
                 }
             }
 
             var minValue = keyValues.OrderBy(kvp => kvp.Value).First();
 
-            foreach (var item in keyValues) {
-                if (item.Value == minValue.Value) {
+            foreach (var item in keyValues)
+            {
+                if (item.Value == minValue.Value)
+                {
                     temp.Add(item.Key);
                 }
             }
@@ -3271,31 +3749,39 @@ namespace WorkingWithStruct {
 
         #region Maximum Population Year
 
-        public static int MaximumPopulation(int[][] logs) {
+        public static int MaximumPopulation(int[][] logs)
+        {
             int valuesSum = 0;
             int maxCount = 0;
             int result = 0;
             Dictionary<int, int> hm = new Dictionary<int, int>();
 
-            foreach (var item in logs) {
-                if (!hm.ContainsKey(item[0])) {
+            foreach (var item in logs)
+            {
+                if (!hm.ContainsKey(item[0]))
+                {
                     hm[item[0]] = 1;
                 }
-                else {
+                else
+                {
                     hm[item[0]]++;
                 }
 
-                if (!hm.ContainsKey(item[1])) {
+                if (!hm.ContainsKey(item[1]))
+                {
                     hm[item[1]] = -1;
                 }
-                else {
+                else
+                {
                     hm[item[1]]--;
                 }
             }
 
-            foreach (var item in hm.OrderBy(x => x.Key)) {
+            foreach (var item in hm.OrderBy(x => x.Key))
+            {
                 valuesSum += item.Value;
-                if (valuesSum > maxCount) {
+                if (valuesSum > maxCount)
+                {
                     maxCount = valuesSum;
                     result = item.Key;
                 }
@@ -3309,24 +3795,30 @@ namespace WorkingWithStruct {
 
         #region Number of Matching Subsequences
 
-        public static int NumMatchingSubseq(string s, string[] words) {
+        public static int NumMatchingSubseq(string s, string[] words)
+        {
             int count = 0;
             int k = 0;
 
             Dictionary<string, int> hm = new Dictionary<string, int>();
 
-            while (k < words.Length) {
-                if (!hm.ContainsKey(words[k])) {
+            while (k < words.Length)
+            {
+                if (!hm.ContainsKey(words[k]))
+                {
                     hm[words[k]] = 0;
                 }
-                else {
+                else
+                {
                     hm[words[k]]++;
                 }
                 k++;
             }
 
-            foreach (var item in hm) {
-                if (IsSub(item.Key, s)) {
+            foreach (var item in hm)
+            {
+                if (IsSub(item.Key, s))
+                {
                     count = count + item.Value + 1;
                 }
             }
@@ -3334,10 +3826,12 @@ namespace WorkingWithStruct {
             return count;
         }
 
-        public static bool IsSub(string s, string t) {
+        public static bool IsSub(string s, string t)
+        {
             int j = 0;
 
-            for (int i = 0; i < t.Length && j < s.Length; i++) {
+            for (int i = 0; i < t.Length && j < s.Length; i++)
+            {
                 if (s[j] == t[i])
                     j++;
             }
@@ -3349,7 +3843,8 @@ namespace WorkingWithStruct {
 
         #region Maximum Product of Two Elements in an Array
 
-        public static int MaxProduct(int[] nums) {
+        public static int MaxProduct(int[] nums)
+        {
             Array.Sort(nums);
 
             return ((nums[nums.Length - 1] - 1) * (nums[nums.Length - 2] - 1));
@@ -3358,15 +3853,18 @@ namespace WorkingWithStruct {
 
         #region License Key Formatting
 
-        public static string LicenseKeyFormatting(string s, int k) {
+        public static string LicenseKeyFormatting(string s, int k)
+        {
             StringBuilder sb = new StringBuilder();
 
             string tempValue = s.Replace("-", string.Empty).ToUpper();
 
-            if (tempValue.Length % k == 0) {
+            if (tempValue.Length % k == 0)
+            {
                 int i = tempValue.Length / k;
                 int idx = 0;
-                while (i > 0) {
+                while (i > 0)
+                {
                     sb.Append(tempValue.Substring(idx, k));
                     idx += k;
                     i--;
@@ -3374,16 +3872,19 @@ namespace WorkingWithStruct {
                 }
             }
 
-            if (tempValue.Length % k != 0) {
+            if (tempValue.Length % k != 0)
+            {
                 int i = tempValue.Length / k;
                 if (i == 0) sb.Append(tempValue);
                 int idx = tempValue.Length - k;
-                while (i > 0) {
+                while (i > 0)
+                {
                     sb.Insert(0, tempValue.Substring(idx, k));
                     idx -= k;
                     i--;
                     if (i != 0) sb.Insert(0, "-");
-                    if (i == 0) {
+                    if (i == 0)
+                    {
                         int value = tempValue.Length - (sb.Length - tempValue.Length / k);
                         sb.Insert(0, "-");
                         sb.Insert(0, tempValue.Substring(0, value - 1));
@@ -3398,17 +3899,21 @@ namespace WorkingWithStruct {
 
         #region Number Of Rectangles That Can Form The Largest Square
 
-        public static int CountGoodRectangles(int[][] rectangles) {
+        public static int CountGoodRectangles(int[][] rectangles)
+        {
             int result = 0;
 
             HashSet<int> hs = new HashSet<int>();
 
-            for (int i = 0; i < rectangles.Length; i++) {
+            for (int i = 0; i < rectangles.Length; i++)
+            {
                 hs.Add(rectangles[i].Min());
             }
 
-            for (int i = 0; i < rectangles.Length; i++) {
-                if (hs.Max() == rectangles[i].Min()) {
+            for (int i = 0; i < rectangles.Length; i++)
+            {
+                if (hs.Max() == rectangles[i].Min())
+                {
                     result++;
                 }
             }
@@ -3419,18 +3924,22 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Longest Continuous Increasing Subsequence
-        public static int FindLengthOfLCIS(int[] nums) {
+        public static int FindLengthOfLCIS(int[] nums)
+        {
             int idx = 0;
             int result = 1;
             int tempValue = 1;
 
-            while (idx < nums.Length - 1) {
-                if (nums[idx] < nums[idx + 1]) {
+            while (idx < nums.Length - 1)
+            {
+                if (nums[idx] < nums[idx + 1])
+                {
 
                     tempValue++;
                     result = Math.Max(tempValue, result);
                 }
-                else {
+                else
+                {
                     tempValue = 1;
                 }
                 idx++;
@@ -3442,10 +3951,13 @@ namespace WorkingWithStruct {
 
         #region Remove All Adjacent Duplicates In String
 
-        public static string RemoveDuplicates(string s) {
+        public static string RemoveDuplicates(string s)
+        {
             int i = 0;
-            while (i < s.Length - 1) {
-                if (s[i].Equals(s[i + 1])) {
+            while (i < s.Length - 1)
+            {
+                if (s[i].Equals(s[i + 1]))
+                {
                     s = s.Remove(i, 2);
                     i = -1;
                 }
@@ -3458,14 +3970,17 @@ namespace WorkingWithStruct {
 
         #region Max Consecutive Ones III
 
-        public static int LongestOnes(int[] nums, int k) {
+        public static int LongestOnes(int[] nums, int k)
+        {
 
             int zeroCount = 0;
             int l = 0;
             int maxLen = 0;
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
                 if (nums[i] == 0) zeroCount++;
-                while (zeroCount > k) {
+                while (zeroCount > k)
+                {
                     if (nums[l] == 0) zeroCount--;
                     l++;
                 }
@@ -3479,7 +3994,8 @@ namespace WorkingWithStruct {
 
         #region Third Maximum Number
 
-        public static int ThirdMax(int[] nums) {
+        public static int ThirdMax(int[] nums)
+        {
             SortedSet<int> hs = new SortedSet<int>(nums);
 
             return hs.Count < 3 ? hs.LastOrDefault() : hs.ElementAt(hs.Count - 3);
@@ -3508,42 +4024,52 @@ namespace WorkingWithStruct {
 
         #region Design Parking System
 
-        public class ParkingSystem {
+        public class ParkingSystem
+        {
 
             public int Big { get; set; }
             public int Medium { get; set; }
             public int Small { get; set; }
 
-            public ParkingSystem(int big, int medium, int small) {
+            public ParkingSystem(int big, int medium, int small)
+            {
                 Big = big;
                 Medium = medium;
                 Small = small;
             }
 
-            public bool AddCar(int carType) {
-                switch (carType) {
+            public bool AddCar(int carType)
+            {
+                switch (carType)
+                {
                     case 1:
-                        if (Big > 0) {
+                        if (Big > 0)
+                        {
                             Big--;
                             return true;
                         }
-                        else {
+                        else
+                        {
                             return false;
                         }
                     case 2:
-                        if (Medium > 0) {
+                        if (Medium > 0)
+                        {
                             Medium--;
                             return true;
                         }
-                        else {
+                        else
+                        {
                             return false;
                         }
                     case 3:
-                        if (Small > 0) {
+                        if (Small > 0)
+                        {
                             Small--;
                             return true;
                         }
-                        else {
+                        else
+                        {
                             return false;
                         }
                 }
@@ -3555,7 +4081,8 @@ namespace WorkingWithStruct {
 
         #region Count Primes
 
-        public static int CountPrimes(int n) {
+        public static int CountPrimes(int n)
+        {
             //var numbers = new List<uint>();
 
             //for (uint i = 2; i < n; i++)
@@ -3575,8 +4102,10 @@ namespace WorkingWithStruct {
 
             bool[] dp = new bool[n];
             Array.Fill(dp, true);
-            for (int i = 2; i * i < n; i++) {
-                if (dp[i]) {
+            for (int i = 2; i * i < n; i++)
+            {
+                if (dp[i])
+                {
                     for (int j = i * i; j < n; j += i)
                         dp[j] = false;
                 }
@@ -3584,7 +4113,8 @@ namespace WorkingWithStruct {
 
             int result = 0;
 
-            for (int i = 2; i < n; i++) {
+            for (int i = 2; i < n; i++)
+            {
                 if (dp[i])
                     result++;
             }
@@ -3596,22 +4126,28 @@ namespace WorkingWithStruct {
 
         #region MyRegion
 
-        public static int FindLHS(int[] nums) {
+        public static int FindLHS(int[] nums)
+        {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             int result = 0;
 
 
-            for (int i = 0; i < nums.Length; i++) {
-                if (keyValuePairs.ContainsKey(nums[i])) {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (keyValuePairs.ContainsKey(nums[i]))
+                {
                     keyValuePairs[nums[i]]++;
                 }
-                else {
+                else
+                {
                     keyValuePairs.Add(nums[i], 1);
                 }
             }
 
-            foreach (var item in keyValuePairs) {
-                if (keyValuePairs.ContainsKey(item.Key - 1)) {
+            foreach (var item in keyValuePairs)
+            {
+                if (keyValuePairs.ContainsKey(item.Key - 1))
+                {
                     int currCnt = keyValuePairs[item.Key] + keyValuePairs[item.Key - 1];
                     result = Math.Max(result, currCnt);
                 }
@@ -3624,25 +4160,31 @@ namespace WorkingWithStruct {
 
         #region Valid Palindrome II
 
-        public static bool ValidPalindrome(string s) {
+        public static bool ValidPalindrome(string s)
+        {
             int left = 0;
             int right = s.Length - 1;
             int tempValue = 0;
 
-            while (left < right) {
-                if (s[left] != s[right]) {
-                    if (tempValue == 0) {
+            while (left < right)
+            {
+                if (s[left] != s[right])
+                {
+                    if (tempValue == 0)
+                    {
                         left += 1;
                         tempValue += 1;
                         continue;
                     }
-                    else if (tempValue == 1) {
+                    else if (tempValue == 1)
+                    {
                         left -= 1;
                         right -= 1;
                         tempValue += 1;
                         continue;
                     }
-                    else {
+                    else
+                    {
                         return false;
                     }
                 }
@@ -3658,7 +4200,8 @@ namespace WorkingWithStruct {
 
         #region Valid Palindrome
 
-        public static bool IsPalindrome(string s) {
+        public static bool IsPalindrome(string s)
+        {
             string pattern = @"[^0-9a-zA-Z]+";
             string target = String.Empty;
             Regex regex = new Regex(pattern);
@@ -3667,7 +4210,8 @@ namespace WorkingWithStruct {
             int left = 0;
             int right = s.Length - 1;
 
-            while (true) {
+            while (true)
+            {
                 if (left > right) return true;
 
                 if (char.ToLower(s[left]) != char.ToLower(s[right])) return false;
@@ -3709,19 +4253,23 @@ namespace WorkingWithStruct {
 
         #region Determine if String Halves Are Alike
 
-        public static bool HalvesAreAlike(string s) {
+        public static bool HalvesAreAlike(string s)
+        {
             int left = 0;
             int right = s.Length - 1;
             int counterLeft = 0;
             int counterRight = 0;
             HashSet<char> hs = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u' };
 
-            while (left < right) {
-                if (hs.Contains(char.ToLower(s[left]))) {
+            while (left < right)
+            {
+                if (hs.Contains(char.ToLower(s[left])))
+                {
                     counterLeft++;
                 }
 
-                if (hs.Contains(char.ToLower(s[right]))) {
+                if (hs.Contains(char.ToLower(s[right])))
+                {
                     counterRight++;
                 }
 
@@ -3736,7 +4284,8 @@ namespace WorkingWithStruct {
 
         #region Add Strings
 
-        public static string AddStrings(string num1, string num2) {
+        public static string AddStrings(string num1, string num2)
+        {
             int i = num1.Length - 1;
             int j = num2.Length - 1;
             int shift = 0;
@@ -3745,19 +4294,24 @@ namespace WorkingWithStruct {
 
             StringBuilder sb = new StringBuilder();
 
-            while (i >= 0 || j >= 0 || shift == 1) {
+            while (i >= 0 || j >= 0 || shift == 1)
+            {
 
-                if (i < 0) {
+                if (i < 0)
+                {
                     digit1 = 0;
                 }
-                else {
+                else
+                {
                     digit1 = num1[i] - '0';
                 }
 
-                if (j < 0) {
+                if (j < 0)
+                {
                     digit2 = 0;
                 }
-                else {
+                else
+                {
                     digit2 = num2[j] - '0';
                 }
 
@@ -3780,22 +4334,28 @@ namespace WorkingWithStruct {
 
         #region First Unique Character in a String
 
-        public static int FirstUniqChar(string s) {
+        public static int FirstUniqChar(string s)
+        {
             Dictionary<char, int> hm = new Dictionary<char, int>();
             StringBuilder stringBuilder = new StringBuilder();
 
 
-            for (int i = 0; i < s.Length; i++) {
-                if (!hm.ContainsKey(s[i])) {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!hm.ContainsKey(s[i]))
+                {
                     hm[s[i]] = 1;
                 }
-                else {
+                else
+                {
                     hm[s[i]]++;
                 }
             }
 
-            foreach (var item in hm) {
-                if (item.Value == 1) {
+            foreach (var item in hm)
+            {
+                if (item.Value == 1)
+                {
                     stringBuilder.Append(item.Key);
                 }
             }
@@ -3815,15 +4375,19 @@ namespace WorkingWithStruct {
 
         #region Count the Number of Consistent Strings
 
-        public static int CountConsistentStrings(string allowed, string[] words) {
+        public static int CountConsistentStrings(string allowed, string[] words)
+        {
 
             HashSet<char> hs = new HashSet<char>(allowed);
             int count = 0;
             int idx = 0;
 
-            while (idx < words.Length) {
-                for (int i = 0; i < words[idx].Length; i++) {
-                    if (!hs.Contains(words[idx][i])) {
+            while (idx < words.Length)
+            {
+                for (int i = 0; i < words[idx].Length; i++)
+                {
+                    if (!hs.Contains(words[idx][i]))
+                    {
                         count--;
                         break;
                     }
@@ -3839,12 +4403,14 @@ namespace WorkingWithStruct {
 
         #region Build Array from Permutation
 
-        public static int[] BuildArray(int[] nums) {
+        public static int[] BuildArray(int[] nums)
+        {
             int[] result = new int[nums.Length];
 
             int idx = 0;
 
-            while (idx < nums.Length) {
+            while (idx < nums.Length)
+            {
 
                 result[idx] = nums[nums[idx]];
                 idx++;
@@ -3856,11 +4422,13 @@ namespace WorkingWithStruct {
 
         #region Concatenation of Array
 
-        public static int[] GetConcatenation(int[] nums) {
+        public static int[] GetConcatenation(int[] nums)
+        {
             int[] result = new int[nums.Length * 2];
             int idx = 0;
 
-            while (idx < nums.Length) {
+            while (idx < nums.Length)
+            {
                 result[idx] = nums[idx];
 
                 result[idx + nums.Length] = nums[idx];
@@ -3875,11 +4443,13 @@ namespace WorkingWithStruct {
 
         #region Subtract the Product and Sum of Digits of an Integer
 
-        public static int SubtractProductAndSum(int n) {
+        public static int SubtractProductAndSum(int n)
+        {
             int prodValue = 1;
             int sumValue = 0;
 
-            while (n > 0) {
+            while (n > 0)
+            {
                 int tempValue = n % 10;
                 prodValue *= tempValue;
                 sumValue += tempValue;
@@ -3893,16 +4463,20 @@ namespace WorkingWithStruct {
 
         #region Check if All Characters Have Equal Number of Occurrences
 
-        public static bool AreOccurrencesEqual(string s) {
+        public static bool AreOccurrencesEqual(string s)
+        {
             Dictionary<char, int> hm = new Dictionary<char, int>();
 
             int idx = 0;
 
-            while (idx < s.Length) {
-                if (!hm.ContainsKey(s[idx])) {
+            while (idx < s.Length)
+            {
+                if (!hm.ContainsKey(s[idx]))
+                {
                     hm.Add(s[idx], 1);
                 }
-                else {
+                else
+                {
                     hm[s[idx]]++;
                 }
 
@@ -3910,8 +4484,10 @@ namespace WorkingWithStruct {
             }
 
 
-            foreach (var item in hm) {
-                if (item.Value > 0 && item.Value != hm[s[0]]) {
+            foreach (var item in hm)
+            {
+                if (item.Value > 0 && item.Value != hm[s[0]])
+                {
                     return false;
                 }
             }
@@ -3923,9 +4499,11 @@ namespace WorkingWithStruct {
 
         #region Substrings of Size Three with Distinct Characters
 
-        public static int CountGoodSubstrings(string s) {
+        public static int CountGoodSubstrings(string s)
+        {
             int result = 0;
-            for (int i = 1; i < s.Length - 1; i++) {
+            for (int i = 1; i < s.Length - 1; i++)
+            {
                 if (s[i - 1] != s[i] && s[i] != s[i + 1] && s[i - 1] != s[i + 1])
                     result++;
             }
@@ -3939,14 +4517,17 @@ namespace WorkingWithStruct {
 
         #region Beautiful Array
 
-        public static void BeautifulArray(int n) {
+        public static void BeautifulArray(int n)
+        {
             int[] result = new int[n];
 
-            for (int i = 0; i < result.Length; i++) {
+            for (int i = 0; i < result.Length; i++)
+            {
                 result[i] = i + 1;
             }
 
-            for (int i = 0; i < result.Length; i++) {
+            for (int i = 0; i < result.Length; i++)
+            {
                 Console.WriteLine(result[i]);
             }
         }
@@ -3955,12 +4536,14 @@ namespace WorkingWithStruct {
 
         #region Mean of Array After Removing Some Elements
 
-        public static double TrimMean(int[] arr) {
+        public static double TrimMean(int[] arr)
+        {
             Array.Sort(arr);
             double sum = 0;
             int count = 0;
 
-            for (int i = (int)(arr.Length * 0.05); i < arr.Length - (int)(arr.Length * 0.05); i++) {
+            for (int i = (int)(arr.Length * 0.05); i < arr.Length - (int)(arr.Length * 0.05); i++)
+            {
                 sum += arr[i];
                 count++;
             }
@@ -3972,18 +4555,22 @@ namespace WorkingWithStruct {
 
         #region Sum of Digits of String After Convert
 
-        public static int GetLucky(string s, int k) {
+        public static int GetLucky(string s, int k)
+        {
             int tempValue;
             int result = 0;
 
-            foreach (var item in s) {
+            foreach (var item in s)
+            {
                 tempValue = item - 'a' + 1;
                 result += tempValue / 10 + tempValue % 10;
             }
 
-            while (k > 1) {
+            while (k > 1)
+            {
                 int transform = 0;
-                while (result > 0) {
+                while (result > 0)
+                {
                     transform += result % 10;
                     result /= 10;
                 }
@@ -3999,11 +4586,13 @@ namespace WorkingWithStruct {
 
         #region Maximum Repeating Substring
 
-        public static int MaxRepeating(string sequence, string word) {
+        public static int MaxRepeating(string sequence, string word)
+        {
             int result = 0;
             string tempString = word;
 
-            while (sequence.IndexOf(tempString) != -1) {
+            while (sequence.IndexOf(tempString) != -1)
+            {
                 tempString += word;
                 result++;
             }
@@ -4015,13 +4604,16 @@ namespace WorkingWithStruct {
 
         #region Remove One Element to Make the Array Strictly Increasing
 
-        public static bool CanBeIncreasing(int[] nums) {
+        public static bool CanBeIncreasing(int[] nums)
+        {
             int count = 0;
 
-            for (int i = 1; i < nums.Length; i++) {
+            for (int i = 1; i < nums.Length; i++)
+            {
                 if (nums[i] <= nums[i - 1])
                     count++;
-                if (i >= 2 && nums[i - 2] >= nums[i]) {
+                if (i >= 2 && nums[i - 2] >= nums[i])
+                {
                     nums[i] = nums[i - 1];
                 }
                 if (count > 1)
@@ -4036,12 +4628,15 @@ namespace WorkingWithStruct {
 
         #region Create Target Array in the Given Order
 
-        public static int[] CreateTargetArray(int[] nums, int[] index) {
+        public static int[] CreateTargetArray(int[] nums, int[] index)
+        {
             int[] target = new int[nums.Length];
 
-            for (int i = 0; i < nums.Length; i++) {
+            for (int i = 0; i < nums.Length; i++)
+            {
 
-                for (int j = nums.Length - 1; j > index[i]; j--) {
+                for (int j = nums.Length - 1; j > index[i]; j--)
+                {
                     target[j] = target[j - 1];
 
                 }
@@ -4056,7 +4651,8 @@ namespace WorkingWithStruct {
 
         #region Unique Morse Code Words
 
-        public static int UniqueMorseRepresentations(string[] words) {
+        public static int UniqueMorseRepresentations(string[] words)
+        {
             #region With HashMap
             //Dictionary<string, int> hm = new Dictionary<string, int>();
 
@@ -4092,7 +4688,8 @@ namespace WorkingWithStruct {
             #region With HashSet
             HashSet<string> hs = new HashSet<string>();
 
-            for (int i = 0; i < words.Length; i++) {
+            for (int i = 0; i < words.Length; i++)
+            {
                 string tempStr = ConvertToMorse(words[i]);
 
                 hs.Add(tempStr);
@@ -4102,7 +4699,8 @@ namespace WorkingWithStruct {
             #endregion
         }
 
-        private static string ConvertToMorse(string word) {
+        private static string ConvertToMorse(string word)
+        {
             string[] morseCode = { ".-", "-...", "-.-.", "-..",
                 ".", "..-.", "--.", "....", "..", ".---", "-.-",
                 ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
@@ -4111,7 +4709,8 @@ namespace WorkingWithStruct {
 
             StringBuilder morseConv = new StringBuilder();
 
-            for (int i = 0; i < word.Length; i++) {
+            for (int i = 0; i < word.Length; i++)
+            {
                 morseConv.Append(morseCode[word[i] - 'a']);
             }
 
@@ -4122,10 +4721,12 @@ namespace WorkingWithStruct {
 
         #region Excel Sheet Column Title
 
-        public static string ConvertToTitle(int columnNumber) {
+        public static string ConvertToTitle(int columnNumber)
+        {
             string result = string.Empty;
 
-            while (columnNumber > 0) {
+            while (columnNumber > 0)
+            {
                 columnNumber -= 1;
                 int tempValue = columnNumber % 26;
                 char tempChar = (char)('A' + tempValue);
@@ -4140,7 +4741,8 @@ namespace WorkingWithStruct {
 
         #region Isomorphic Strings
 
-        public static bool IsIsomorphic(string s, string t) {
+        public static bool IsIsomorphic(string s, string t)
+        {
             Dictionary<char, int> hashMapS = new Dictionary<char, int>();
             Dictionary<char, int> hashMapT = new Dictionary<char, int>();
 
@@ -4149,12 +4751,15 @@ namespace WorkingWithStruct {
 
             int idx = 0;
 
-            while (idx < s.Length) {
-                if (!hashMapS.ContainsKey(s[idx])) {
+            while (idx < s.Length)
+            {
+                if (!hashMapS.ContainsKey(s[idx]))
+                {
                     hashMapS[s[idx]] = idx;
                 }
 
-                if (!hashMapT.ContainsKey(t[idx])) {
+                if (!hashMapT.ContainsKey(t[idx]))
+                {
                     hashMapT[t[idx]] = idx;
                 }
 
@@ -4173,11 +4778,13 @@ namespace WorkingWithStruct {
         #endregion
 
         #region Valid Perfect Square
-        public static bool IsPerfectSquare(int num) {
+        public static bool IsPerfectSquare(int num)
+        {
             long left = 1;
             long right = num;
 
-            while (left <= right) {
+            while (left <= right)
+            {
                 var middle = left + (right - left) / 2;
                 if (middle * middle == num)
                     return true;
@@ -4192,7 +4799,8 @@ namespace WorkingWithStruct {
 
         #region Distribute Candies
 
-        public static int DistributeCandies(int[] candyType) {
+        public static int DistributeCandies(int[] candyType)
+        {
             HashSet<int> hs = new HashSet<int>(candyType);
 
             return Math.Min(candyType.Length / 2, hs.Count);
@@ -4202,12 +4810,14 @@ namespace WorkingWithStruct {
 
         #region Reverse String
 
-        public static void ReverseString(char[] s) {
+        public static void ReverseString(char[] s)
+        {
             int left = 0;
             int right = s.Length - 1;
             char tempChar;
 
-            while (left < right) {
+            while (left < right)
+            {
                 tempChar = s[right];
                 s[right] = s[left];
                 s[left] = tempChar;
@@ -4221,12 +4831,14 @@ namespace WorkingWithStruct {
 
         #region Reverse Words in a String III
 
-        public static string ReverseWords(string s) {
+        public static string ReverseWords(string s)
+        {
             string[] subs = s.Split(' ');
             StringBuilder stringBuilder = new StringBuilder();
             int idx = 0;
 
-            while (idx < subs.Length) {
+            while (idx < subs.Length)
+            {
                 stringBuilder.Append(ReverseStr(subs[idx].ToCharArray()));
                 stringBuilder.Append(' ');
                 idx++;
@@ -4235,12 +4847,14 @@ namespace WorkingWithStruct {
             return stringBuilder.ToString().Trim();
         }
 
-        private static string ReverseStr(char[] s) {
+        private static string ReverseStr(char[] s)
+        {
             int left = 0;
             int right = s.Length - 1;
             char tempChar;
 
-            while (left < right) {
+            while (left < right)
+            {
                 tempChar = s[right];
                 s[right] = s[left];
                 s[left] = tempChar;
@@ -4255,15 +4869,18 @@ namespace WorkingWithStruct {
 
         #region Reverse String II
 
-        public static string ReverseStr(string s, int k) {
+        public static string ReverseStr(string s, int k)
+        {
             char[] result = s.ToCharArray();
             int idx = 0;
 
-            while (idx < result.Length) {
+            while (idx < result.Length)
+            {
                 int left = idx;
                 int right = Math.Min(idx + k - 1, result.Length - 1);
 
-                while (left <= right) {
+                while (left <= right)
+                {
                     char tempChar = result[right];
                     result[right] = result[left];
                     result[left] = tempChar;
@@ -4282,7 +4899,8 @@ namespace WorkingWithStruct {
 
         #region Maximum Number of Words You Can Type
 
-        public static int CanBeTypedWords(string text, string brokenLetters) {
+        public static int CanBeTypedWords(string text, string brokenLetters)
+        {
             #region w/o string array
             /*
              *  Runtime: 72 ms, faster than 92.27% of C# online submissions for Maximum Number of Words You Can Type.
@@ -4347,12 +4965,15 @@ namespace WorkingWithStruct {
 
             if (brokenLetters is null) return count;
 
-            for (int i = 0; i < words.Length; i++) {
+            for (int i = 0; i < words.Length; i++)
+            {
                 int left = 0;
                 int right = words[i].Length - 1;
 
-                while (left <= right) {
-                    if (hs.Contains(words[i][left]) || hs.Contains(words[i][right])) {
+                while (left <= right)
+                {
+                    if (hs.Contains(words[i][left]) || hs.Contains(words[i][right]))
+                    {
                         count--;
                         break;
                     }
@@ -4369,7 +4990,8 @@ namespace WorkingWithStruct {
 
         #region Maximum Product Difference Between Two Pairs
 
-        public static int MaxProductDifference(int[] nums) {
+        public static int MaxProductDifference(int[] nums)
+        {
             Array.Sort(nums);
 
             return (nums[nums.Length - 1] * nums[nums.Length - 2]) - ((nums[0] * nums[1]));
@@ -4379,18 +5001,23 @@ namespace WorkingWithStruct {
 
         #region Check if All the Integers in a Range Are Covered
 
-        public static bool IsCovered(int[][] ranges, int left, int right) {
+        public static bool IsCovered(int[][] ranges, int left, int right)
+        {
             HashSet<int> hs = new HashSet<int>();
 
-            for (int i = left; i <= right; i++) {
+            for (int i = left; i <= right; i++)
+            {
                 hs.Add(i);
             }
 
-            for (int i = 0; i < ranges.Length; i++) {
-                for (int j = ranges[i][0]; j <= ranges[i][1]; j++) {
+            for (int i = 0; i < ranges.Length; i++)
+            {
+                for (int j = ranges[i][0]; j <= ranges[i][1]; j++)
+                {
                     hs.Remove(j);
                 }
-                if (hs.Count == 0) {
+                if (hs.Count == 0)
+                {
                     return true;
                 }
             }
@@ -4402,7 +5029,8 @@ namespace WorkingWithStruct {
 
         #region Delete Characters to Make Fancy String
 
-        public static string MakeFancyString(string s) {
+        public static string MakeFancyString(string s)
+        {
             //for (int i = 0; i < s.Length - 1; i++)
             //{
             //    int counter = 1;
@@ -4431,14 +5059,18 @@ namespace WorkingWithStruct {
             int counter = 0;
             char tempchar = ' ';
 
-            for (int i = 0; i < s.Length; i++) {
-                if (s[i] != tempchar) {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] != tempchar)
+                {
                     stringBuilder.Append(s[i]);
                     tempchar = s[i];
                     counter = 1;
                 }
-                else if (s[i] == tempchar) {
-                    if (counter < 2) {
+                else if (s[i] == tempchar)
+                {
+                    if (counter < 2)
+                    {
                         stringBuilder.Append(s[i]);
                         counter++;
                     }
@@ -4452,27 +5084,33 @@ namespace WorkingWithStruct {
 
         #region Shortest Distance to a Character
 
-        public static int[] ShortestToChar(string s, char c) {
+        public static int[] ShortestToChar(string s, char c)
+        {
             int[] ans = new int[s.Length];
 
             List<int> hs = new List<int>();
 
-            for (int i = 0; i < s.Length; i++) {
-                if (s.IndexOf(c, i) != -1) {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s.IndexOf(c, i) != -1)
+                {
                     int startIdx = s.IndexOf(c, i);
                     int endIdx = s.IndexOf(c, startIdx + 1);
                     int tempValue;
 
-                    if (endIdx == -1) {
+                    if (endIdx == -1)
+                    {
                         tempValue = (s.Length - 1) - startIdx;
                     }
-                    else {
+                    else
+                    {
                         tempValue = endIdx - startIdx;
                     }
 
                     hs.Add(startIdx);
 
-                    for (int j = 0; j <= tempValue; j++) {
+                    for (int j = 0; j <= tempValue; j++)
+                    {
                         ans[startIdx] = j;
                         startIdx++;
                     }
@@ -4480,16 +5118,21 @@ namespace WorkingWithStruct {
                 }
             }
 
-            while (hs.Count > 0) {
+            while (hs.Count > 0)
+            {
                 int startIdx = hs[hs.Count - 1];
 
-                if (hs.Count < 2) {
-                    for (int j = 0; j < startIdx; j++) {
+                if (hs.Count < 2)
+                {
+                    for (int j = 0; j < startIdx; j++)
+                    {
                         ans[j] = startIdx - j;
                     }
                 }
-                else {
-                    for (int j = hs[hs.Count - 2]; j < startIdx; j++) {
+                else
+                {
+                    for (int j = hs[hs.Count - 2]; j < startIdx; j++)
+                    {
                         ans[j] = Math.Min(ans[j], startIdx - j);
                     }
                 }
@@ -4502,23 +5145,29 @@ namespace WorkingWithStruct {
 
         #region Redistribute Characters to Make All Strings Equal
 
-        public static bool MakeEqual(string[] words) {
+        public static bool MakeEqual(string[] words)
+        {
             if (words.Length == 1) return true;
 
             Dictionary<char, int> ht = new Dictionary<char, int>();
 
-            for (int i = 0; i < words.Length; i++) {
-                for (int j = 0; j < words[i].Length; j++) {
-                    if (!ht.ContainsKey(words[i][j])) {
+            for (int i = 0; i < words.Length; i++)
+            {
+                for (int j = 0; j < words[i].Length; j++)
+                {
+                    if (!ht.ContainsKey(words[i][j]))
+                    {
                         ht[words[i][j]] = 1;
                     }
-                    else {
+                    else
+                    {
                         ht[words[i][j]]++;
                     }
                 }
             }
 
-            foreach (var item in ht) {
+            foreach (var item in ht)
+            {
                 if (item.Value % words.Length != 0)
                     return false;
             }
@@ -4530,7 +5179,8 @@ namespace WorkingWithStruct {
 
         #region Get Maximum in Generated Array
 
-        public static int GetMaximumGenerated(int n) {
+        public static int GetMaximumGenerated(int n)
+        {
 
             if (n <= 0)
                 return 0;
@@ -4540,7 +5190,8 @@ namespace WorkingWithStruct {
             arr[0] = 0;
             arr[1] = 1;
 
-            for (int i = 1; i < arr.Length / 2; i++) {
+            for (int i = 1; i < arr.Length / 2; i++)
+            {
                 arr[i * 2] = arr[i];
                 arr[i * 2 + 1] = arr[i] + arr[i + 1];
             }
@@ -4552,11 +5203,14 @@ namespace WorkingWithStruct {
 
         #region Minimum Distance to the Target Element
 
-        public static int GetMinDistance(int[] nums, int target, int start) {
+        public static int GetMinDistance(int[] nums, int target, int start)
+        {
             int i = 0;
             int min = int.MaxValue;
-            while (i < nums.Length) {
-                if (nums[i] == target) {
+            while (i < nums.Length)
+            {
+                if (nums[i] == target)
+                {
                     min = Math.Min(min, Math.Abs(i - start));
                 }
                 i++;
@@ -4568,10 +5222,12 @@ namespace WorkingWithStruct {
 
         #region Split a String in Balanced Strings
 
-        public static int BalancedStringSplit(string s) {
+        public static int BalancedStringSplit(string s)
+        {
             int counter = 0;
             int result = 0;
-            foreach (var c in s) {
+            foreach (var c in s)
+            {
                 if (c.Equals('R'))
                     counter++;
                 else
@@ -4587,11 +5243,14 @@ namespace WorkingWithStruct {
 
         #region Largest Odd Number in Stringon
 
-        public static string LargestOddNumber(string num) {
+        public static string LargestOddNumber(string num)
+        {
             int idx = num.Length - 1;
 
-            while (idx >= 0) {
-                if ((num[idx] - '0') % 2 != 0) {
+            while (idx >= 0)
+            {
+                if ((num[idx] - '0') % 2 != 0)
+                {
                     return num.Substring(0, idx + 1);
                 }
                 idx--;
@@ -4604,7 +5263,8 @@ namespace WorkingWithStruct {
 
         #region Check if Word Equals Summation of Two Words
 
-        public static bool IsSumEqual(string firstWord, string secondWord, string targetWord) {
+        public static bool IsSumEqual(string firstWord, string secondWord, string targetWord)
+        {
             int firstNumericValue = ConvertToInt(firstWord);
             int secondNumericValue = ConvertToInt(secondWord);
             int thirdNumericValue = ConvertToInt(targetWord);
@@ -4612,11 +5272,13 @@ namespace WorkingWithStruct {
             return (firstNumericValue + secondNumericValue) == thirdNumericValue ? true : false;
         }
 
-        private static int ConvertToInt(string value) {
+        private static int ConvertToInt(string value)
+        {
             int idx = 0;
             StringBuilder stringBuilder = new StringBuilder();
 
-            while (idx < value.Length) {
+            while (idx < value.Length)
+            {
                 stringBuilder.Append((value[idx] - 'a'));
                 idx++;
             }
@@ -4628,14 +5290,17 @@ namespace WorkingWithStruct {
 
         #region Fizz Buzz
 
-        public static IList<string> FizzBuzz(int n) {
+        public static IList<string> FizzBuzz(int n)
+        {
             string firstPart = "Fizz";
             string secondPart = "Buzz";
             var result = new List<string>();
             int idx = 1;
 
-            while (idx <= n) {
-                switch (idx % 3) {
+            while (idx <= n)
+            {
+                switch (idx % 3)
+                {
                     case 0 when idx % 5 == 0:
                         result.Add(string.Concat(firstPart, secondPart));
                         break;
@@ -4643,10 +5308,12 @@ namespace WorkingWithStruct {
                         result.Add(firstPart);
                         break;
                     default:
-                        if (idx % 5 == 0) {
+                        if (idx % 5 == 0)
+                        {
                             result.Add(secondPart);
                         }
-                        else {
+                        else
+                        {
                             result.Add(idx.ToString());
                         }
 
@@ -4663,7 +5330,8 @@ namespace WorkingWithStruct {
 
         #region Check if Binary String Has at Most One Segment of Ones
 
-        public static bool CheckOnesSegment(string s) {
+        public static bool CheckOnesSegment(string s)
+        {
             return s.IndexOf("01") == -1;
         }
 
@@ -4671,7 +5339,8 @@ namespace WorkingWithStruct {
 
         #region Find Center of Star Graph
 
-        public static int FindCenter(int[][] edges) {
+        public static int FindCenter(int[][] edges)
+        {
             return edges[0].Intersect(edges[1]).First();
         }
 
@@ -4679,7 +5348,8 @@ namespace WorkingWithStruct {
 
         #region Flipping an Image
 
-        public static int[][] FlipAndInvertImage(int[][] image) {
+        public static int[][] FlipAndInvertImage(int[][] image)
+        {
             return image.Select(x => x.Reverse().Select(y => y ^ 1).ToArray()).ToArray();
         }
 
@@ -4687,16 +5357,20 @@ namespace WorkingWithStruct {
 
         #region Slowest Key
 
-        public static char SlowestKey(int[] releaseTimes, string keysPressed) {
+        public static char SlowestKey(int[] releaseTimes, string keysPressed)
+        {
             Dictionary<char, int> ht = new Dictionary<char, int>();
 
             ht[keysPressed[0]] = releaseTimes[0];
 
-            for (int i = 1; i < keysPressed.Length; i++) {
-                if (!ht.ContainsKey(keysPressed[i])) {
+            for (int i = 1; i < keysPressed.Length; i++)
+            {
+                if (!ht.ContainsKey(keysPressed[i]))
+                {
                     ht[keysPressed[i]] = releaseTimes[i] - releaseTimes[i - 1];
                 }
-                else {
+                else
+                {
                     ht[keysPressed[i]] = Math.Max(ht[keysPressed[i]], (releaseTimes[i] - releaseTimes[i - 1]));
                 }
             }
@@ -4707,14 +5381,17 @@ namespace WorkingWithStruct {
 
         #region Find Greatest Common Divisor of Array
 
-        public static int FindGCD(int[] nums) {
+        public static int FindGCD(int[] nums)
+        {
             Array.Sort(nums);
 
             return GCD(nums[nums.Length - 1], nums[0]);
         }
 
-        private static int GCD(int a, int b) {
-            while (b != 0) {
+        private static int GCD(int a, int b)
+        {
+            while (b != 0)
+            {
                 var temp = b;
                 b = a % b;
                 a = temp;
@@ -4725,26 +5402,32 @@ namespace WorkingWithStruct {
 
         #region Sort Array by Increasing Frequency
 
-        public static int[] FrequencySort(int[] nums) {
+        public static int[] FrequencySort(int[] nums)
+        {
             Dictionary<int, int> ht = new Dictionary<int, int>();
             int[] result = new int[nums.Length];
             int idx = 0;
             int j = 0;
 
-            while (idx < nums.Length) {
-                if (!ht.ContainsKey(nums[idx])) {
+            while (idx < nums.Length)
+            {
+                if (!ht.ContainsKey(nums[idx]))
+                {
                     ht[nums[idx]] = 1;
                 }
-                else {
+                else
+                {
                     ht[nums[idx]]++;
                 }
 
                 idx++;
             }
 
-            foreach (var item in ht.OrderBy(x => x.Value).ThenByDescending(key => key.Key)) {
+            foreach (var item in ht.OrderBy(x => x.Value).ThenByDescending(key => key.Key))
+            {
                 int i = 0;
-                while (i < item.Value) {
+                while (i < item.Value)
+                {
                     result[j] = item.Key;
                     j++;
                     i++;
@@ -4758,7 +5441,8 @@ namespace WorkingWithStruct {
 
         #region Make The String Great
 
-        public static string MakeGood(string s) {
+        public static string MakeGood(string s)
+        {
             StringBuilder stringBuilder = new StringBuilder();
             Stack<char> ac = new Stack<char>();
 
@@ -4766,18 +5450,22 @@ namespace WorkingWithStruct {
 
             int idx = 0;
 
-            while (idx < s.Length) {
-                if (ac.Count > 0 && Math.Abs(ac.Peek() - s[idx]) == 32) {
+            while (idx < s.Length)
+            {
+                if (ac.Count > 0 && Math.Abs(ac.Peek() - s[idx]) == 32)
+                {
                     ac.Pop();
                 }
-                else {
+                else
+                {
                     ac.Push(s[idx]);
                 }
 
                 idx++;
             }
 
-            while (ac.Count > 0) {
+            while (ac.Count > 0)
+            {
                 stringBuilder.Insert(0, ac.Pop());
             }
 
@@ -4788,11 +5476,14 @@ namespace WorkingWithStruct {
 
         #region test
 
-        public static List<int> PrimeFactors(int value) {
+        public static List<int> PrimeFactors(int value)
+        {
             List<int> primes = new List<int>();
 
-            for (int i = 2; i <= value; i++) {
-                while (value % i == 0) {
+            for (int i = 2; i <= value; i++)
+            {
+                while (value % i == 0)
+                {
                     primes.Add(i);
                     value /= i;
                 }
@@ -4801,7 +5492,8 @@ namespace WorkingWithStruct {
             return primes;
         }
 
-        public static bool IsPerfect(int number) {
+        public static bool IsPerfect(int number)
+        {
             bool flag = false;
 
             List<int> tempList = Digits(number);
@@ -4811,27 +5503,33 @@ namespace WorkingWithStruct {
             return flag;
         }
 
-        private static List<int> Digits(int number) {
+        private static List<int> Digits(int number)
+        {
             List<int> list = new List<int>();
-            while (number > 0) {
+            while (number > 0)
+            {
                 list.Add(number % 10);
                 number /= 10;
             }
             return list;
         }
 
-        private static int DigitalRoot(int number, int numBase) {
-            while (number > 9) {
+        private static int DigitalRoot(int number, int numBase)
+        {
+            while (number > 9)
+            {
                 number = DigitalSum(number, numBase);
             }
 
             return number;
         }
 
-        private static int DigitalSum(int number, int numBase) {
+        private static int DigitalSum(int number, int numBase)
+        {
             int sum = 0;
 
-            while (number > 0) {
+            while (number > 0)
+            {
                 sum += number % numBase;
                 number /= numBase;
             }
