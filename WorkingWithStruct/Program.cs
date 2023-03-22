@@ -25,16 +25,17 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string result = "551";
-            char digit = '5';
+            string result = "2998589353917872714814599237991174513476623756395992135212546127959342974628712329595771672911914471";
+            char digit = '3';
             int i = 0;
-            int max = int.MinValue;
+            double max = double.MinValue;
             int idx;
             string tmpString = string.Empty;
+            double tmpRes;
 
             while (i < result.Length)
             {
-                //idx = result.IndexOf(digit,i);
+                //idx = result.IndexOf(digit, i);
 
                 //if (idx == 0)
                 //{
@@ -49,11 +50,13 @@ namespace WorkingWithStruct
                 //if (idx > 0 && idx < result.Length - 1)
                 //{
                 //    tmpString = result.Substring(0, idx) + result.Substring(idx + 1);
-                //    i++; 
+                //    i++;
                 //}
 
 
                 i = result.IndexOf(digit, i);
+
+                if (i == -1) break;
 
                 if (i == 0)
                 {
@@ -70,11 +73,12 @@ namespace WorkingWithStruct
                     tmpString = result.Substring(0, i) + result.Substring(i + 1);
                     i++;
                 }
+                
 
-                max = Math.Max(max, Int32.Parse(tmpString));
+                max = Math.Max(max, Convert.ToDouble(tmpString));
             }
 
-            Console.WriteLine(max);
+            Console.WriteLine(String.Format("{0:f0}",max));
 
         }
 
@@ -82,13 +86,37 @@ namespace WorkingWithStruct
 
         public static string RemoveDigit(string number, char digit)
         {
-            string result = string.Empty;
+            int i = 0;
+            double max = double.MinValue;
+            string tmpString = string.Empty;
 
+            while (i < number.Length)
+            {
 
+                i = number.IndexOf(digit, i);
 
+                if (i == -1) break;
 
+                if (i == 0)
+                {
+                    tmpString = number.Substring(i + 1);
+                    i++;
+                }
+                else if (i == number.Length - 1)
+                {
+                    tmpString = number.Substring(0, i);
+                    i++;
+                }
+                else if (i > 0 && i < number.Length - 1)
+                {
+                    tmpString = number.Substring(0, i) + number.Substring(i + 1);
+                    i++;
+                }
 
-            return result;
+                max = Math.Max(max, Convert.ToDouble(tmpString));
+            }
+
+            return String.Format("{0:f0}", max);
         }
 
         #endregion
