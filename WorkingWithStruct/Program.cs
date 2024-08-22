@@ -25,62 +25,73 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string result = "2998589353917872714814599237991174513476623756395992135212546127959342974628712329595771672911914471";
-            char digit = '3';
-            int i = 0;
-            double max = double.MinValue;
-            int idx;
-            string tmpString = string.Empty;
-            double tmpRes;
+            string s = "hello";
 
-            while (i < result.Length)
+            //Console.WriteLine(s.Trim().Split(' ').Length);
+
+            Console.WriteLine(CharsTudaSuda(s));
+        }
+
+        #region test
+
+        public static string CharsTudaSuda(string s)
+        {
+            string result = string.Empty;
+
+            for (int i = 0; i < s.Length; i++)
             {
-                //idx = result.IndexOf(digit, i);
+                if ((s[i] >= 'a' || s[i] <= 'z') && char.IsLower(s[i]))
+                    result += (char)('z' - s[i] + 'a');
 
-                //if (idx == 0)
-                //{
-                //    tmpString = result.Substring(idx + 1);
-                //    i += idx + 1;
-                //}
-                //if (idx == result.Length - 1)
-                //{
-                //    tmpString = result.Substring(0, idx);
-                //    i++;
-                //}
-                //if (idx > 0 && idx < result.Length - 1)
-                //{
-                //    tmpString = result.Substring(0, idx) + result.Substring(idx + 1);
-                //    i++;
-                //}
-
-
-                i = result.IndexOf(digit, i);
-
-                if (i == -1) break;
-
-                if (i == 0)
-                {
-                    tmpString = result.Substring(i + 1);
-                    i++;
-                }
-                else if (i == result.Length - 1)
-                {
-                    tmpString = result.Substring(0, i);
-                    i++;
-                }
-                else if (i > 0 && i < result.Length - 1)
-                {
-                    tmpString = result.Substring(0, i) + result.Substring(i + 1);
-                    i++;
-                }
-                
-
-                max = Math.Max(max, Convert.ToDouble(tmpString));
+                if ((s[i] >= 'A' || s[i] <= 'Z') && char.IsUpper(s[i]))
+                    result += (char)('Z' - s[i] + 'A');
             }
 
-            Console.WriteLine(String.Format("{0:f0}",max));
-
+            return result;
         }
+
+        #endregion
+
+
+
+        #region 459. Repeated Substring Pattern
+
+        public static bool RepeatedSubstringPattern(string s)
+        {
+            bool res = false;
+
+
+
+            return res;
+        }
+
+        #endregion
+
+        #region 434. Number of Segments in a String
+
+        public static int CountSegments(string s)
+        {
+            int i = 0;
+            int counter = 0;
+
+            if (s is null) return counter;
+
+            while (i < s.Length - 1)
+            {
+                if (s[i] == ' ' && s[i + 1] != ' ')
+                {
+                    counter++;
+                }
+                i++;
+            }
+
+            //if (counter > 0) counter += 1;
+
+            return counter;
+        }
+
+
+        #endregion
 
         #region 2259. Remove Digit From Number to Maximize Result
 
