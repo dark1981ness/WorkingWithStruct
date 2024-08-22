@@ -25,12 +25,54 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "hello";
+            string s = "mqblbtpvicqhbrejb";
+            int[] arr = { 3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10, 8, 2 };
 
             //Console.WriteLine(s.Trim().Split(' ').Length);
 
-            Console.WriteLine(CharsTudaSuda(s));
+            foreach (int i in NumberOfLines(arr, s))
+            {
+                Console.WriteLine(i);
+            }
         }
+
+
+        #region 806. Number of Lines To Write String
+
+        public static int[] NumberOfLines(int[] widths, string s)
+        {
+            int lineCount = 0;
+            int lastLineWidth = 0;
+            int[] result = new int[2];
+            int lineWidth = 100;
+            int tmpWidth = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                tmpWidth += widths[s[i] - 'a'];
+
+                if (tmpWidth > lineWidth)
+                {
+                    i--;
+                    lastLineWidth = tmpWidth;
+                    lineCount++;
+                    tmpWidth = 0;
+                }
+                if(tmpWidth <= lineWidth && i == s.Length - 1)
+                {
+                    lastLineWidth = tmpWidth;
+                    lineCount++;
+                }
+
+            }
+            result[0] = lineCount;
+            result[1] = lastLineWidth;
+
+            return result;
+        }
+
+        #endregion
+
 
         #region test
 
@@ -52,20 +94,6 @@ namespace WorkingWithStruct
 
         #endregion
 
-
-
-        #region 459. Repeated Substring Pattern
-
-        public static bool RepeatedSubstringPattern(string s)
-        {
-            bool res = false;
-
-
-
-            return res;
-        }
-
-        #endregion
 
         #region 434. Number of Segments in a String
 
