@@ -25,15 +25,10 @@ namespace WorkingWithStruct
 
         static void Main(string[] args)
         {
-            string s = "mqblbtpvicqhbrejb";
-            int[] arr = { 3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10, 8, 2 };
+            string[] arr = { "a" };
 
             //Console.WriteLine(s.Trim().Split(' ').Length);
-
-            foreach (int i in NumberOfLines(arr, s))
-            {
-                Console.WriteLine(i);
-            }
+            Console.WriteLine(MinDeletionSize(arr));
         }
 
 
@@ -74,7 +69,7 @@ namespace WorkingWithStruct
         #endregion
 
 
-        #region test
+        #region CharsTudaSuda
 
         public static string CharsTudaSuda(string s)
         {
@@ -87,6 +82,29 @@ namespace WorkingWithStruct
 
                 if ((s[i] >= 'A' || s[i] <= 'Z') && char.IsUpper(s[i]))
                     result += (char)('Z' - s[i] + 'A');
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region 944. Delete Columns to Make Sorted
+
+        public static int MinDeletionSize(string[] strs)
+        {
+            int result = 0;
+
+            for (int i = 0; i < strs[0].Length; i++)
+            {
+                for (int j = 0; j < strs.Length - 1; j++)
+                {
+                    if (strs[j][i] > strs[j + 1][i])
+                    {
+                        result++;
+                        break;
+                    }
+                }
             }
 
             return result;
