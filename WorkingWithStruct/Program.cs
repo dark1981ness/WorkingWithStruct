@@ -94,8 +94,9 @@ namespace WorkingWithStruct
         public static int MinDeletionSize(string[] strs)
         {
             int result = 0;
+            int n = strs[0].Length;
 
-            for (int i = 0; i < strs[0].Length; i++)
+            for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < strs.Length - 1; j++)
                 {
